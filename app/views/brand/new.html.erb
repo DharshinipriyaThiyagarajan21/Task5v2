@@ -1,5 +1,11 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <div ng-controller="brandController">
-  <input type="text" name="" placeholder="Brand Name">
+  <form action="/brand" method="post">
+    <input type="text" name="brand_name" placeholder="Brand Name">
+  </form>
   <br><br>
   Or 
   <br><br>

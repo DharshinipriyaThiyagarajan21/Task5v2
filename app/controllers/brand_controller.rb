@@ -13,4 +13,17 @@ class BrandController < ApplicationController
       @invitations << invite
     end
   end
+
+  def create
+    brand = Brand.where(:name => params["brand_name"])
+    if brand.count == 0
+      brand = Brand.create(:name => params["brand_name"])
+      current_user.brand = brand
+      current_user.save
+      redirect_to projects_path
+    else
+      flash[:notice] = "Brand name already exist."
+      redirect_to new_brand_path
+    end
+  end
 end

@@ -3,3 +3,12 @@
   border: 1px #aaa solid;
   margin: 0 auto;
 }
+
+.notice {
+  padding: 20px;
+  border: 1px #aaa solid;
+  background: rgba(255, 0, 0, 0.43);
+  color: red;
+  font-weight: 600;
+  text-align: center;
+}
