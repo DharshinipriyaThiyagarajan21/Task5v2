@@ -1,0 +1,18 @@
+<div ng-controller="brandController">
+  <input type="text" name="" placeholder="Brand Name">
+  <br><br>
+  Or 
+  <br><br>
+  <table>
+    <tr ng-repeat="invitation in invitations">
+      <td>{{invitation.brand_name}}</td>
+      <td>Invited by: {{invitation.user_name}}</td>
+      <td><a href="/invitation/{{invitation.id}}/edit">Accept</a></td>
+    </tr>
+  </table>
+
+</div>
+
+<script type="text/javascript">
+  var invitations = <%= @invitations.to_json.html_safe %>
+</script>

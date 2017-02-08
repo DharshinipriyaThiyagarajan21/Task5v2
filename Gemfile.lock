@@ -57,8 +57,10 @@ GEM
     bower-rails (0.11.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (1.15.0)
     case_transform (0.2)
       activesupport
+    coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -121,6 +123,10 @@ GEM
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     puma (3.7.0)
     rack (2.0.1)
     rack-pjax (1.0.0)
@@ -182,6 +188,7 @@ GEM
       actionmailer (>= 3.2.6, < 6)
       actionpack (>= 3.2.6, < 6)
       devise (>= 3.2, < 6)
+    slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -224,12 +231,14 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   bower-rails (~> 0.11.0)
   byebug
+  cancancan
   coffee-rails (~> 4.2)
   devise
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
   mysql2 (>= 0.3.18, < 0.5)
+  pry
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails_admin (~> 1.0)
