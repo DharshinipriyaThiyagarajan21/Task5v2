@@ -13,5 +13,8 @@ class ApplicationController < ActionController::Base
       projects_path
     end
   end
-  
+
+   def after_sign_up_path_for(resource)
+      new_brand_path
+   end
 end

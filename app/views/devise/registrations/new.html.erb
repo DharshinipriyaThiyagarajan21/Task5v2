@@ -43,42 +43,158 @@
 
 <%= render "devise/shared/links" %>
 -->
-<form class="new_user" id="new_user" action="/users/sign_up" accept-charset="UTF-8" method="GET"><input name="utf8" type="hidden" value="&#x2713;" />
-<input type="hidden" name="authenticity_token" value="0GKOmq80PEvRZ39HTRhhTk6fX5oRTd73NJCvWlibS/Z6OSr0vz8JGj6jc7uWueZWkeXXBgM9BdY9RDRS091EIg==" />
-  
+<form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+<div class="container" ng-app="index" ng-controller="indexController">
+    <input name="utf8" type="hidden" value="✓">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        <div class="header">
+              <h1>Proj5.</h1>
+            </div>
+       <div class="form-group">
+                <div class="right-inner-addon ">
+                  <div ng-switch="signupForm.username.$valid">
+                    <div ng-switch-default>
+                      <span class="glyphicon glyphicon-remove-sign"></span>
+                    </div>
+                    <div ng-switch-when=true>
+                      <span class="glyphicon glyphicon-ok-sign"></span>
+                    </div>
+                  </div>
+                  <input type="text" ng-model="user.username" class="form-control" placeholder="Username" title="Please enter a valid Username. Alphanumeric Count should be 6-24" name="user[username]" id="user_username" required>
+                </div>
+              </div>
 
-  <div class="field">
-    <label for="user_firstname">Firstname</label><br />
-    <input autofocus="autofocus" type="text" name="user[firstname]" id="user_firstname" />
-  </div>
+              <div class="form-group">
+                <input type="text" ng-model="user.firstname" class="form-control" placeholder="First Name" name="user[firstname]" id="user_firstname" required>
+              </div>
 
-  <div class="field">
-    <label for="user_lastname">Lastname</label><br />
-    <input autofocus="autofocus" type="text" name="user[lastname]" id="user_lastname" />
-  </div>
+              <div class="form-group">
+                <input type="text" ng-model="user.lastname" class="form-control" placeholder="Last Name" name="user[lastname]" id="user_lastname" required>
+              </div>
 
-  <div class="field">
-    <label for="user_username">Username</label><br />
-    <input autofocus="autofocus" type="text" name="user[username]" id="user_username" />
-  </div>
+              <div class="form-group">
+                <div class="right-inner-addon ">
+                  <div ng-switch="signupForm.email.$valid">
+                    <div ng-switch-default>
+                      <span class="glyphicon glyphicon-remove-sign"></span>
+                    </div>
+                    <div ng-switch-when=true>
+                      <span class="glyphicon glyphicon-ok-sign"></span>
+                    </div>
+                  </div>
+                  <input type="email" ng-model="user.email" class="form-control" placeholder="Enter email id" title="Please enter a valid email id" name="user[email]" id="user_email" required>
+                </div>
+              </div>
 
-  <div class="field">
-    <label for="user_email">Email</label><br />
-    <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" />
-  </div>
+              <div class="form-group">
+                <div class="right-inner-addon ">
+                  <div ng-switch="signupForm.password.$valid">
+                    <div ng-switch-default>
+                      <span class="glyphicon glyphicon-remove-sign"></span>
+                    </div>
+                    <div ng-switch-when=true>
+                      <span class="glyphicon glyphicon-ok-sign"></span>
+                    </div>
+                  </div>
+                  <input type="password" ng-model="user.password" class="form-control" placeholder="Password" title="Please enter a valid password. Alphanumeric Count should be 8-12" name="user[password]" id="user_password" required>
+                </div>
+              </div>
 
-  <div class="field">
-    <label for="user_password">Password</label>
-<br />
-    <input autocomplete="off" type="password" name="user[password]" id="user_password" />
-  </div>
+              <div class="form-group">
+                <div class="right-inner-addon">
+                  <div ng-switch="password == passwordRepeat && passwordRepeat != null">
+                    <div ng-switch-default>
+                      <span class="glyphicon glyphicon-remove-sign"></span>
+                    </div>
+                    <div ng-switch-when=true>
+                      <span class="glyphicon glyphicon-ok-sign"></span>
+                    </div>
+                  </div>
+                  <input type="password" ng-model="passwordRepeat" class="form-control" placeholder="Confirm Password" title="Please enter the correct password" name="user[password_confirmation]" id="user_password_confirmation" required>
+                </div>
+              </div>
 
-  <div class="field">
-    <label for="user_password_confirmation">Password confirmation</label><br />
-    <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
-  </div>
+              <div class="row">
+                <div class="col-md-2"></div>
 
-  <div class="actions">
-    <input type="submit" name="commit" value="Sign up" data-disable-with="Sign up" />
-  </div>
-</form>
+                <div class="col-md-4">
+                  <button type="submit" class="btn btn-default btn-signup" name="commit" data-disable-with="Sign up">Sign Up</button>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="button" class="btn btn-default btn-login" onclick="location.href='index.html'" value="Cancel" />
+                </div>
+              </div>
+              </div>
+              <div class="col-md-4"></div>
+
+      </div>
+      </form>
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+              <!--<div class="row">
+          <div class="col-md-4"></div>
+
+          <div class="col-md-4">
+            <form name="loginForm">
+                <div class="header">
+                  <h1>Proj5.</h1>
+                </div>
+
+                <div class="field">
+                <label for="user_firstname">Firstname</label><br />
+                <input autofocus="autofocus" type="text" name="user[firstname]" id="user_firstname" />
+              </div>
+
+              <div class="field">
+                <label for="user_lastname">Lastname</label><br />
+                <input autofocus="autofocus" type="text" name="user[lastname]" id="user_lastname" />
+              </div>
+
+              <div class="field">
+                <label for="user_username">Username</label><br />
+                <input autofocus="autofocus" type="text" name="user[username]" id="user_username" />
+              </div>
+
+              <div class="field">
+                <label for="user_email">Email</label><br />
+                <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" />
+              </div>
+
+              <div class="field">
+                <label for="user_password">Password</label>
+            <br />
+                <input autocomplete="off" type="password" name="user[password]" id="user_password" />
+              </div>
+
+              <div class="field">
+                <label for="user_password_confirmation">Password confirmation</label><br />
+                <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+              </div>
+
+              <div class="actions">
+                <input type="submit" name="commit" value="Sign up" data-disable-with="Sign up" />
+              </div>
+
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>-->
