@@ -8152,3 +8152,95 @@ Processing by Devise::RegistrationsController#new as HTML
 Completed 200 OK in 52ms (Views: 50.7ms | ActiveRecord: 0.0ms)
 
 
+Started POST "/users" for 127.0.0.1 at 2017-02-09 20:40:55 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XS4wwxLB78EhmuTXjHE5Blvg5tF4ikjSnvAb774jkUFW+jLWJmboscfgahup7jGtps+CQULh5p4t7m/m6tmEeA==", "user"=>{"username"=>"glificon", "firstName"=>"glificon first", "lastName"=>"glif last", "email"=>"icon@icon.com", "password"=>"[FILTERED]", "passwordRepeat"=>"[FILTERED]"}}
+Unpermitted parameters: firstName, lastName, passwordRepeat
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 493ms (Views: 46.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-02-09 20:43:35 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XS4wwxLB78EhmuTXjHE5Blvg5tF4ikjSnvAb774jkUFW+jLWJmboscfgahup7jGtps+CQULh5p4t7m/m6tmEeA==", "user"=>{"username"=>"glificon", "firstName"=>"glificon first", "lastName"=>"glif last", "email"=>"icon@icon.com", "password"=>"[FILTERED]", "passwordRepeat"=>"[FILTERED]"}}
+Unpermitted parameters: firstName, lastName, passwordRepeat
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 243ms (Views: 45.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-09 20:43:39 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 60ms (Views: 58.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-02-09 20:44:02 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yyNDSbZzakYigcXSPeVi2HWBYIsKmEys0b1ggEWsVPPA90FcgtRtNsT7Sx4YempziK4EGzDz4uBioxSJEVZByg==", "user"=>{"username"=>"glificon", "firstname"=>"icon", "lastname"=>"icon", "email"=>"icon@icon.com", "password"=>"[FILTERED]", "passwordRepeat"=>"[FILTERED]"}}
+Unpermitted parameter: passwordRepeat
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `username`, `firstname`, `lastname`) VALUES ('icon@icon.com', '$2a$11$cXkeOFSDmAhq4jIYNJES4eOotZKdhOu04lCCNy7pWL4qXaD2jd9ey', '2017-02-09 15:14:03', '2017-02-09 15:14:03', 'glificon', 'icon', 'icon')[0m
+  [1m[35m (29.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2017-02-09 15:14:03', `last_sign_in_at` = '2017-02-09 15:14:03', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 9[0m
+  [1m[35m (34.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/brand/new
+Completed 302 Found in 312ms (ActiveRecord: 65.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-09 20:44:03 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.6ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 9[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 102ms (Views: 55.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-09 20:47:08 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 9[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 67ms (Views: 60.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2017-02-09 20:47:11 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 13ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-09 20:47:11 +0530
+Processing by BrandController#new as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-09 20:47:11 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 53ms (Views: 51.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-09 20:47:13 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 46ms (Views: 44.3ms | ActiveRecord: 0.0ms)
+
+
