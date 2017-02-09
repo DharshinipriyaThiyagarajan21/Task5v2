@@ -83,6 +83,9 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    glyphicons-rails (0.1.2)
+      sass (~> 3.3)
+      sass-rails
     haml (4.0.7)
       tilt
     i18n (0.8.0)
@@ -234,6 +237,7 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.2)
   devise
+  glyphicons-rails (~> 0.1.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
