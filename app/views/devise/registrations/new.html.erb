@@ -1,11 +1,16 @@
-<h2>Sign up</h2>
+<!--<h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :fullname %><br />
-    <%= f.text_field :fullname, autofocus: true %>
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname %><br />
+    <%= f.text_field :lastname, autofocus: true %>
   </div>
 
   <div class="field">
@@ -37,3 +42,43 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+-->
+<form class="new_user" id="new_user" action="/users/sign_up" accept-charset="UTF-8" method="GET"><input name="utf8" type="hidden" value="&#x2713;" />
+<input type="hidden" name="authenticity_token" value="0GKOmq80PEvRZ39HTRhhTk6fX5oRTd73NJCvWlibS/Z6OSr0vz8JGj6jc7uWueZWkeXXBgM9BdY9RDRS091EIg==" />
+  
+
+  <div class="field">
+    <label for="user_firstname">Firstname</label><br />
+    <input autofocus="autofocus" type="text" name="user[firstname]" id="user_firstname" />
+  </div>
+
+  <div class="field">
+    <label for="user_lastname">Lastname</label><br />
+    <input autofocus="autofocus" type="text" name="user[lastname]" id="user_lastname" />
+  </div>
+
+  <div class="field">
+    <label for="user_username">Username</label><br />
+    <input autofocus="autofocus" type="text" name="user[username]" id="user_username" />
+  </div>
+
+  <div class="field">
+    <label for="user_email">Email</label><br />
+    <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" />
+  </div>
+
+  <div class="field">
+    <label for="user_password">Password</label>
+<br />
+    <input autocomplete="off" type="password" name="user[password]" id="user_password" />
+  </div>
+
+  <div class="field">
+    <label for="user_password_confirmation">Password confirmation</label><br />
+    <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Sign up" data-disable-with="Sign up" />
+  </div>
+</form>

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :invitees, :through => :invitations
   has_many :inverse_invitations, :class_name => "Invitation", :foreign_key => "invitee_id"
   has_many :inverse_invitees, :through => :inverse_invitations, :source => :user
+  has_many :invites
   validates :username, :presence => true
-  validates :fullname, :presence => true
+  validates :firstname, :presence => true
+  validates :lastname, :presence => true
 end
