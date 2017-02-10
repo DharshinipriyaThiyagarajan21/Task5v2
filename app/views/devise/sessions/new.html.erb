@@ -1,5 +1,5 @@
 <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
-<div class="container" ng-app="app" ng-controller="indexController">
+<div class="container indexContainer" ng-app="app" ng-controller="indexController">
     <input name="utf8" type="hidden" value="✓">
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
         <div class="row">
@@ -27,11 +27,11 @@
                   <div class="col-md-2"></div>
 
                   <div class="col-md-4">
-                    <button type="submit" class="btn btn-default btn-login" name="commit" data-disable-with="Log in">Login</button>
+                    <button type="submit" class="btn btn-default defaultButtonsIndex" name="commit" data-disable-with="Log in">Login</button>
                   </div>
 
                   <div class="col-md-4">
-                    <input type="button" class="btn btn-default btn-login" onclick="location.href='sign_up'" value="Sign Up" />
+                    <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_up'" value="Sign Up" />
                   </div>
                 </div>
 
