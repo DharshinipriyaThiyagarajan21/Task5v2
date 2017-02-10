@@ -64,7 +64,9 @@ app.controller("createOrJoinController", function ($scope) {
 
 
   $scope.users = users;
-
+  $scope.log = function(){
+  console.log($scope.selected);
+};
 
 });
 

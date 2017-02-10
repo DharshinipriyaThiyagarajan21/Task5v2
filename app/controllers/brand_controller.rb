@@ -5,8 +5,6 @@ class BrandController < ApplicationController
     # binding.pry
     @invitations = []
     @user = User.all.where(:brand_id => nil)
-
-
     current_user.inverse_invitations.each do |invitation|
       invite = {
         :id => invitation.id,
@@ -18,11 +16,16 @@ class BrandController < ApplicationController
   end
 
   def create
-    brand = Brand.where(:name => params["brand_name"])
+    brand = Brand.where(:name => params['brand']['brandname'])
     if brand.count == 0
-      brand = Brand.create(:name => params["brand_name"])
+      brand = Brand.create(:name => params['brand']['brandname'])
       current_user.brand = brand
       current_user.save
+      params['brand']['selectedUser'].each do |invite|
+        user = User.find_by(:email => invite)
+        brand = Brand.find_by(:name => params['brand']['brandname'])
+        Invitation.create(:user_id => current_user.id, :brand_id => brand.id, :invitee_id => user.id, :status => 'pending')
+      end
       redirect_to projects_path
     else
       flash[:notice] = "Brand name already exist."
