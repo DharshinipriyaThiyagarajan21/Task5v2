@@ -19,7 +19,7 @@
                   </div>
 
                   <input type="text" ng-model="user.username" ng-change="validateUsername()"
-                  name="user[username]" class="form-control" placeholder="Username"
+                  name="user[username]" class="form-control boxShadow" placeholder="Username"
                   title="Please enter a valid Username. Alphanumeric Count should be 6-24" required>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                     </div>
                   </div>
 
-                  <input type="text" ng-model="user.firstname" class="form-control" placeholder="First Name"
+                  <input type="text" ng-model="user.firstname" class="form-control boxShadow" placeholder="First Name"
                   name="user[firstname]" ng-pattern="/^[a-zA-Z\s]*$/" required>
                 </div>
               </div>
@@ -51,7 +51,7 @@
                     </div>
                   </div>
 
-                  <input type="text" ng-model="user.lastname" class="form-control" placeholder="Last Name"
+                  <input type="text" ng-model="user.lastname" class="form-control boxShadow" placeholder="Last Name"
                   name="user[lastname]" ng-pattern="/^[a-zA-Z\s]*$/" required>
                 </div>
 </div>
@@ -66,7 +66,7 @@
                       <span class="glyphicon glyphicon-ok-sign"></span>
                     </div>
                   </div>
-                  <input type="email" ng-model="user.email" name="user[email]" class="form-control" placeholder="Enter email id"
+                  <input type="email" ng-model="user.email" name="user[email]" class="form-control boxShadow" placeholder="Enter email id"
                   title="Please enter a valid email id" required>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   </div>
 
                   <input type="password" ng-model="user.password" name="user[password]"
-                  ng-change="validatePassword()" class="form-control" placeholder="Password"
+                  ng-change="validatePassword()" class="form-control boxShadow" placeholder="Password"
                   title="Please enter a valid password. Alphanumeric Count should be 8-12" required>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                   </div>
 
                   <input type="password" ng-model="user.passwordRepeat" 
-                  name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control" placeholder="Confirm Password" 
+                  name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" 
                   title="Please enter the correct password" required>
                 </div>
               </div>

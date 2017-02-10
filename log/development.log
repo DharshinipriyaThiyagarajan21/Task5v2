@@ -12521,3 +12521,51 @@ Processing by BrandController#new as HTML
 Completed 200 OK in 1111ms (Views: 1106.9ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 13:27:11 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 9[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1012ms (Views: 1007.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 13:31:31 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.3ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 9[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 1142ms (Views: 1134.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 13:34:01 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 9[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 45ms (Views: 40.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2017-02-10 13:34:03 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-10 13:34:03 +0530
+Processing by BrandController#new as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-10 13:34:03 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 37ms (Views: 35.9ms | ActiveRecord: 0.0ms)
+
+
