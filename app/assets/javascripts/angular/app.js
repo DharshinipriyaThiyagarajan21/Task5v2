@@ -13,7 +13,7 @@ app.controller("signupCtrl", function($scope){
     console.log($scope.user.username.length);
   };
   $scope.validateUsername = function(){
-  	
+
 
 console.log($scope.user.email);
     if($scope.user.username != null && $scope.user.username.length >= 6 && $scope.user.username.length <= 24){
@@ -58,4 +58,19 @@ console.log($scope.user.email);
   // }
 
 
+});
+
+app.controller("createOrJoinController", function () {
+
+});
+
+app.directive('directiveTest',function(){
+    return {
+        restrict : 'A',
+        link : function(scope,element,attrs){
+            $(element).select2({
+                placeholder : '@username'
+            });
+        }
+    };
 });

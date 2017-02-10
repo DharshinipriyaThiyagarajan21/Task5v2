@@ -8244,3 +8244,1160 @@ Processing by Devise::RegistrationsController#new as HTML
 Completed 200 OK in 46ms (Views: 44.3ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-10 10:38:48 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 8456ms (Views: 8392.8ms | ActiveRecord: 9.2ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-02-10 10:39:06 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"u/Qt6mSQowzA2Xo6ZrZjYMNYpV9tLU3M97Y4UW+GLr+DI3iuCMxd8ASflgNlT87Cik8ngwrqjbxteCFIcWSLJQ==", "user"=>{"email"=>"dharshini@codingmart.com", "password"=>"[FILTERED]"}, "commit"=>""}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'dharshini@codingmart.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2017-02-10 05:09:06', `last_sign_in_at` = '2017-02-09 08:55:45', `sign_in_count` = 8, `updated_at` = '2017-02-10 05:09:06' WHERE `users`.`id` = 1[0m
+  [1m[35m (26.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT  `brands`.* FROM `brands` WHERE `brands`.`id` = 1 LIMIT 1[0m
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 452ms (ActiveRecord: 30.4ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2017-02-10 10:39:06 +0530
+Processing by ProjectsController#index as HTML
+  Rendering projects/index.html within layouts/application
+  Rendered projects/index.html within layouts/application (1.1ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 92ms (Views: 77.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:39:22 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mBrand Load (0.2ms)[0m  [1m[34mSELECT  `brands`.* FROM `brands` WHERE `brands`.`id` = 1 LIMIT 1[0m
+Redirected to http://localhost:3000/projects
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2017-02-10 10:39:22 +0530
+Processing by ProjectsController#index as HTML
+  Rendering projects/index.html within layouts/application
+  Rendered projects/index.html within layouts/application (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 70ms (Views: 66.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at 2017-02-10 10:39:25 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 12ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-10 10:39:25 +0530
+Processing by BrandController#new as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-02-10 10:39:25 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 47ms (Views: 44.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:39:30 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 52ms (Views: 50.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:39:36 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 63ms (Views: 61.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:40:20 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 55ms (Views: 53.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:40:57 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 53ms (Views: 51.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:41:52 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 56ms (Views: 54.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:41:57 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 59ms (Views: 57.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:42:08 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 852ms (Views: 809.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:42:26 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 271ms (Views: 269.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:44:32 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 170ms (Views: 168.2ms | ActiveRecord: 0.0ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:46:14 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 87ms (Views: 84.4ms | ActiveRecord: 0.0ms)
+
+
+  
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:47:06 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 209ms (Views: 207.3ms | ActiveRecord: 0.0ms)
+
+
+  
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:48:19 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 65ms (Views: 63.3ms | ActiveRecord: 0.0ms)
+
+
+  
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-02-10 10:49:28 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 56ms (Views: 55.1ms | ActiveRecord: 0.0ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/users" for 127.0.0.1 at 2017-02-10 10:50:47 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"w95vwnqTRD+vn9pUpUemWJ9iy4xEX8PZedWYgsn9DUgXPORAD3IDxQCNFkk/2K9OTh8UQqogcBafZhUo7LBRsQ==", "user"=>{"username"=>"arjunp", "firstname"=>"arjun", "lastname"=>"pathy", "email"=>"arjun@codingmart.com", "password"=>"[FILTERED]", "passwordRepeat"=>"[FILTERED]"}}
+Unpermitted parameter: passwordRepeat
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `username`, `firstname`, `lastname`) VALUES ('arjun@codingmart.com', '$2a$11$OxYJlNkv5b8IiGabtI.Bs.IEvw2Qwzj70ScKUoPltueeZFIjYvtA.', '2017-02-10 05:20:47', '2017-02-10 05:20:47', 'arjunp', 'arjun', 'pathy')[0m
+  [1m[35m (69.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2017-02-10 05:20:47', `last_sign_in_at` = '2017-02-10 05:20:47', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 10[0m
+  [1m[35m (29.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/brand/new
+Completed 302 Found in 338ms (ActiveRecord: 100.8ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 10:50:47 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.5ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 72ms (Views: 45.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:05:18 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.3ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'select2' with type 'text/css'
+Checked in these paths: 
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/config
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/fonts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/images
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/stylesheets
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/remotipart-1.3.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/nested_form-0.3.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/angular-rails-templates-1.0.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.1/lib/assets/compiled
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/lib/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/images):
+    4:   <title>ProTask5v2</title>
+    5:   <%= csrf_meta_tags %>
+    6: 
+    7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9: </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:16
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___855271051__655269538'
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (9.7ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.6ms)
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:05:55 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'select2-bootstrap' with type 'text/css'
+Checked in these paths: 
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/config
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/fonts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/images
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/stylesheets
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/remotipart-1.3.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/nested_form-0.3.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/angular-rails-templates-1.0.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.1/lib/assets/compiled
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/lib/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/images):
+    4:   <title>ProTask5v2</title>
+    5:   <%= csrf_meta_tags %>
+    6: 
+    7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9: </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:16
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___855271051__667888768'
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (9.5ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (34.0ms)
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:06:07 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'select2' with type 'application/javascript'
+Checked in these paths: 
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/config
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/fonts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/images
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/stylesheets
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/remotipart-1.3.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/nested_form-0.3.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/angular-rails-templates-1.0.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.1/lib/assets/compiled
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/lib/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/images):
+     5:   <%= csrf_meta_tags %>
+     6: 
+     7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     8:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     9: </head>
+    10: 
+    11: <body ng-app="app">
+  
+app/assets/javascripts/application.js:18
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___855271051_95346510'
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.9ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (31.5ms)
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:07:00 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1504ms (Views: 1494.4ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:11:27 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 296ms (Views: 289.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:12:54 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1562ms (Views: 1557.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:16:47 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 194ms (Views: 188.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:19:09 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 56ms (Views: 49.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:21:51 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 54ms (Views: 46.9ms | ActiveRecord: 0.4ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:29:26 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 165ms (Views: 158.8ms | ActiveRecord: 0.5ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:30:48 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 175ms (Views: 170.4ms | ActiveRecord: 0.4ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [GET] "/assets/bootstrap.css.map"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `block in call'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:63:in `block (3 levels) in broadcast'
+activesupport (5.0.1) lib/active_support/logger_silence.rb:20:in `silence'
+activesupport (5.0.1) lib/active_support/logger.rb:61:in `block (2 levels) in broadcast'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:11:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.7.0) lib/puma/configuration.rb:226:in `call'
+puma (3.7.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.0) lib/puma/server.rb:415:in `process_client'
+puma (3.7.0) lib/puma/server.rb:275:in `block in run'
+puma (3.7.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:31:23 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'jquery-3.1.1.min' with type 'application/javascript'
+Checked in these paths: 
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/config
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/fonts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/images
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/stylesheets
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/remotipart-1.3.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/nested_form-0.3.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/angular-rails-templates-1.0.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.1/lib/assets/compiled
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/lib/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/images):
+     5:   <%= csrf_meta_tags %>
+     6: 
+     7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     8:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     9: </head>
+    10: 
+    11: <body ng-app="app">
+  
+app/assets/javascripts/application.js:15
+app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___855271051_96452470'
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.8ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.2ms)
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:34:00 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.8ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 46ms (Views: 38.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:35:52 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 40ms (Views: 35.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:36:58 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 164ms (Views: 157.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:38:21 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'select2' with type 'text/css'
+Checked in these paths: 
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/config
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/fonts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/images
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/app/assets/stylesheets
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/glyphicons-rails-0.1.2/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/rails_admin-1.1.1/vendor/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/remotipart-1.3.1/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/nested_form-0.3.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/images
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-ui-rails-5.0.5/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/jquery-rails-4.2.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/font-awesome-rails-4.7.0.1/app/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/angular-rails-templates-1.0.2/vendor/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actioncable-5.0.1/lib/assets/compiled
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /home/codingmart/Documents/SRIRAM/task5v2/lib/assets/bower_components
+  /home/codingmart/Documents/SRIRAM/task5v2/vendor/assets/bower_components
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/stylesheets
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/javascripts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/fonts
+  /home/codingmart/.rvm/gems/ruby-2.3.3/gems/bootstrap-sass-3.3.7/assets/images):
+    4:   <title>ProTask5v2</title>
+    5:   <%= csrf_meta_tags %>
+    6: 
+    7:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9: </head>
+   10: 
+  
+app/assets/stylesheets/application.scss:16
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___855271051__689124158'
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (11.1ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendering /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/codingmart/.rvm/gems/ruby-2.3.3/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (39.4ms)
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:39:10 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 1183ms (Views: 1178.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-02-10 11:40:55 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 10[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 1306ms (Views: 1300.1ms | ActiveRecord: 0.5ms)
+
+

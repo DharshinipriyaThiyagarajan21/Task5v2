@@ -1,4 +1,4 @@
-<div ng-controller="brandController">
+<!--<div ng-controller="brandController">
   <form action="/brand" method="post">
     <input type="text" name="brand_name" placeholder="Brand Name">
   </form>
@@ -18,3 +18,127 @@
 <script type="text/javascript">
   var invitations = <%= @invitations.to_json.html_safe %>
 </script>
+-->
+<div ng-app="app" ng-controller="createOrJoinController">
+    <div class="container logoutContainer">
+      <div class="row">
+        <div class="col-md-11"></div>
+        <div class="col-md-1">
+          <button type="button logoutBtn" class="btn btn-link">
+            <span class="logout glyphicon glyphicon-user" title="Logout"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container mainContainer">
+    <div class="row">
+
+          <div class="col-md-4"></div>
+
+          <div class="col-md-4">
+
+                <div class="header">
+                  <h1>Proj5.</h1>
+                </div>
+
+                <div class="buttons">
+                  <button type="button" class="btn btn-lg btn-block btn-default defaultButtons" data-toggle="modal" data-target="#brandModal">Create Brand</button>
+                </div>
+
+                <div class="or">
+                  <span> ( or ) </span>
+                </div>
+
+                <div class="buttons">
+                  <button type="button" class="btn btn-lg btn-block btn-default defaultButtons" data-toggle="modal" data-target="#joinModal">Join Brand</button>
+                </div>
+
+              <!-- CreateModal -->
+                <div class="modal fade" id="brandModal" role="dialog">
+                    <!-- CreateModal Dialog-->
+                    <div class="modal-dialog">
+
+                        <!-- CreateModal content-->
+                        <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create a brand</h4>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label>Brand Title</label>
+                            <input type="text" ng-model="brandname" class="form-control" placeholder="Brand Name">
+                          </div>
+                          <div>
+                            <label>Add Members</label>
+                          </div>
+                          <div>
+                            <select directive-test multiple class="CreateModal">
+                              <option value="AL">Alabama</option>
+                              <option value="Am">Amalapuram</option>
+                              <option value="An">Anakapalli</option>
+                              <option value="Ak">Akkayapalem</option>
+                              <option value="WY">Wyoming</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default">Confirm</button>
+                        </div>
+
+                      </div><!--CreateModal content Ends Here-->
+                  </div><!--CreateModal Dialog Ends Here-->
+              </div><!--CreateModal Ends Here-->
+
+
+              <!-- JoinModal-->
+              <div class="modal fade" id="joinModal" role="dialog">
+                <!--JoinModal Dialog-->
+                <div class="modal-dialog">
+
+                    <!-- JoinModal content-->
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Join a band</h4>
+                      </div>
+
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label>Invitations</label>
+
+                            <div>
+                              <select directive-test class="JoinModal">
+                                <option value="AL">None</option>
+                                <option value="AL">Alabama</option>
+                                <option value="Am">Amalapuram</option>
+                                <option value="An">Anakapalli</option>
+                                <option value="Ak">Akkayapalem</option>
+                                <option value="WY">Wyoming</option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default">Accept</button>
+                          <button type="button" class="btn btn-default">Reject</button>
+                        </div>
+
+                    </div><!--JoinModal content Ends Here-->
+                </div><!--JoinModal Dialog Ends Here-->
+            </div><!--JoinModal Ends Here-->
+
+          </div><!--col-md-4-->
+
+          <div class="col-md-4"></div>
+
+        </div><!--row-->
+
+    </div><!--container-->
+    </div>
