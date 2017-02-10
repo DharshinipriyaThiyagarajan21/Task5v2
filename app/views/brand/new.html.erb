@@ -30,6 +30,9 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+  var users = <%= @user.to_json.html_safe %>
+</script>
     <div class="container mainContainer">
     <div class="row">
 
@@ -76,11 +79,7 @@
                           </div>
                           <div>
                             <select directive-test multiple class="CreateModal">
-                              <option value="AL">Alabama</option>
-                              <option value="Am">Amalapuram</option>
-                              <option value="An">Anakapalli</option>
-                              <option value="Ak">Akkayapalem</option>
-                              <option value="WY">Wyoming</option>
+                              <option ng-repeat="x in users" value="{{x.email}}">{{x.email}}</option>
                             </select>
                           </div>
                         </div>

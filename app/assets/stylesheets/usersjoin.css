@@ -37,6 +37,11 @@ h1
 	color: #fff;
 }
 
+option
+{
+  color: black !important;
+}
+
 .JoinModal
 {
   width: 250%;
@@ -85,7 +90,6 @@ body
   border-color: #3cb0fd!important;
   text-decoration: none!important;
 }
-
 .or
 {
 	color: #fff;

@@ -4,6 +4,9 @@ class BrandController < ApplicationController
   def new
     # binding.pry
     @invitations = []
+    @user = User.all.where(:brand_id => nil)
+
+
     current_user.inverse_invitations.each do |invitation|
       invite = {
         :id => invitation.id,

@@ -60,7 +60,11 @@ console.log($scope.user.email);
 
 });
 
-app.controller("createOrJoinController", function () {
+app.controller("createOrJoinController", function ($scope) {
+
+
+  $scope.users = users;
+
 
 });
 
