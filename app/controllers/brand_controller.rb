@@ -9,7 +9,7 @@ class BrandController < ApplicationController
       invite = {
         :id => invitation.id,
         :brand_name => invitation.brand.name,
-        :user_name => invitation.user.fullname
+        :user_name => invitation.user.username
       }
       @invitations << invite
     end

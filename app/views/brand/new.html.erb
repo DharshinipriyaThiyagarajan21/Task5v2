@@ -32,6 +32,7 @@
     </div>
     <script type="text/javascript">
   var users = <%= @user.to_json.html_safe %>
+  var invitations = <%= @invitations.to_json.html_safe %>
 </script>
     <div class="container mainContainer">
     <div class="row">
@@ -112,13 +113,8 @@
                             <label>Invitations</label>
 
                             <div>
-                              <select directive-test class="JoinModal">
-                                <option value="AL">None</option>
-                                <option value="AL">Alabama</option>
-                                <option value="Am">Amalapuram</option>
-                                <option value="An">Anakapalli</option>
-                                <option value="Ak">Akkayapalem</option>
-                                <option value="WY">Wyoming</option>
+                              <select directive-test class="JoinModal" ng-model="join">
+                                <option ng-repeat="x in invitations" value="{{x.id}}">{{x.user_name}} invited to {{x.brand_name}}</option>
                               </select>
                             </div>
 
@@ -126,7 +122,9 @@
                         </div>
 
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default">Accept</button>
+                        a  - {{join}}
+                        <a href="/invitation/{{join}}/edit">
+                          <button type="button" class="btn btn-default">Accept</button></a>
                           <button type="button" class="btn btn-default">Reject</button>
                         </div>
 
