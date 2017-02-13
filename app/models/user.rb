@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :inverse_invitations, :class_name => "Invitation", :foreign_key => "invitee_id"
   has_many :inverse_invitees,->{where(invitations: {status: 'pending'})}, :through => :inverse_invitations, :source => :user
   has_many :invites
+  has_many :histories, as: :link
   validates :username, :presence => true
   validates :firstname, :presence => true
   validates :lastname, :presence => true
