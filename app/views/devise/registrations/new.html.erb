@@ -35,7 +35,7 @@
                     </div>
                   </div>
 
-                  <input type="text" ng-model="user.firstname" class="form-control boxShadow" placeholder="First Name"
+                  <input type="text" ng-model="user.firstname" class="form-control boxShadow" placeholder="First Name" ng-change = "validateFirstname()"
                   name="user[firstname]" ng-pattern="/^[a-zA-Z\s]*$/" required>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                   </div>
 
                   <input type="text" ng-model="user.lastname" class="form-control boxShadow" placeholder="Last Name"
-                  name="user[lastname]" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                  name="user[lastname]" ng-change="validateLastname()" ng-pattern="/^[a-zA-Z\s]*$/" required>
                 </div>
 </div>
 
@@ -66,7 +66,7 @@
                       <span class="glyphicon glyphicon-ok-sign"></span>
                     </div>
                   </div>
-                  <input type="email" ng-model="user.email" name="user[email]" class="form-control boxShadow" placeholder="Enter email id"
+                  <input type="email" ng-model="user.email" name="user[email]" ng-blur="validateEmail()" ng-focus="validateEmail()" class="form-control boxShadow" placeholder="Enter email id"
                   title="Please enter a valid email id" required>
                 </div>
               </div>
@@ -109,11 +109,11 @@
                 <div class="col-md-2"></div>
 
                 <div class="col-md-4">
-                  <button type="submit" class="btn btn-default defaultButtonsIndex" ng-click="submitForm()">Sign Up</button>
+                  <button type="submit" ng-disabled="!showSignup" class="btn btn-default defaultButtonsIndex" ng-click="submitForm()">Sign Up</button>
                 </div>
 
                 <div class="col-md-4">
-                  <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='index.html'" value="Cancel" />
+                  <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_in'" value="Cancel" />
                 </div>
 </div>
               </div>
