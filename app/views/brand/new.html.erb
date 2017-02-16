@@ -21,43 +21,43 @@
 -->
 <div ng-app="app" ng-controller="createOrJoinController">
     <div class="container logoutContainer">
-      <div class="row">
-        <div class="col-md-11"></div>
-        <div class="col-md-1">
-          <button type="button logoutBtn" class="btn btn-link" title="Logout" onclick="location.href='/users/sign_out'">
-            <span class="logout glyphicon glyphicon-user" title="Logout"></span>
-          </button>
+        <div class="row">
+            <div class="col-md-11"></div>
+            <div class="col-md-1">
+                <button type="button logoutBtn" class="btn btn-link" title="Logout" onclick="location.href='/users/sign_out'">
+                    <span class="logout glyphicon glyphicon-user" title="Logout"></span>
+                </button>
+            </div>
         </div>
-      </div>
     </div>
     <script type="text/javascript">
-      var users = <%= @user.to_json.html_safe %>
-      var invitations = <%= @invitations.to_json.html_safe %>
+        var users = <%= @user.to_json.html_safe %>
+        var invitations = <%= @invitations.to_json.html_safe %>
     </script>
     <div class="container mainContainer">
-    <div class="row">
+        <div class="row">
 
-          <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
 
-          <div class="col-md-4">
+            <div class="col-md-4">
 
                 <div class="header">
-                  <h1>Proj5.</h1>
+                    <h1>Proj5.</h1>
                 </div>
 
                 <div class="buttons">
-                  <button type="button" class="btn btn-lg btn-block btn-default defaultButtons" data-toggle="modal" data-target="#brandModal">Create Brand</button>
+                    <button type="button" class="btn btn-lg btn-block btn-default defaultButtons" data-toggle="modal" data-target="#brandModal">Create Brand</button>
                 </div>
 
                 <div class="or">
-                  <span> ( or ) </span>
+                    <span> ( or ) </span>
                 </div>
 
                 <div class="buttons">
-                  <button type="button" class="btn btn-lg btn-block btn-default defaultButtons" data-toggle="modal" data-target="#joinModal">Join Brand</button>
+                    <button type="button" class="btn btn-lg btn-block btn-default defaultButtons" data-toggle="modal" data-target="#joinModal">Join Brand</button>
                 </div>
 
-              <!-- CreateModal -->
+                <!-- CreateModal -->
                 <div class="modal fade" id="brandModal" role="dialog">
                     <!-- CreateModal Dialog-->
                     <div class="modal-dialog">
@@ -65,77 +65,87 @@
                         <!-- CreateModal content-->
 
                         <div class="modal-content">
-                        <form name="brandAdd" action="/brand" method="post">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create a brand</h4>
+                            <form name="brandAdd" action="/brand" method="post">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Create a brand</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Brand Title</label>
+                                        <input type="text" ng-model="brandname" class="form-control" placeholder="Brand Name" name=brand[brandname]>
+                                    </div>
+                                    <div>
+                                        <label>Add Members</label>
+                                    </div>
+                                    <div>
+                                        <select directive-test multiple ng-model="selected" class="CreateModal" name=brand[selectedUser][]>
+                                            <option ng-repeat="x in users" value="{{x.email}}">{{x.email}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default">Confirm</button>
+                                </div>
+                            </form>
                         </div>
-                      
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <label>Brand Title</label>
-                            <input type="text" ng-model="brandname" class="form-control" placeholder="Brand Name" name=brand[brandname]>
-                          </div>
-                          <div>
-                            <label>Add Members</label>
-                          </div>
-                          <div>
-                            <select directive-test multiple ng-model="selected" class="CreateModal" name=brand[selectedUser][]>
-                              <option ng-repeat="x in users"  value="{{x.email}}">{{x.email}}</option>
-                            </select>
-                          </div>
-                        </div>
-
-                         <div class="modal-footer">
-                          <button type="submit" class="btn btn-default">Confirm</button>
-                        </div>
-                        </form>
-                      </div><!--CreateModal content Ends Here-->
-                  </div><!--CreateModal Dialog Ends Here-->
-              </div><!--CreateModal Ends Here-->
+                        <!--CreateModal content Ends Here-->
+                    </div>
+                    <!--CreateModal Dialog Ends Here-->
+                </div>
+                <!--CreateModal Ends Here-->
 
 
-              <!-- JoinModal-->
-              <div class="modal fade" id="joinModal" role="dialog">
-                <!--JoinModal Dialog-->
-                <div class="modal-dialog">
+                <!-- JoinModal-->
+                <div class="modal fade" id="joinModal" role="dialog">
+                    <!--JoinModal Dialog-->
+                    <div class="modal-dialog">
 
-                    <!-- JoinModal content-->
-                    <div class="modal-content">
+                        <!-- JoinModal content-->
+                        <div class="modal-content">
 
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Join a band</h4>
-                      </div>
-
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <label>Invitations</label>
-
-                            <div>
-                              <select class="JoinModal" ng-model="join">
-                                <option ng-repeat="x in invitations" value="{{x.id}}">{{x.user_name}} invited to {{x.brand_name}}</option>
-                              </select>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Join a band</h4>
                             </div>
 
-                          </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Invitations</label>
+
+                                    <div>
+                                        <select class="JoinModal" ng-model="join">
+                                            <option ng-repeat="x in invitations" value="{{x.id}}">{{x.user_name}} invited to {{x.brand_name}}</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <a href="/invitation/{{join}}/edit">
+                                    <button type="button" class="btn btn-default" ng-disabled="!join">Accept</button>
+                                </a>
+                                <!--<button type="button" class="btn btn-default">Reject</button>-->
+                            </div>
+
                         </div>
+                        <!--JoinModal content Ends Here-->
+                    </div>
+                    <!--JoinModal Dialog Ends Here-->
+                </div>
+                <!--JoinModal Ends Here-->
 
-                        <div class="modal-footer">
-                        <a href="/invitation/{{join}}/edit">
-                          <button type="button" class="btn btn-default" ng-disabled="!join">Accept</button></a>
-                          <!--<button type="button" class="btn btn-default">Reject</button>-->
-                        </div>
+            </div>
+            <!--col-md-4-->
 
-                    </div><!--JoinModal content Ends Here-->
-                </div><!--JoinModal Dialog Ends Here-->
-            </div><!--JoinModal Ends Here-->
+            <div class="col-md-4"></div>
 
-          </div><!--col-md-4-->
+        </div>
+        <!--row-->
 
-          <div class="col-md-4"></div>
-
-        </div><!--row-->
-
-    </div><!--container-->
     </div>
+    <!--container-->
+</div>

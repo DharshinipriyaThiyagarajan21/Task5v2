@@ -1,44 +1,38 @@
 <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
-<div class="container indexContainer" ng-app="app" ng-controller="indexController">
-    <input name="utf8" type="hidden" value="✓">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <div class="container indexContainer bodyDesign" ng-app="app" ng-controller="indexController">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
         <div class="row">
-          <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form name="loginForm">
+                    <div class="header">
+                        <h1>Proj5.</h1>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" ng-model="user.email" class="form-control boxShadow" placeholder="Email" name="user[email]" id="user_email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" ng-model="user.password" class="form-control boxShadow" placeholder="Password" name="user[password]" id="user_password" required>
+                    </div>
+                    <div class="checkbox">
+                        <label id="rememberme">
+                            <input type="checkbox">Remember me</label>
+                    </div>
 
-          <div class="col-md-4">
-            <form name="loginForm">
-                <div class="header">
-                  <h1>Proj5.</h1>
-                </div>
-
-                <div class="form-group">
-                  <input type="email" ng-model="user.email" class="form-control boxShadow" placeholder="Email" name="user[email]" id="user_email" required>
-                </div>
-
-                <div class="form-group">
-                  <input type="password" ng-model="user.password" class="form-control boxShadow" placeholder="Password" name="user[password]" id="user_password" required>
-                </div>
-
-                <div class="checkbox">
-                  <label id="rememberme"><input type="checkbox" >Remember me</label>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-2"></div>
-
-                  <div class="col-md-4">
-                    <button type="submit" class="btn btn-default defaultButtonsIndex" name="commit" data-disable-with="Log in">Login</button>
-                  </div>
-
-                  <div class="col-md-4">
-                    <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_up'" value="Sign Up" />
-                  </div>
-                </div>
-
-              </form>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-default defaultButtonsIndex" name="commit" data-disable-with="Log in">Login</button>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_up'" value="Sign Up" />
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <div class="col-md-4"></div>
         </div>
-      </div>
-      </form>
+    </div>
+</form>

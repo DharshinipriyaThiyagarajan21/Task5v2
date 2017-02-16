@@ -52,16 +52,6 @@ option
   width: 568px;
 }
 
-body
-{
-  background: repeating-linear-gradient(
-  to right,
-  #196896,
-  #196896 50px,
-  #1b6fa0 50px,
-  #1b6fa0 90px
-	);
-}
 
 .defaultButtons
 {

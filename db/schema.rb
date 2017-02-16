@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209070535) do
+ActiveRecord::Schema.define(version: 20170216080322) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -62,14 +62,17 @@ ActiveRecord::Schema.define(version: 20170209070535) do
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "created_by"
-    t.integer  "assigned_to"
-    t.text     "status",        limit: 65535
+    t.text     "status",         limit: 65535
     t.boolean  "git_status"
     t.integer  "backlog_count"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "project_id"
+    t.integer  "assigned_id"
+    t.integer  "estimated_time"
+    t.integer  "completed_time"
+    t.boolean  "taken"
+    t.boolean  "completed"
   end
 
   create_table "tasks_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
