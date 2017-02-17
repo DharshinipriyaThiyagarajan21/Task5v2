@@ -98,6 +98,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    json (1.8.3)
     jsonapi (0.1.1.beta6)
       jsonapi-parser (= 0.1.1.beta3)
       jsonapi-renderer (= 0.1.1.beta1)
@@ -242,6 +243,7 @@ DEPENDENCIES
   glyphicons-rails (~> 0.1.2)
   jbuilder (~> 2.5)
   jquery-rails
+  json
   listen (~> 3.0.5)
   mysql2 (>= 0.3.18, < 0.5)
   pry

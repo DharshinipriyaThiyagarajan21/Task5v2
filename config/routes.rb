@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post 'add_members'
     post 'add_task_queue'
     get 'mytask'
+    post 'update_members'
   end
 end
 

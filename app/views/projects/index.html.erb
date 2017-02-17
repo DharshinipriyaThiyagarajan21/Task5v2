@@ -1,11 +1,11 @@
-<div class="container-fluid container-class" ng-controller="pageLayoutCtrl" ng-init="init()">
+<div class="container-fluid container-class" ng-controller="pageLayoutCtrl" ng-init="initProjModal()">
 
   <div class="row">
     
      <!--col-sm-2-->
   <div  class=" col-sm-2 menubar">
     <div class="side-nav">
-        <a href="#">My Task<i class="fa fa-address-book-o fa-lg fa-sidemenu" ng-click="mytask()" aria-hidden="true"></i></a>
+        <a href="#" ng-click="myTask()">My Task<i class="fa fa-address-book-o fa-lg fa-sidemenu" aria-hidden="true"></i></a>
 
         <!-- Accordion collapsible panels -->
         <div class="panel-group">
@@ -42,7 +42,7 @@
                   </a>
                 </div>
                 <div class="addMember" ng-repeat="x in projectMembers.members">
-                    {{x.username}}
+                   <a href=""> @{{x.username}} </a>
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@
   <div class="col-sm-10 project-task">
     <div class="project-title">
       <div>
-        <h4>Project Title</h4>
+        <h4>{{currentProject.name}}</h4>
       </div> <!--pageHeader /-->
         </div> <!--project-title /-->
   
@@ -313,24 +313,24 @@
          <div>
            <h4 class="h4-tag">Active Tasks:</h4>
          </div>
-         <div class="input-group todo" ng-repeat="x in todoQueue">
+         <div class="input-group todo" ng-repeat="x in addedTasks.task_queue">
               <div class="createdTasks">
                  <span>
-                      <button class="btn btn-default submitBtn" ng-attr-id="{{'buttons'+ x.todoTask.id}}"
+                      <button class="btn btn-default submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
                         type="button" data-ng-click="deleteTask($event)">X</button>
-                      <input class="form-control taskname" type="button" value="{{x.todoTask.task}}"
-                        data-toggle="collapse" href="{{'#taskDetails'+ x.todoTask.id}}">
-                     <button class="btn btn-default submitBtn" ng-attr-id="{{'buttons'+ x.todoTask.id}}"
+                      <input class="form-control taskname" type="button" value="{{x.name}}"
+                        data-toggle="collapse" href="{{'#taskDetails'+ x.id}}">
+                     <button class="btn btn-default submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
                         type="button" data-ng-click="">G</button>
-                     <button data-toggle="modal" data-target=".addTaskpushModal" class="btn btn-default submitBtn" ng-attr-id="{{'buttons'+ x.todoTask.id}}"
+                     <button data-toggle="modal" data-target=".addTaskpushModal" class="btn btn-default submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
                         type="button" data-ng-click="dayselectionevent($event)">A</button>
                  </span>
               </div>
 
-              <div class="collapse" ng-attr-id="{{'taskDetails'+ x.todoTask.id}}">
-                <span class="alignleft">Date: {{x.todoTask.date}}</span>
-                <span class="alignright">Created By: {{x.todoTask.createdBy}}</span><br />
-                <span class="alignleft">Time: {{x.todoTask.time}}</span>
+              <div class="collapse" ng-attr-id="{{'taskDetails'+ x.id}}">
+                <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                <span class="alignright">Created By: {{x.assigned_id}}</span><br />
+                <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
                 <span class="alignright">Assigned to:
                   <span ng-repeat="y in x.todoTask.assignedTo">{{y}},</span>
                 </span>
@@ -369,7 +369,8 @@
              <div class="task-input">
                 <form ng-submit="add()">
                  <div class="input-group addTask">
-                 <input mentio mentio-typed-text="typedTerm" mentio-items="items | filter:label:typedTerm" autocomplete="off" type="text" class="form-control" placeholder="Add a task" ng-model="addTask">
+                 <input mentio mentio-typed-text="typedTerm" autocomplete="off" 
+                        mentio-items="items | filter:label:typedTerm" type="text" class="form-control" placeholder="Add a task" ng-model="addTask">
                      <span class="input-group-btn">
                         <button class="btn btn-secondary" type="button" id="addButton" ng-click="add(); addCall()">
                           <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
@@ -408,8 +409,7 @@
                 </div>
                 <div>
                   <select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
-                    <option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
-                    
+                    <option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>                    
                   </select>
                 </div>
               </div>
@@ -440,32 +440,25 @@
               <div class="form-group">
                 <label>Add Members</label>
                 <div>
-                  <select member-directive multiple class="memberSelect">
-                    <option value="AL">Alabama</option>
-                    <option value="Am">Amalapuram</option>
-                    <option value="An">Anakapalli</option>
-                    <option value="Ak">Akkayapalem</option>
-                    <option value="WY">Wyoming</option>
+                  <select member-directive multiple class="memberSelect" ng-model="memberlist_add">
+                    <option ng-repeat="x in projectMembers.add" value="{{x.email}}">{{x.email}}</option> 
                   </select>
+
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Remove Members</label>
                 <div>
-                  <select member-directive multiple class="memberSelect">
-                    <option value="AL">Alabama</option>
-                    <option value="Am">Amalapuram</option>
-                    <option value="An">Anakapalli</option>
-                    <option value="Ak">Akkayapalem</option>
-                    <option value="WY">Wyoming</option>
+                  <select member-directive multiple class="memberSelect" ng-model="memberlist_remove">
+                    <option ng-repeat="x in projectMembers.members" value="{{x.email}}">{{x.email}}</option> 
                   </select>
                 </div>
               </div>
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-default">Confirm</button>
+              <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="updateMembers()">Confirm</button>
             </div>
 
                 </div><!--Create Member content Ends Here-->

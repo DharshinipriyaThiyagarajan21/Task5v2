@@ -28478,7 +28478,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * This will work:
  *
  * ```html
- * <select ng-options="item as item.label for item in items track by item.id" ng-model="selected"></select>
+ * <select ng-options="item as items.label for item in items track by item.id" ng-model="selected"></select>
  * ```
  * ```js
  * $scope.selected = $scope.items[0];
@@ -28487,7 +28487,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * but this will not work:
  *
  * ```html
- * <select ng-options="item.subItem as item.label for item in items track by item.id" ng-model="selected"></select>
+ * <select ng-options="item.subItem as items.label for item in items track by item.id" ng-model="selected"></select>
  * ```
  * ```js
  * $scope.selected = $scope.items[0].subItem;

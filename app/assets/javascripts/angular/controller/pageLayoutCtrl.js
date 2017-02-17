@@ -1,5 +1,6 @@
 app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
+  $scope.items = [];
 
 	$scope.todoQueue   = [];
   $scope.userTodo    = [];
@@ -16,6 +17,11 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
   $scope.totalActiveTasksInQueue = 0;
   $scope.totalCompletedTasks     = 0;
+
+  $scope.addedTasks = {};
+  $scope.addedTasks.task_queue = [];
+
+  $scope.flag = true;
 
   var date 	  	 = new Date();
   var weekday		 = [];
@@ -50,23 +56,23 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
 
   // Add tasks to ToDo Queue
-	$scope.add= function() {
-    $scope.todoTaskDetails = {};
+	// $scope.add= function() {
+ //    $scope.todoTaskDetails = {};
 
-    $scope.todoTaskDetails.id   = id++;
-    $scope.todoTaskDetails.task = $scope.addTask;
-    $scope.todoTaskDetails.date = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-    $scope.todoTaskDetails.time = $filter('date')(new Date(), 'hh:mm a');
-    $scope.todoTaskDetails.createdBy = "";
-    $scope.todoTaskDetails.assignedTo = [];
-    $scope.todoTaskDetails.estimatedTime = 0;
-    $scope.todoTaskDetails.completedTime = 0;
+ //    $scope.todoTaskDetails.id   = id++;
+ //    $scope.todoTaskDetails.task = $scope.addTask;
+ //    $scope.todoTaskDetails.date = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+ //    $scope.todoTaskDetails.time = $filter('date')(new Date(), 'hh:mm a');
+ //    $scope.todoTaskDetails.createdBy = "";
+ //    $scope.todoTaskDetails.assignedTo = [];
+ //    $scope.todoTaskDetails.estimatedTime = 0;
+ //    $scope.todoTaskDetails.completedTime = 0;
 
 
-		$scope.todoQueue.push({todoTask : $scope.todoTaskDetails});
-    $scope.totalActiveTasksInQueue++;
-		//$scope.addTask = "";
-	};
+	// 	$scope.todoQueue.push({todoTask : $scope.todoTaskDetails});
+ //    $scope.totalActiveTasksInQueue++;
+	// 	//$scope.addTask = "";
+	// };
 
   // Show Confrim Button in ADD TASK TO USER MODAL BASED ON TIME
   $scope.onChangeTime_addTask = function(){
@@ -220,22 +226,23 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
   // HTTP FUNCTIONS
   // ......................................
-  $scope.init = function(){
-    $scope.initProjModal();
-  };
+ 
 
   $scope.initProjModal = function(){
+    $scope.flag = false;
     $http({
       method: "GET",
       url: "/projects/get"
     }).then(function (response){
       $scope.createproject_responsedata = response.data;
+      $scope.selectProject($scope.createproject_responsedata.projects[0]);
+
     });
+    
   };
 
   // display data about selected project 
   $scope.selectProject = function(x){
-    console.log(x);
     var data = $.param({
       projectname: x
     });
@@ -249,16 +256,75 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
     $http.post('/projects/members', data, config).then(function (response){
       
       $scope.projectMembers = response.data;
+      for(var i=0; i<$scope.projectMembers.members.length; i++){
+
+        $scope.items.push({label: $scope.projectMembers.members[i].email});
+
+      }
+      $scope.addedTasks.task_queue = $scope.projectMembers.task_queue;
     });
+
+    if($scope.flag == true){
+      $scope.initProjModal();
+    }
+    else{
+      $scope.flag = true;
+    }
 
   };
   // store task details when clicked add
      $scope.addCall = function(){
-      console.log($scope.addTask);
+      var taskTemp = $scope.addTask;
+      var startindex = 0;
+      var taskSubstring = "";
+      var taskSubstringlen = 0;
+      var tempString = "";
+      var assignedTo = [];
+
+      for(var i=0; i<taskTemp.length; i++)
+      {
+        var flag = false;
+        if(taskTemp.charAt(i) == '@')
+        {
+          startindex = i;
+          for(var j=startindex; j<taskTemp.length; j++)
+          {
+            if(taskTemp.charAt(j) == ' ')
+            {
+              taskSubstringlen = j;
+              i = j;
+              flag = true;
+              break;
+            }
+          }
+          if(!flag){
+            taskSubstringlen = taskTemp.length;
+          }
+          taskSubstring = taskTemp.substring(startindex+1, taskSubstringlen);
+          assignedTo.push(taskSubstring);
+        }
+      }
+
+      for(var i=0; i<assignedTo.length; i++){
+        taskTemp = taskTemp.replace("@"+assignedTo[i], "");
+      }
+
+      $scope.assignedTo_details = [];
+      for(var i=0; i<assignedTo.length; i++){
+        for(var j=0; j<$scope.projectMembers.members.length; j++){
+          if(assignedTo[i] == $scope.projectMembers.members[j].email){
+            $scope.assignedTo_details.push($scope.projectMembers.members[j]);
+            console.log($scope.assignedTo_details);
+          }
+        }
+      }
       var data = $.param({
       currentProject: $scope.currentProject,
-      task: $scope.addTask
-    });
+      task: taskTemp,
+      assignedToDetails: $scope.assignedTo_details
+      });
+
+      $scope.addTask = "";
 
     var config={
       headers:{
@@ -266,7 +332,9 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
       }
     };
 
-    $http.post('/projects/add_task_queue', data, config);
+    $http.post('/projects/add_task_queue', data, config).then(function (response){
+      $scope.addedTasks.task_queue = response.data.task_queue;
+    });
   };
   //my task
       $scope.myTask = function(){
@@ -274,10 +342,33 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
         method: "GET",
         url: "/projects/mytask"
         }).then(function (response){
-        $scope.myTask = response.data;
+        $scope.tasks = response.data;
+        console.log($scope.tasks)
         });
+        
 
       };
+
+    //update Members
+        $scope.updateMembers = function(){
+          var data = $.param({
+            project: $scope.currentProject,
+            addMembers: $scope.memberlist_add,
+            removeMembers: $scope.memberlist_remove
+            });
+            console.log($scope.currentProject);
+            var config={
+              headers:{
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+              }
+            };
+
+            $http.post('/projects/update_members', data, config).then(function (response){
+              
+              $scope.projectMembers = response.data;
+              console.log($scope.projectMembers);
+            });
+        };
 
 
 
