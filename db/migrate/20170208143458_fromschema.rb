@@ -24,6 +24,15 @@ class Fromschema < ActiveRecord::Migration[5.0]
     t.integer  "invitee_id"
   end
 
+  create_table "invites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "brand_id"
+    t.string   "email"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -40,14 +49,17 @@ class Fromschema < ActiveRecord::Migration[5.0]
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "created_by"
-    t.integer  "assigned_to"
-    t.text     "status",        limit: 65535
+    t.text     "status",         limit: 65535
     t.boolean  "git_status"
     t.integer  "backlog_count"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "project_id"
+    t.integer  "assigned_id"
+    t.integer  "estimated_time"
+    t.integer  "completed_time"
+    t.boolean  "taken"
+    t.boolean  "completed"
   end
 
   create_table "tasks_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,9 +83,10 @@ class Fromschema < ActiveRecord::Migration[5.0]
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "username",                                       null: false
-    t.string   "fullname",                                       null: false
     t.integer  "brand_id"
     t.string   "authentication_token",   limit: 30
+    t.string   "firstname",                                      null: false
+    t.string   "lastname",                                       null: false
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

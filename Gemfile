@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 require 'json'
 gem "select2-rails"
+gem 'whenever', :require => false
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
 gem "bower-rails", "~> 0.11.0"

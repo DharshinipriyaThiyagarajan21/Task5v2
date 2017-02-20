@@ -21,7 +21,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
   $scope.addedTasks = {};
   $scope.addedTasks.task_queue = [];
 
-  $scope.flag = true;
+  $scope.flag;
 
   var date 	  	 = new Date();
   var weekday		 = [];
@@ -238,6 +238,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
       $scope.selectProject($scope.createproject_responsedata.projects[0]);
 
     });
+    $scope.flag = false;
     
   };
 
@@ -266,6 +267,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
     if($scope.flag == true){
       $scope.initProjModal();
+      console.log("inside select projects");
     }
     else{
       $scope.flag = true;
