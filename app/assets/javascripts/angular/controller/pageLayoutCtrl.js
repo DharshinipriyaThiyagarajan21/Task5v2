@@ -21,7 +21,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
   $scope.addedTasks = {};
   $scope.addedTasks.task_queue = [];
 
-  $scope.flag;
+  $scope.flag = false;
 
   var date 	  	 = new Date();
   var weekday		 = [];
@@ -229,16 +229,19 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
  
 
   $scope.initProjModal = function(){
-    $scope.flag = false;
+    
     $http({
       method: "GET",
       url: "/projects/get"
     }).then(function (response){
       $scope.createproject_responsedata = response.data;
-      $scope.selectProject($scope.createproject_responsedata.projects[0]);
+      console.log($scope.createproject_responsedata.projects);
+    //   if($scope.flag == false)
+    //   {
+    //   $scope.selectProject($scope.createproject_responsedata.projects[0]);
+    // }
 
     });
-    $scope.flag = false;
     
   };
 
@@ -265,13 +268,14 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
       $scope.addedTasks.task_queue = $scope.projectMembers.task_queue;
     });
 
-    if($scope.flag == true){
-      $scope.initProjModal();
-      console.log("inside select projects");
-    }
-    else{
-      $scope.flag = true;
-    }
+    // if($scope.flag == true){
+    //   $scope.initProjModal();
+    //   console.log("inside select projects");
+    // }
+    // else{
+    //   $scope.flag = true;
+    // }
+    //$scope.initProjModal();
 
   };
   // store task details when clicked add
@@ -358,6 +362,8 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
             addMembers: $scope.memberlist_add,
             removeMembers: $scope.memberlist_remove
             });
+            
+
             console.log($scope.currentProject);
             var config={
               headers:{
@@ -387,7 +393,9 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
   	};
 
   	$http.post('/projects', data, config);
-  	$scope.init();
+    
+  	$scope.initProjModal();
+    console.log("proj modal called");
   };
 
 });

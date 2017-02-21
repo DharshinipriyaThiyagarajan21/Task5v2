@@ -1,7 +1,7 @@
 class BrandService
 	def user_without_brand(current_user) 
 		      invitations = []
-	          user = User.all.where(:brand_id => nil)
+	          user = User.all.where(:brand_id => nil) - [current_user]
 	          current_user.inverse_invitations.each do |invitation|
 	          invite = {
 	            :id => invitation.id,

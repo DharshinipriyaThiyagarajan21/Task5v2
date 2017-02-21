@@ -18,7 +18,8 @@ class ProjectsController < ApplicationController
   end
   def get
         @projects = current_user.projects.all
-        @addMembers = Project.user_with_brand 
+
+        @addMembers = Project.user_with_brand(current_user)
         render json: {projects: @projects, addMembers: @addMembers}
   end
   def add_task_queue
@@ -54,6 +55,7 @@ class ProjectsController < ApplicationController
   def take_task
     Task.find(params['currentTask']['id'].update(:taken => true, :day => params['day'], :estimated_time => params['estimated_time']))
   end
+  
   def display_task
     zero = Task.find_by(:day => 0)
     one = Task.find_by(:day => 1)
@@ -63,6 +65,7 @@ class ProjectsController < ApplicationController
     five = Task.find_by(:day => 5)
     render json: {zero: zero, one: one, two:two, three:three, four:four, five:five}
   end
+
   def completed
      Task.find(params['currentTask']['id']).update(:completed => true, :completed_time => params['completed_time'])
   end
