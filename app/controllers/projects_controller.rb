@@ -1,7 +1,5 @@
 class ProjectsController < ApplicationController
-  def index
-            
-        
+  def index     
   end
   def create
     ProjectService.new.create_project(params,current_user)
@@ -18,7 +16,6 @@ class ProjectsController < ApplicationController
   end
   def get
         @projects = current_user.projects.all
-
         @addMembers = Project.user_with_brand(current_user)
         render json: {projects: @projects, addMembers: @addMembers}
   end
@@ -27,9 +24,10 @@ class ProjectsController < ApplicationController
        Task.find(project).histories.create(:action => "task added", :user_id => current_user.id, :notify => false) 
         params[:assignedToDetails].each do |detail|
           project.users << User.find(params[:assignedToDetails][detail]['id'])
-       task_queue = Project.find(params['currentProject']['id']).tasks
+        end
+        task_queue = Task.find_by(:project_id => params['currentProject']['id'], :taken => false)
        render json: {task_queue: task_queue}
-      end
+    
   end
   def mytask
        mytask = current_user.tasks
@@ -55,14 +53,13 @@ class ProjectsController < ApplicationController
   def take_task
     Task.find(params['currentTask']['id'].update(:taken => true, :day => params['day'], :estimated_time => params['estimated_time']))
   end
-  
   def display_task
-    zero = Task.find_by(:day => 0)
-    one = Task.find_by(:day => 1)
-    two = Task.find_by(:day => 2)
-    three = Task.find_by(:day => 3)
-    four = Task.find_by(:day => 4)
-    five = Task.find_by(:day => 5)
+    zero = current_user.tasks.where(:project_id => params['currentProject']['id'],:day => 0)
+    one = current_user.tasks.where(:project_id => params['currentProject']['id'],:day => 1)
+    two = current_user.tasks.where(:project_id => params['currentProject']['id'],:day => 2)
+    three = current_user.tasks.where(:project_id => params['currentProject']['id'],:day => 3)
+    four = current_user.tasks.where(:project_id => params['currentProject']['id'],:day => 4)
+    five = current_user.tasks.where(:project_id => params['currentProject']['id'],:day => 5)
     render json: {zero: zero, one: one, two:two, three:three, four:four, five:five}
   end
 
@@ -70,6 +67,3 @@ class ProjectsController < ApplicationController
      Task.find(params['currentTask']['id']).update(:completed => true, :completed_time => params['completed_time'])
   end
 end
-
-
-

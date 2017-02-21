@@ -18,3 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+every :day, :at => '12:00am' do
+  runner "ProjectService.new.update_task_dates"
+end

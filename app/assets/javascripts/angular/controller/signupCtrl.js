@@ -15,7 +15,7 @@ app.controller("signupCtrl", function($scope){
 
 
   $scope.validateUsername = function(){
-    if($scope.user.username != null && $scope.user.username.length >= 6 && $scope.user.username.length <= 24){
+    if($scope.user.username != null && $scope.user.username.length >= 3 && $scope.user.username.length <= 24){
       $scope.userValidity.username = true;
     }
     else{

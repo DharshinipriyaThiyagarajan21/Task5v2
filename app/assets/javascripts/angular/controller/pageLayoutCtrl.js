@@ -98,6 +98,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
   // Add tasks to USER
   $scope.dayselectionevent  = function(event){
+    console.log(event);
       idString = event.target.id;
       id_num = parseInt(idString.substring(7));
   };
@@ -266,6 +267,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
       }
       $scope.addedTasks.task_queue = $scope.projectMembers.task_queue;
+      console.log($scope.addedTasks.task_queue);
     });
 
     // if($scope.flag == true){
