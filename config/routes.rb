@@ -15,6 +15,14 @@ Rails.application.routes.draw do
     post 'add_task_queue'
     get 'mytask'
     post 'update_members'
+    post 'take_task'
+    post 'display_task'
+    post 'completed'
+    post 'delete_task'
+    post 'back_to_add_tasks'
+    post 'delete_project'
+    post 'update_task_queue'
+    post 'update_time'
   end
 end
 

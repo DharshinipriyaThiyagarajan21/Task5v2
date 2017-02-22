@@ -115,9 +115,10 @@
                                 <div class="form-group">
                                     <label>Invitations</label>
 
-                                    <div>
+                                    <div>{{join}}
                                         <select class="JoinModal" ng-model="join">
-                                            <option ng-repeat="x in invitations" value="{{x.id}}">{{x.user_name}} invited to {{x.brand_name}}</option>
+                                            <option ng-if="invitations != ''" ng-repeat="x in invitations" value="{{x.id}}">{{x.user_name}} invited to {{x.brand_name}}</option>
+                                            <option ng-if="invitations == ''" value=''>None</option>
                                         </select>
                                     </div>
 

@@ -17,7 +17,7 @@
   margin-top: 11%;
 }
 
-body
+.bodyDesign
 {
   background: repeating-linear-gradient(
   to right,
@@ -28,7 +28,7 @@ body
   );
 }
 
-h1
+.login-h1
 {
   margin-bottom: 25px;
   font-size: 70px;
@@ -42,7 +42,7 @@ h1
   color: #fff;
 }
 
-input.boxShadow
+.boxShadow
 {
   height: 44px;
   box-shadow: 2px 2px 5px #073a8c;

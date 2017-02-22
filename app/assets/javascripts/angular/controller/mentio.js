@@ -38,7 +38,6 @@ angular.module('mentio', [])
 
                 $scope.defaultSearch = function(locals) {
                     var results = [];
-                        console.log($scope.items)
                     angular.forEach($scope.items, function(item) {
                         if (item.label.toUpperCase().indexOf(locals.term.toUpperCase()) >= 0) {
                             results.push(item);

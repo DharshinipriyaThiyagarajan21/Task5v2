@@ -1,5 +1,6 @@
+<div class="bodyDesign">
 <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
-    <div class="container indexContainer bodyDesign">
+    <div class="container indexContainer">
         <input name="utf8" type="hidden" value="✓">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
         <div class="row">
@@ -7,7 +8,7 @@
             <div class="col-md-4">
                 <form name="loginForm">
                     <div class="header">
-                        <h1>Proj5.</h1>
+                        <h1 class="login-h1">Proj5.</h1>
                     </div>
                     <div class="form-group">
                         <input type="email" ng-model="user.email" class="form-control boxShadow" placeholder="Email" name="user[email]" id="user_email" required>
@@ -36,3 +37,4 @@
         </div>
     </div>
 </form>
+</div>

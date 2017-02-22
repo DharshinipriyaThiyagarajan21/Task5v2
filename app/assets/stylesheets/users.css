@@ -40,7 +40,7 @@ h1
 input.form-control
 {
   height: 44px;
-  box-shadow: 2px 2px 5px #073a8c;
+  /*box-shadow: 2px 2px 5px #073a8c;*/
 }
 
 
@@ -63,7 +63,7 @@ input.form-control
 	color: #fff;
 }
 
-.btn
+.defaultButtonsIndex
 {
   background: #227bb7;
   background-image: -webkit-linear-gradient(top, #227bb7, #2980b9);
@@ -87,7 +87,7 @@ input.form-control
   text-align: center;
 }
 
-.btn:hover {
+.defaultButtonsIndex:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #227bb7);
   background-image: -moz-linear-gradient(top, #3cb0fd, #227bb7);
