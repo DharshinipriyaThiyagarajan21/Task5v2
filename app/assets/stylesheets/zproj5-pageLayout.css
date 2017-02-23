@@ -31,7 +31,7 @@
 }
 
 .daysoftasks{  
-  height: 575px;
+  height: 60vh;
   overflow-y: auto;
 }
 
@@ -144,6 +144,7 @@ i.fa-sidemenu{
   /*float: left;*/
   font-family:Tahoma, Geneva, sans-serif;
   position: static;
+  height: 100vh;
 }
 
 .container-class
@@ -173,6 +174,7 @@ i.fa-sidemenu{
   background:#fff;
  /* width: 785.5px;*/
   /*float: left;*/
+  height: 100vh;
   box-shadow: inset 10px 0px 5px 0px rgba(222,218,222,0.25);
 }
 
@@ -187,6 +189,7 @@ i.fa-sidemenu{
   background:#fefeef;
   /*width: 530.5px;*/
   /*float: left;*/
+  height: 100vh;
   padding:60px 10px 42px 20px;
   box-shadow: inset 10px 0px 5px 0px rgba(222,218,222,0.25);
 }
@@ -194,7 +197,7 @@ i.fa-sidemenu{
 .addedTask
 {
   overflow-y: auto;
-  height: 70vh;
+  height: 60vh;
 }
 
 .drag-task
@@ -321,4 +324,3 @@ html
 {
   margin-bottom: 0px;
 }
-
