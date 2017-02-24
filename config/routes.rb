@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     post 'delete_project'
     post 'update_task_queue'
     post 'update_time'
+    post 'slackUpdate'
   end
 end
 

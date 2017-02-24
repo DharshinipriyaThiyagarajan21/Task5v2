@@ -1,3 +1,4 @@
+require 'slack-notifier'
 class ProjectsController < ApplicationController
   def index
       Proinvite.where(:email => current_user.email,:status => false).each do |i|
@@ -37,7 +38,7 @@ class ProjectsController < ApplicationController
      ProjectService.new.add_task_queue(params,current_user)
     render json: {success: true}
   end
-
+#shinigamieatApples
 
   def mytask
        mytask = current_user.tasks
@@ -77,7 +78,9 @@ class ProjectsController < ApplicationController
 
   def completed
      Task.find(params['task_id']).update(:completed => true, :completed_time => params['completed_time'])
-      render json: {success: true}
+     taskname = Task.find(params['task_id']).name
+
+      render json: {taskname: taskname}
   end
 
 
@@ -94,6 +97,14 @@ class ProjectsController < ApplicationController
   def delete_project
     Project.find(params['project_id']).destroy
     render json: {success: true}
+  end
 
+  def slackUpdate
+    user = current_user.username
+    notifier = Slack::Notifier.new params['currentProject']['hook'] do
+      defaults username: user
+      end
+    notifier.ping params['hooktype']+"  *"+params['hookname']+"*"
+    render json: {success: true}
   end
 end

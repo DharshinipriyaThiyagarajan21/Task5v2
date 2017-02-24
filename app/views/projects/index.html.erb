@@ -1,567 +1,596 @@
 <div class="container-fluid container-class" ng-app="proj5" ng-controller="pageLayoutCtrl" ng-init="initProjModal()">
 
-  <div class="row">
-    
-      <div  class=" col-sm-2 menubar">
-    <div class="side-nav">
-        <a class="a-space" href="#">Welcome {{user.username}} !</a>
-        <a class="a-hover" href="#">MY TASKS<i class="fa fa-address-book-o fa-lg fa-sidemenu"></i></a>
+    <div class="row">
 
-        <!-- Accordion collapsible panels -->
-        <div class="panel-group menubar-panel">
-          <div class="panel menu-panel">
-            <!-- collpsible Projects -->
-            <a  class="a-hover" href="#projects" data-toggle="collapse">
-              PROJECT<i class="fa fa-tasks fa-lg fa-sidemenu"></i>
-            </a>
-            <div id="projects" class="panel-collapse collapse in">
-              <div class="panel-body">
-                <!--new project-->
-                <div data-toggle="modal" data-target=".projectModal">
-                  <a href="#" class="collapsiblehref">
-                    <i class="fa fa-plus fa-sm fa-collapsiblehref"></i>New Project
-                  </a>
+        <div class=" col-sm-2 menubar">
+            <div class="side-nav">
+                <a class="a-space" href="#">Welcome {{user.username}} !</a>
+                <a class="a-hover" href="#">MY TASKS<i class="fa fa-address-book-o fa-lg fa-sidemenu"></i></a>
+
+                <!-- Accordion collapsible panels -->
+                <div class="panel-group menubar-panel">
+                    <div class="panel menu-panel">
+                        <!-- collpsible Projects -->
+                        <a class="a-hover" href="#projects" data-toggle="collapse">
+                        PROJECT<i class="fa fa-tasks fa-lg fa-sidemenu"></i>
+                        </a>
+                        <div id="projects" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <!--new project-->
+                                <div data-toggle="modal" data-target=".projectModal">
+                                    <a href="#" class="collapsiblehref">
+                                        <i class="fa fa-plus fa-sm fa-collapsiblehref"></i>New Project
+                                    </a>
+                                </div>
+                                <!--new project /-->
+                                <div class="addProject" ng-repeat="x in createproject_responsedata.projects" ng-model="selectedProject">
+                                    <a href="#" value="{{x}}" ng-click="selectProject(x)"># {{x.name}}<button ng-if="user.id == x.admin_id" ng-attr-id="{{'buttons'+ x.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel menu-panel">
+                        <!-- collapsible Members -->
+                        <a class="a-hover" href="#members" data-toggle="collapse">
+                        MEMBERS<i class="fa fa-user fa-lg fa-sidemenu"></i>
+                        </a>
+                        <div id="members" class="panel-collapse collapse in">
+                            <div class="panel-body panel-body-class">
+                                <div data-toggle="modal" data-target=".memberModal">
+                                    <a href="#" class="collapsiblehref">
+                                        <i class="fa fa-plus fa-sm fa-collapsiblehref"></i>Edit Members
+                                    </a>
+                                </div>
+                                <div class="addProject" ng-repeat="x in projectMembers.members">
+                                    <a href="#"> @ {{x.username}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--new project /-->
-                <div class="addProject" ng-repeat="x in createproject_responsedata.projects" ng-model="selectedProject">
-                  <a href="#" value="{{x}}" ng-click="selectProject(x)"># {{x.name}}<button ng-if="user.id == x.admin_id" ng-attr-id="{{'buttons'+ x.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
-                </div>
-              </div>
+
+                <a class="a-hover" href="#">SETTINGS<i class="fa fa-cogs fa-lg fa-sidemenu"></i></a>
+
+                <a class="a-hover" href="#">CONTACT<i class="fa fa-phone fa-lg fa-sidemenu"></i></a>
+
+                <a class="a-hover" href="users/sign_out" id="logout-menubar">LOGOUT<i class="fa fa-power-off fa-lg fa-sidemenu"></i></a>
+
+
             </div>
-          </div>
-          <div class="panel menu-panel">
-            <!-- collapsible Members -->
-            <a  class="a-hover" href="#members" data-toggle="collapse">
-              MEMBERS<i class="fa fa-user fa-lg fa-sidemenu"></i>
-            </a>
-            <div id="members" class="panel-collapse collapse in">
-              <div class="panel-body panel-body-class">
-                <div data-toggle="modal" data-target=".memberModal">
-                  <a href="#" class="collapsiblehref">
-                    <i class="fa fa-plus fa-sm fa-collapsiblehref"></i>Edit Members
-                  </a>
-                </div>
-                <div class="addProject" ng-repeat="x in projectMembers.members">
-                <a href="#"> @ {{x.username}}</a>
-                </div>
-              </div>
-            </div>
-          </div>
+            <!--side-nav-->
         </div>
 
-        <a  class="a-hover" href="#">SETTINGS<i class="fa fa-cogs fa-lg fa-sidemenu"></i></a>
 
-        <a  class="a-hover" href="#">CONTACT<i class="fa fa-phone fa-lg fa-sidemenu"></i></a>
+        <div class=" col-sm-6 project-task">
+            <!-- PROJECT TODOs -->
+            <div id="project-content">
 
-        <a  class="a-hover" href="users/sign_out" id="logout-menubar">LOGOUT<i class="fa fa-power-off fa-lg fa-sidemenu"></i></a>
-
-        
-    </div> <!--side-nav-->
-      </div>
-
-
-  <div class=" col-sm-6 project-task">
-        <!-- PROJECT TODOs -->
-    <div id="project-content">
-
-      <div class=" project-title">
-        <div class="project-heading">
-          <h3># {{currentProject.name}}</h3><br>
-        </div> 
-      </div>         
-
-      <div class="row addTask-row">
-         My To-Do:
-         <span class="addTask-row-count">
-         <h5><span>Total Estimated Time: {{totalEstimatedTime}}</span>
-         <span>/ Total Completed Time: {{totalCompletionTime}}</span>
-         </span>
-         </h5>
-      </div>
-
-        <!-- DAYS AND TASKS -->
-      <div class="panel-group daysoftasks" id="accordion" data-ng-init="weekdayFinder()">
-          <!-- DAY ONE -->
-        <div class="panel panel-default">
-           <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#day1">
-                Today</a>
-              </h4>
-           </div>
-            <div id="day1" class="panel-collapse collapse in">
-              <!-- Added from queue -->
-              <div>
-                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.one">
-                  <div class="createdTasks">
-                    <span class="input-group-btn">
-                       <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
-                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
-                        <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
-                            ng-attr-id="{{'buttons'+ x.id}}" type="button"
-                            data-ng-click="idFinder($event,0)"><i class="fa fa-check fa-lg"></i></button>
-                          <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                          <button class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click="pullfromUser($event,0)"><i class="fa fa-mail-forward fa-lg"></i></button>
-                        </span>
-                  </div>
-
-                  <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
-                    <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-                    <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-                    <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-                    <span class="alignright">Assigned to:
-                      <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
-                    </span>
-                  </div>
+                <div class=" project-title">
+                    <div class="project-heading">
+                        <h3># {{currentProject.name}}</h3>
+                        <br>
+                    </div>
                 </div>
-              </div>
-            </div>
-        <!-- </div> -->
-          <!-- DAY ONE ENDS -->
 
-          <!-- DAY TWO -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#day2">
-                Tomorrow</a>
-              </h4>
+                <div class="row addTask-row">
+                    My To-Do:
+                    <span class="addTask-row-count">
+                    <h5><span>Total Estimated Time: {{totalEstimatedTime}}</span>
+                    <span>/ Total Completed Time: {{totalCompletionTime}}</span>
+                    </span>
+                    </h5>
+                </div>
+
+                <!-- DAYS AND TASKS -->
+                <div class="panel-group daysoftasks" id="accordion" data-ng-init="weekdayFinder()">
+                    <!-- DAY ONE -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#day1">
+                            Today</a>
+                            </h4>
+                        </div>
+                        <div id="day1" class="panel-collapse collapse in">
+                            <!-- Added from queue -->
+                            <div>
+                                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.one">
+                                    <div class="createdTasks">
+                                        <span class="input-group-btn">
+                                            <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
+                                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
+                                            <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
+                                            ng-attr-id="{{'buttons'+ x.id}}" type="button"
+                                            data-ng-click="idFinder($event,0)"><i class="fa fa-check fa-lg"></i></button>
+                                            <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                            type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                                            <button class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}"
+                                            type="button" ng-click="pullfromUser($event,0)"><i class="fa fa-mail-forward fa-lg"></i></button>
+                                        </span>
+                                    </div>
+
+                                    <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
+                                        <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                                        <span class="alignright">Created By: {{x.assigned.username}}</span>
+                                        <br />
+                                        <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                                        <span class="alignright">Assigned to:
+                                        <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- DAY ONE ENDS -->
+
+                        <!-- DAY TWO -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#day2">
+                                Tomorrow</a>
+                                </h4>
+                            </div>
+
+                            <div id="day2" class="panel-collapse collapse">
+                                <!-- Added from queue -->
+                                <div>
+                                    <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.two">
+                                        <div class="createdTasks">
+                                            <span class="input-group-btn">
+                                                <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
+                                                data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
+                                                <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
+                                                ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" data-ng-click="idFinder($event,1)"><i class="fa fa-check fa-lg"></i></button>
+                                                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                                                <button class="btn submitBtn" id="corners"
+                                                ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" ng-click="pullfromUser($event,1)"><i class="fa fa-mail-forward fa-lg"></i></button>
+                                            </span>
+                                        </div>
+
+                                        <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
+                                            <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                                            <span class="alignright">Created By: {{x.assigned.username}}</span>
+                                            <br />
+                                            <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                                            <span class="alignright">Assigned to:
+                                            <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DAY TWO ENDS -->
+
+                        <!-- DAY THREE -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#day3">
+                                {{days[2].day}}</a>
+                                </h4>
+                            </div>
+
+                            <div id="day3" class="panel-collapse collapse">
+                                <!-- Added from queue -->
+                                <div>
+                                    <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.three">
+                                        <div class="createdTasks">
+                                            <span class="input-group-btn">
+                                                <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
+                                                data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
+                                                <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
+                                                ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" data-ng-click="idFinder($event,2)"><i class="fa fa-check fa-lg"></i></button>
+                                                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                                                <button class="btn submitBtn" id="corners"
+                                                ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" ng-click="pullfromUser($event,2)"><i class="fa fa-mail-forward fa-lg"></i></button>
+                                            </span>
+                                        </div>
+
+                                        <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
+                                            <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                                            <span class="alignright">Created By: {{x.assigned.username}}</span>
+                                            <br />
+                                            <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                                            <span class="alignright">Assigned to:
+                                            <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DAY THREE ENDS -->
+
+                        <!-- DAY FOUR -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#day4">
+                                {{days[3].day}}</a>
+                                </h4>
+                            </div>
+
+                            <div id="day4" class="panel-collapse collapse">
+                                <!-- Added from queue -->
+                                <div>
+                                    <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.four">
+                                        <div class="createdTasks">
+                                            <span class="input-group-btn">
+                                                <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
+                                                data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
+                                                <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
+                                                ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" data-ng-click="idFinder($event,3)"><i class="fa fa-check fa-lg"></i></button>
+                                                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                                                <button class="btn submitBtn" id="corners"
+                                                ng-attr-id="{{'buttons'+ x.id}}"
+                                                type="button" ng-click="pullfromUser($event,3)"><i class="fa fa-mail-forward fa-lg"></i></button>
+                                            </span>
+                                        </div>
+
+                                        <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
+                                            <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                                            <span class="alignright">Created By: {{x.assigned.username}}</span>
+                                            <br />
+                                            <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                                            <span class="alignright">Assigned to:
+                                            <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DAY FOUR ENDS -->
+
+                    <!-- DAY FIVE -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#day5">
+                            {{days[4].day}}</a>
+                            </h4>
+                        </div>
+
+                        <div id="day5" class="panel-collapse collapse">
+                            <!-- Added from queue -->
+                            <div>
+                                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.five">
+                                    <div class="createdTasks">
+                                        <span class="input-group-btn">
+                                            <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
+                                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
+                                            <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
+                                            ng-attr-id="{{'buttons'+ x.id}}"
+                                            type="button" data-ng-click="idFinder($event,4)"><i class="fa fa-check fa-lg"></i></button>
+                                            <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                            type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                                            <button class="btn submitBtn" id="corners"
+                                            ng-attr-id="{{'buttons'+ x.id}}"
+                                            type="button" ng-click="pullfromUser($event,4)"><i class="fa fa-mail-forward fa-lg"></i></button>
+                                        </span>
+                                    </div>
+
+                                    <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
+                                        <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                                        <span class="alignright">Created By: {{x.assigned.username}}</span>
+                                        <br />
+                                        <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                                        <span class="alignright">Assigned to:
+                                        <span ng-repeat="y in x.users">{{y}.username}&nbsp;</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY FIVE ENDS -->
+
+                <!-- DAYS AND TASKS ENDS -->
+            </div>
+        </div>
+
+        <div class="col-sm-4" id="add-task-content">
+            <div class=" project-title">
+
             </div>
 
-            <div id="day2" class="panel-collapse collapse">
-              <!-- Added from queue -->
-              <div>
-                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.two">
-                    <div class="createdTasks">
-                      <span class="input-group-btn">
-                        <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
-                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
-                        <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
-                            ng-attr-id="{{'buttons'+ x.id}}"
-                            type="button" data-ng-click="idFinder($event,1)"><i class="fa fa-check fa-lg"></i></button>
-                          <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                          <button class="btn submitBtn" id="corners"
-                              ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click="pullfromUser($event,1)"><i class="fa fa-mail-forward fa-lg"></i></button>
-                        </span>
+            <div class="header-task">
+                <div class="row addTask-row">
+                    To-Do List:
+                    <span class="addTask-row-count">
+                    <h5><span>Total Active Tasks: {{totalActiveTasksInQueue}}</span>
+                    <span>/ Total Completed Tasks: {{totalCompletedTasks}}</span>
+                    </span>
+                    </h5>
+                </div>
+
+                <!-- Add to queue -->
+                <div class='addedTask'>
+
+                    <div>
+                        <h4 class="h4-tag">Active Tasks:</h4>
                     </div>
 
-                   <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
-                    <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-                    <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-                    <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-                    <span class="alignright">Assigned to:
-                      <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
-                    </span>
-                  </div>
-               </div>
-              </div>
-            </div>
-          </div>
-          <!-- DAY TWO ENDS -->
+                    <div class="input-group todo" ng-repeat="x in addedTasks.task_queue">
+                        <div class="createdTasks">
+                            <span class="input-group-btn">
+                                <input class="form-control form-focus taskname" type="button" value="{{x.name}}" data-toggle="collapse" href="{{'#taskDetails'+ x.id}}">
+                                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                type="button" data-ng-click="deleteTask($event)"><i class="fa fa-close fa-lg"></i></button>
 
-          <!-- DAY THREE -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#day3">
-                {{days[2].day}}</a>
-              </h4>
-            </div>
+                                <button class="btn submitBtn" ng-click="slackUpdate()" ng-attr-id="{{'buttons'+ x.id}}"
+                                type="button" data-ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                                <button data-toggle="modal" data-target=".addTaskpushModal" class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}" type="button" data-ng-click="dayselectionevent($event)"><i class="fa fa-mail-reply fa-lg"></i></button>
+                            </span>
+                        </div>
 
-            <div id="day3" class="panel-collapse collapse">
-              <!-- Added from queue -->
-              <div>
-                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.three">
-                    <div class="createdTasks">
-                      <span class="input-group-btn">
-                        <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
-                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
-                        <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
-                            ng-attr-id="{{'buttons'+ x.id}}"
-                            type="button" data-ng-click="idFinder($event,2)"><i class="fa fa-check fa-lg"></i></button>
-                          <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                          <button class="btn submitBtn" id="corners"
-                              ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click="pullfromUser($event,2)"><i class="fa fa-mail-forward fa-lg"></i></button>
-                        </span>
+                        <div class="collapse" ng-attr-id="{{'taskDetails'+ x.id}}">
+                            <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                            <span class="alignright">Created By: {{x.assigned.username}}</span>
+                            <br />
+                            <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                            <span class="alignright">Assigned to:
+                            <span ng-repeat="y in x.users">{{y.username}}</span>
+                        </div>
                     </div>
 
-                   <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
-                    <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-                    <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-                    <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-                    <span class="alignright">Assigned to:
-                      <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
-                    </span>
-                  </div>
-               </div>
-              </div>
-            </div>
-          </div>
-          <!-- DAY THREE ENDS -->
-
-          <!-- DAY FOUR -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#day4">
-                {{days[3].day}}</a>
-              </h4>
-            </div>
-
-            <div id="day4" class="panel-collapse collapse">
-              <!-- Added from queue -->
-              <div>
-                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.four">
-                    <div class="createdTasks">
-                      <span class="input-group-btn">
-                      <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
-                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
-                        <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
-                            ng-attr-id="{{'buttons'+ x.id}}"
-                            type="button" data-ng-click="idFinder($event,3)"><i class="fa fa-check fa-lg"></i></button>
-                          <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                          <button class="btn submitBtn" id="corners"
-                              ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click="pullfromUser($event,3)"><i class="fa fa-mail-forward fa-lg"></i></button>
-                        </span>
+                    <div>
+                        <h4 class="h4-tag">Completed:</h4>
                     </div>
 
-                   <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
-                    <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-                    <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-                    <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-                    <span class="alignright">Assigned to:
-                      <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
-                    </span>
-                  </div>
-                  </div>
-               </div>
-              </div>
-            </div>
-          </div>
-          <!-- DAY FOUR ENDS -->
+                    <div class="input-group todo" ng-repeat="x in completedTasks">
+                        <div class="completedtasks-title">
+                            <span class="input-group-btn">
+                                <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
+                                data-toggle="collapse" href="{{'#taskDetails'+ x.id}}">
+                                <button class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}"
+                                type="button" data-ng-click=""><i class="fa fa-github fa-2x"></i></button>
+                            </span>
+                        </div>
 
-          <!-- DAY FIVE -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#day5">
-                {{days[4].day}}</a>
-              </h4>
-            </div>
-
-            <div id="day5" class="panel-collapse collapse">
-              <!-- Added from queue -->
-              <div>
-                <div class="input-group todo panel-collapse collapse" ng-repeat="x in days.five">
-                    <div class="createdTasks">
-                      <span class="input-group-btn">
-                      <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
-                            data-toggle="collapse" href="{{'#usertaskDetails'+ x.id}}">
-                        <button class="btn submitBtn" data-toggle="modal" data-target=".completeTaskpushModal"
-                            ng-attr-id="{{'buttons'+ x.id}}"
-                            type="button" data-ng-click="idFinder($event,4)"><i class="fa fa-check fa-lg"></i></button>
-                        <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                        <button class="btn submitBtn" id="corners"
-                              ng-attr-id="{{'buttons'+ x.id}}"
-                             type="button" ng-click="pullfromUser($event,4)"><i class="fa fa-mail-forward fa-lg"></i></button>
-                      </span>
+                        <div class="collapse" ng-attr-id="{{'taskDetails'+ x.id}}">
+                            <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+                            <span class="alignright">Created By: {{x.assigned.username}}</span>
+                            <br />
+                            <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+                            <span class="alignright">Assigned to:
+                            <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
+                        </div>
                     </div>
 
-                   <div class="collapse" ng-attr-id="{{'usertaskDetails'+ x.id}}">
-                    <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-                    <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-                    <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-                    <span class="alignright">Assigned to:
-                      <span ng-repeat="y in x.users">{{y}.username}&nbsp;</span>
-                    </span>
-                  </div>
-               </div>
-              </div>
+                </div>
+                <script type="text/ng-template" id="/people-mentions.tpl">
+                    <ul class="list-group user-search">
+                        <li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
+                            <img ng-src="{{items.imageUrl}}" class="user-photo">
+                            <span class="text-primary" ng-bind-html="items.username | unsafe"></span>
+                            <em class="text-muted" ng-bind="items.email"></em>
+                        </li>
+                    </ul>
+                </script>
+
+                <!-- Add Task Button-->
+                <div class="task-input">
+                    <form>
+                        <div class="input-group addTask">
+                            <input mentio mentio-typed-text="typedTerm" mentio-items="items" autocomplete="off" type="text" class="form-control form-focus" placeholder="Add a task" ng-model="addTask" mentio-select="getPeopleText(item)" mentio-template-url="/people-mentions.tpl">
+                            <span class="input-group-btn">
+                                <button class="btn submitBtn" type="button" id="addButton" ng-click="addCall()">
+                                <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!--addTask-->
+                    </form>
+                </div>
+                <!--task-input/-->
+
+                <!-- Add Task Button End -->
             </div>
-          </div>
-      </div>
+            <!-- COMPLETED TASKS ENDS -->
 
-        <!-- DAY FIVE ENDS -->
 
-        <!-- DAYS AND TASKS ENDS -->
+
+            <!-- TASK QUEUE ENDS -->
+        </div>
     </div>
-  </div>
-
-  <div  class="col-sm-4" id="add-task-content">
-  <div class=" project-title">
-       
-  </div> 
-
-  <div class="header-task">
-     <div class="row addTask-row">
-        To-Do List:
-        <span class="addTask-row-count">
-          <h5><span>Total Active Tasks: {{totalActiveTasksInQueue}}</span>
-          <span>/ Total Completed Tasks: {{totalCompletedTasks}}</span>
-        </span></h5>
-       </div>
-
-       <!-- Add to queue -->
-       <div class='addedTask'>
-
-        <div>
-          <h4 class="h4-tag">Active Tasks:</h4>
-        </div>
-
-        <div class="input-group todo" ng-repeat="x in addedTasks.task_queue">
-            <div class="createdTasks">
-              <span class="input-group-btn">
-              <input class="form-control form-focus taskname" type="button" value="{{x.name}}" data-toggle="collapse" href="{{'#taskDetails'+ x.id}}">
-                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                 type="button" data-ng-click="deleteTask($event)"><i class="fa fa-close fa-lg"></i></button>
-                
-                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
-                 type="button" data-ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                <button data-toggle="modal" data-target=".addTaskpushModal" class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}" type="button" data-ng-click="dayselectionevent($event)"><i class="fa fa-mail-reply fa-lg"></i></button>
-              </span>
-            </div>
-
-            <div class="collapse" ng-attr-id="{{'taskDetails'+ x.id}}">
-              <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-              <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-              <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-              <span class="alignright">Assigned to:
-              <span ng-repeat="y in x.users">{{y.username}}</span>
-            </div>
-        </div> 
-      
-        <div>
-          <h4 class="h4-tag">Completed:</h4>
-        </div>
-
-          <div class="input-group todo" ng-repeat="x in completedTasks">
-            <div class="completedtasks-title">
-              <span class="input-group-btn">
-                <input class="form-control form-focus taskname" type="button" value="{{x.name}}"
-                 data-toggle="collapse" href="{{'#taskDetails'+ x.id}}">
-                <button class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}"
-                type="button" data-ng-click=""><i class="fa fa-github fa-2x"></i></button>
-              </span>
-           </div>
-
-            <div class="collapse" ng-attr-id="{{'taskDetails'+ x.id}}">
-              <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-              <span class="alignright">Created By: {{x.assigned.username}}</span><br />
-              <span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-              <span class="alignright">Assigned to:
-              <span ng-repeat="y in x.users">{{y.username}}&nbsp;</span>
-            </div>
-          </div>
-
-        </div>
-                        <script type="text/ng-template" id="/people-mentions.tpl">
-                            <ul class="list-group user-search">
-                                <li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
-                                    <img ng-src="{{items.imageUrl}}" class="user-photo">
-                                    <span class="text-primary" ng-bind-html="items.username | unsafe"></span>
-                                    <em class="text-muted" ng-bind="items.email"></em>
-                                </li>
-                            </ul>
-                        </script>
-
-                 <!-- Add Task Button-->
-             <div class="task-input">
-                <form>
-                 <div class="input-group addTask">
-                 <input mentio mentio-typed-text="typedTerm" mentio-items="items" autocomplete="off" type="text" class="form-control form-focus" placeholder="Add a task" ng-model="addTask" mentio-select="getPeopleText(item)" mentio-template-url="/people-mentions.tpl" >
-                     <span class="input-group-btn">
-                        <button class="btn submitBtn" type="button" id="addButton" ng-click="addCall()">
-                          <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
-                        </button>
-                     </span>
-                  </div><!--addTask-->
-                </form>
-            </div><!--task-input/-->
-      
-          <!-- Add Task Button End -->
-        </div>
-        <!-- COMPLETED TASKS ENDS -->    
-
-     
-
-      <!-- TASK QUEUE ENDS -->
-      </div>
-  </div>
 
 
-      <!-- Create Project -->
-        <div class="modal fade projectModal" role="dialog">
+    <!-- Create Project -->
+    <div class="modal fade projectModal" role="dialog">
         <!-- Create Project Dialog-->
         <div class="modal-dialog">
 
-        <!-- Create Project content-->
-          <div class="modal-content">
-
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Create a Project</h4>
-              </div>
-
-              <div class="modal-body">
-                <div class="form-group">
-                  <label>Project Title</label>
-                  <input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
-                </div>
-                <div>
-                <label>Add Members</label>
-                </div>
-                <div>
-                  <select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
-                    <option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
-                    
-                  </select>
-                </div>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
-              </div>
-
-                  </div><!--Create Project content Ends Here-->
-              </div><!--Create Project Dialog Ends Here-->
-          </div><!--Create Project Ends Here-->
-
-
-      <!-- Create Member -->
-        <div class="modal fade memberModal" role="dialog">
-          <!-- Create Member Dialog-->
-        <div class="modal-dialog">
-
-        <!-- Create Member content-->
-          <div class="modal-content">
-
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add a Members</h4>
-            </div>
-
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Add Members</label>
-                <div>
-                  <select member-directive multiple class="memberSelect" ng-model="memberlist_add">
-                    <option ng-repeat="x in projectMembers.add" value="{{x.email}}">{{x.email}}</option>
-                    
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Remove Members</label>
-                <div>
-                  <select member-directive multiple class="memberSelect" ng-model="memberlist_remove">
-                    <option ng-repeat="x in projectMembers.members" value="{{x.email}}">{{x.email}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="updateMembers()">Confirm</button>
-            </div>
-
-                </div><!--Create Member content Ends Here-->
-            </div><!--Create Member Dialog Ends Here-->
-        </div><!--Create Member Ends Here-->
-
-      <!-- ADD TASK Push Modal -->
-      <form class="" method="post">
-        <div class="modal fade addTaskpushModal" role="dialog">
-            <!-- Push Modal Dialog-->
-          <div class="modal-dialog">
-
-          <!-- Push Modal content-->
+            <!-- Create Project content-->
             <div class="modal-content">
 
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title"></h4>
-              </div>
-
-              <div class="modal-body">
-                <div class="form-group">
-                  <label>Estimated Time:</label>
-                  <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()"/>(1-5 HRS)
-                </div>
-                  <div class="form">
-                      <label class="btn btn-default">
-                        <input type="radio" name="day" value="0" ng-model="dayselection"/>Today<br />
-                      </label>
-                      <label class="btn btn-default">
-                        <input type="radio" name="day" value="1" ng-model="dayselection" />Tomorrow<br />
-                      </label>
-                      <label class="btn btn-default">
-                        <input type="radio" name="day" value="2" ng-model="dayselection" />{{days[2].day}}<br />
-                      </label>
-                      <label class="btn btn-default">
-                        <input type="radio" name="day" value="3" ng-model="dayselection" />{{days[3].day}}<br />
-                      </label>
-                      <label class="btn btn-default">
-                        <input type="radio" name="day" value="4" ng-model="dayselection" />{{days[4].day}}<br />
-                      </label>
-                  </div>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime"
-                  data-ng-click="pushintoUser()" data-dismiss="modal">Confirm</button>
-              </div>
-
-                  </div><!--Push Modal content Ends Here-->
-              </div><!--Push Modal Dialog Ends Here-->
-          </div><!--Push Modal Ends Here-->
-        </form> <!--ADD TASK Push Modal Form-->
-
-        <!-- COMPLETE TASK Push Modal -->
-        <form class="" method="post">
-          <div class="modal fade completeTaskpushModal" role="dialog">
-              <!-- Push Modal Dialog-->
-            <div class="modal-dialog">
-
-            <!-- Push Modal content-->
-              <div class="modal-content">
-
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create a Project</h4>
                 </div>
 
                 <div class="modal-body">
-                  <div class="form-group">
-                    <label>Time taken for Completion:</label>
-                    <input type="number" placeholder="HOURS"
-                      ng-model="completedTime" ng-change="onChangeTime_completeTask()"/>(1-9 HRS)
-                  </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" class="close"
-                      data-ng-click="taskcompletion()" data-dismiss="modal" ng-disabled="!showConfirmTime">Confirm</button>
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
+                    </div>
+                    <div>
+                        <label>Add Members</label>
+                    </div>
+                    <div>
+                        <select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
+                            <option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Slack Webhook</label>
+                        <input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
+                    </div>
                 </div>
 
-                    </div><!--Push Modal content Ends Here-->
-                </div><!--Push Modal Dialog Ends Here-->
-            </div><!--Push Modal Ends Here-->
-          </form> <!--COMPLETE TASK Push Modal Form-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
+                </div>
+
+            </div>
+            <!--Create Project content Ends Here-->
+        </div>
+        <!--Create Project Dialog Ends Here-->
+    </div>
+    <!--Create Project Ends Here-->
+
+
+    <!-- Create Member -->
+    <div class="modal fade memberModal" role="dialog">
+        <!-- Create Member Dialog-->
+        <div class="modal-dialog">
+
+            <!-- Create Member content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add a Members</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Add Members</label>
+                        <div>
+                            <select member-directive multiple class="memberSelect" ng-model="memberlist_add">
+                                <option ng-repeat="x in projectMembers.add" value="{{x.email}}">{{x.email}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Remove Members</label>
+                        <div>
+                            <select member-directive multiple class="memberSelect" ng-model="memberlist_remove">
+                                <option ng-repeat="x in projectMembers.members" value="{{x.email}}">{{x.email}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="updateMembers()">Confirm</button>
+                </div>
+
+            </div>
+            <!--Create Member content Ends Here-->
+        </div>
+        <!--Create Member Dialog Ends Here-->
+    </div>
+    <!--Create Member Ends Here-->
+
+    <!-- ADD TASK Push Modal -->
+    <form class="" method="post">
+        <div class="modal fade addTaskpushModal" role="dialog">
+            <!-- Push Modal Dialog-->
+            <div class="modal-dialog">
+
+                <!-- Push Modal content-->
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Estimated Time:</label>
+                            <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" />(1-5 HRS)
+                        </div>
+                        <div class="form">
+                            <label class="btn btn-default">
+                                <input type="radio" name="day" value="0" ng-model="dayselection" />Today
+                                <br />
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="day" value="1" ng-model="dayselection" />Tomorrow
+                                <br />
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="day" value="2" ng-model="dayselection" />{{days[2].day}}
+                                <br />
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="day" value="3" ng-model="dayselection" />{{days[3].day}}
+                                <br />
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="day" value="4" ng-model="dayselection" />{{days[4].day}}
+                                <br />
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="pushintoUser()" data-dismiss="modal">Confirm</button>
+                    </div>
+
+                </div>
+                <!--Push Modal content Ends Here-->
+            </div>
+            <!--Push Modal Dialog Ends Here-->
+        </div>
+        <!--Push Modal Ends Here-->
+    </form>
+    <!--ADD TASK Push Modal Form-->
+
+    <!-- COMPLETE TASK Push Modal -->
+    <form class="" method="post">
+        <div class="modal fade completeTaskpushModal" role="dialog">
+            <!-- Push Modal Dialog-->
+            <div class="modal-dialog">
+
+                <!-- Push Modal content-->
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Time taken for Completion:</label>
+                            <input type="number" placeholder="HOURS" ng-model="completedTime" ng-change="onChangeTime_completeTask()" />(1-9 HRS)
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" class="close" data-ng-click="taskcompletion()" data-dismiss="modal" ng-disabled="!showConfirmTime">Confirm</button>
+                        </div>
+
+                    </div>
+                    <!--Push Modal content Ends Here-->
+                </div>
+                <!--Push Modal Dialog Ends Here-->
+            </div>
+            <!--Push Modal Ends Here-->
+    </form>
+    <!--COMPLETE TASK Push Modal Form-->
 
 
     <!-- PAGELAYOUT CONTROLLER ENDS -->
-  </div>
+    </div>
 </div>
 
 <!-- ng-app Ends -->
 </div>
-

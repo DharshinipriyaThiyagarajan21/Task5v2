@@ -195,6 +195,7 @@ GEM
       actionmailer (>= 3.2.6, < 6)
       actionpack (>= 3.2.6, < 6)
       devise (>= 3.2, < 6)
+    slack-notifier (2.0.0)
     slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -256,6 +257,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   select2-rails
   simple_token_authentication (~> 1.0)
+  slack-notifier
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

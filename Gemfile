@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 require 'json'
+gem "slack-notifier"
 gem "select2-rails"
 gem 'whenever', :require => false
 gem 'devise'

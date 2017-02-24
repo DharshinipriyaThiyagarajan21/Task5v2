@@ -1,6 +1,6 @@
 class ProjectService
 	def create_project(params,current_user)
-		project = current_user.projects.create(:name => params['projectname'],:brand_id => current_user.brand_id,:admin_id => current_user.id)  	
+		project = current_user.projects.create(:name => params['projectname'],:brand_id => current_user.brand_id,:admin_id => current_user.id,:hook => params['hook'])  	
 		Project.find(project).histories.create(:action => "created", :user_id => current_user.id, :notify => false)    
   	    params['memberlist'].each do |addUser|
   	    	user = User.find_by(:email => addUser)
@@ -42,7 +42,7 @@ class ProjectService
 
 	def add_task_queue(params,current_user)
 		project = Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => false, :completed => false)
-       Task.find(project).histories.create(:action => "task added", :user_id => current_user.id, :notify => false) 
+        Task.find(project).histories.create(:action => "task added", :user_id => current_user.id, :notify => false) 
         if params[:assignedToDetails].present?
             params[:assignedToDetails].each do |detail|
               project.users << User.find(params[:assignedToDetails][detail]['id'])
