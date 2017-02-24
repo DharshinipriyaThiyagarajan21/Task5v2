@@ -18,6 +18,4 @@ class User < ApplicationRecord
   has_many :admin, :through => :projects
   has_many :histories, as: :link
   validates :username, :presence => true
-  validates :firstname, :presence => true
-  validates :lastname, :presence => true
 end

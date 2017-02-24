@@ -1,13 +1,18 @@
 class ProjectsController < ApplicationController
-  def index     
+  def index
+      Proinvite.where(:email => current_user.email,:status => false).each do |i|
+        current_user.projects << i.project
+        i.update(:status => true)
+      end
   end
+
   def create
     ProjectService.new.create_project(params,current_user)
     render json: {success: true}
   end
 
   def members
-     @members, @add, task_queue, completed_queue = ProjectService.new.show_members(params)
+     @members, @add, completed_queue = ProjectService.new.show_members(params,current_user)
   	 render json: {add: @add, members: @members,completed_queue: completed_queue} 
   end
 
@@ -41,13 +46,17 @@ class ProjectsController < ApplicationController
 
 
   def update_members
-        members = ProjectService.new.update_members(params)
+        members = ProjectService.new.update_members(params,current_user)
         render json: {members: members}
   end
 
 
   def take_task
-    Task.find(params['task_id']).update(:taken => true, :day => params['day_num'], :estimated_time => params['estimated_time'], :user_ids => current_user.id)  
+    estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
+    estimated_time << params['estimated_time'].to_i
+    if estimated_time.sum < 12
+        Task.find(params['task_id']).update(:taken => true, :day => params['day_num'], :estimated_time => params['estimated_time'], :user_ids => current_user.id)  
+    end
     render json: {success: true}
   end
 

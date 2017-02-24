@@ -1,7 +1,7 @@
 app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
   $scope.items = [];
-
+  $scope.assignedUser = [];
 	$scope.todoQueue   = [];
   $scope.userTodo    = [];
   $scope.completedTasks= [];
@@ -101,7 +101,8 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
         var data = $.param({
           task_id: $scope.addedTasks.task_queue[i].id,
           estimated_time: $scope.estimatedTime,
-          day_num: tempday
+          day_num: tempday,
+          currentProject: $scope.currentProject
         });
         break;
       }
@@ -155,26 +156,6 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
     idString = event.target.id;
     id_num = parseInt(idString.substring(7));
 
-    // $scope.todoTaskDetails = {};
-
-    // for(var i=0; i<$scope.days[tempday].tasks.length; i++){
-    //   if($scope.days[tempday].tasks[i].userTask.id == id_num){
-
-    //     $scope.todoTaskDetails.id   = $scope.days[tempday].tasks[i].userTask.id;
-    //     $scope.todoTaskDetails.task = $scope.days[tempday].tasks[i].userTask.task;
-    //     $scope.todoTaskDetails.date = $scope.days[tempday].tasks[i].userTask.date
-    //     $scope.todoTaskDetails.time = $scope.days[tempday].tasks[i].userTask.time;
-    //     $scope.todoTaskDetails.createdBy  = $scope.days[tempday].tasks[i].userTask.createdBy;
-    //     $scope.todoTaskDetails.assignedTo = $scope.days[tempday].tasks[i].userTask.assignedTo;
-    //     $scope.todoTaskDetails.estimatedTime = 0;
-    //     $scope.todoTaskDetails.completedTime = 0;
-
-    //     $scope.days[tempday].tasks.splice(i,1);
-    //     break;
-    //   }
-    // }
-
-    // $scope.todoQueue.push({todoTask : $scope.todoTaskDetails});
     var data = $.param({
           task_id: id_num,
           currentProject: $scope.currentProject
@@ -283,29 +264,6 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
 
   $scope.taskcompletion = function(){
 
-    // $scope.todoTaskDetails = {};
-
-    // for(var i=0; i<$scope.days[tempday].tasks.length; i++){
-    //   if($scope.days[tempday].tasks[i].userTask.id == id_num){
-
-    //     $scope.todoTaskDetails.id   = $scope.days[tempday].tasks[i].userTask.id;
-    //     $scope.todoTaskDetails.task = $scope.days[tempday].tasks[i].userTask.task;
-    //     $scope.todoTaskDetails.date = $scope.days[tempday].tasks[i].userTask.date
-    //     $scope.todoTaskDetails.time = $scope.days[tempday].tasks[i].userTask.time;
-    //     $scope.todoTaskDetails.createdBy  = $scope.days[tempday].tasks[i].userTask.createdBy;
-    //     $scope.todoTaskDetails.assignedTo  = $scope.days[tempday].tasks[i].userTask.assignedTo;
-    //     $scope.todoTaskDetails.estimatedTime = $scope.days[tempday].tasks[i].userTask.estimatedTime;
-    //     $scope.todoTaskDetails.completedTime = $scope.completedTime;
-
-    //     $scope.days[tempday].tasks.splice(i,1);
-
-    //     $scope.totalEstimatedTime += $scope.todoTaskDetails.estimatedTime;
-    //     $scope.totalCompletionTime += $scope.todoTaskDetails.completedTime;
-    //     break;
-    //   }
-    // }
-
-    // $scope.completedTasks.push({todoTask : $scope.todoTaskDetails});
     var data = $.param({
           task_id: id_num,
           completed_time: $scope.completedTime
@@ -374,7 +332,7 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
       $scope.items.length = 0;
       $scope.projectMembers = response.data;
       for(var i=0; i<$scope.projectMembers.members.length; i++){
-        $scope.items.push({label: $scope.projectMembers.members[i].email});
+        $scope.items.push({username: $scope.projectMembers.members[i].username,imageUrl:"http://educationalsoftware.wikispaces.com/file/view/manga_suzie.jpg/38030142/178x177/manga_suzie.jpg", label: $scope.projectMembers.members[i].username+" ("+$scope.projectMembers.members[i].email+")", email: $scope.projectMembers.members[i].email});
       }
       $scope.completedTasks = response.data.completed_queue;
       $scope.update_push_queue();
@@ -383,6 +341,13 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
     $scope.update_task_queue();
     $scope.update_time();
 
+  };
+
+  $scope.getPeopleText = function(item) {
+            // note item.label is sent when the typedText wasn't found
+      $scope.assignedUser.push(item.email);
+      console.log($scope.assignedUser);
+      return '@' + item.username + '';
   };
   // store task details when clicked add
      $scope.addCall = function(){
@@ -422,13 +387,14 @@ app.controller('pageLayoutCtrl',function($scope, $filter, $http){
       }
 
       $scope.assignedTo_details = [];
-      for(var i=0; i<assignedTo.length; i++){
+      for(var i=0; i<$scope.assignedUser.length; i++){
         for(var j=0; j<$scope.projectMembers.members.length; j++){
-          if(assignedTo[i] == $scope.projectMembers.members[j].email){
+          if($scope.assignedUser[i] == $scope.projectMembers.members[j].email){
             $scope.assignedTo_details.push($scope.projectMembers.members[j]);
           }
         }
       }
+      console.log($scope.assignedUser);
       var data = $.param({
         currentProject: $scope.currentProject,
         task: taskTemp,

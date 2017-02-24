@@ -363,12 +363,21 @@
           </div>
 
         </div>
+                        <script type="text/ng-template" id="/people-mentions.tpl">
+                            <ul class="list-group user-search">
+                                <li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
+                                    <img ng-src="{{items.imageUrl}}" class="user-photo">
+                                    <span class="text-primary" ng-bind-html="items.username | unsafe"></span>
+                                    <em class="text-muted" ng-bind="items.email"></em>
+                                </li>
+                            </ul>
+                        </script>
 
                  <!-- Add Task Button-->
              <div class="task-input">
                 <form>
                  <div class="input-group addTask">
-                 <input mentio mentio-typed-text="typedTerm" mentio-items="items | filter:label:typedTerm" autocomplete="off" type="text" class="form-control form-focus" placeholder="Add a task" ng-model="addTask">
+                 <input mentio mentio-typed-text="typedTerm" mentio-items="items" autocomplete="off" type="text" class="form-control form-focus" placeholder="Add a task" ng-model="addTask" mentio-select="getPeopleText(item)" mentio-template-url="/people-mentions.tpl" >
                      <span class="input-group-btn">
                         <button class="btn submitBtn" type="button" id="addButton" ng-click="addCall()">
                           <i class="fa fa-plus fa-lg" aria-hidden="true"></i>

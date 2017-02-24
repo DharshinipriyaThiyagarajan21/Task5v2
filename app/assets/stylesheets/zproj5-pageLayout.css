@@ -13,6 +13,30 @@
   width: 50px;
   height: 50px;
 }
+.user-photo {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 15px;
+}
+.list-group{
+  width: 300px;
+  margin-top: 20px;
+  position: absolute;
+  overflow-y: auto;
+  max-height: 200px;
+}
+.user-search .list-group-item.active .text-primary {
+    color: #fff;
+}
+.user-search .list-group-item.active .text-muted {
+    color: #ccc;
+}
+.user-search:hover {
+    cursor: pointer;
+}
+.menu-highlighted {
+    font-weight: bold;
+}
 
 
 .completedtasks-title .taskname{
@@ -144,7 +168,7 @@ i.fa-sidemenu{
   /*float: left;*/
   font-family:Tahoma, Geneva, sans-serif;
   position: static;
-  height: 100vh;
+  height: 120vh;
 }
 
 .container-class

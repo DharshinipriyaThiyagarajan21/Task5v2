@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :invitation
   resources :brand
+  resources :proinvite
   resources "projects" do
   collection do
     post 'members'

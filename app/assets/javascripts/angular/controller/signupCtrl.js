@@ -6,8 +6,6 @@ app.controller("signupCtrl", function($scope){
 
   //user validation form - initialisation
   $scope.userValidity.username        = false;
-  $scope.userValidity.firstname       = false;
-  $scope.userValidity.lastname        = false;
   $scope.userValidity.email           = false;
   $scope.userValidity.password        = false;
   $scope.userValidity.passwordRepeat  = false;
@@ -20,26 +18,6 @@ app.controller("signupCtrl", function($scope){
     }
     else{
       $scope.userValidity.username = false;
-    }
-    $scope.validation();
-  }
-
-  $scope.validateFirstname = function(){
-    if($scope.signupForm['user[firstname]'].$valid){
-      $scope.userValidity.firstname = true;
-    }
-    else{
-      $scope.userValidity.firstname = false;
-    }
-    $scope.validation();
-  }
-
-  $scope.validateLastname = function(){
-    if($scope.signupForm['user[lastname]'].$valid){
-      $scope.userValidity.lastname = true;
-    }
-    else{
-      $scope.userValidity.lastname = false;
     }
     $scope.validation();
   }
@@ -76,16 +54,8 @@ app.controller("signupCtrl", function($scope){
   }
 
   $scope.validation = function(){
-    console.clear();
-    console.log($scope.userValidity.username);
-    console.log($scope.userValidity.firstname);
-    console.log($scope.userValidity.lastname);
-    console.log($scope.userValidity.email);
-    console.log($scope.userValidity.password);
-    console.log($scope.userValidity.passwordRepeat);
 
-    if($scope.userValidity.username && $scope.userValidity.firstname && $scope.userValidity.lastname &&
-        $scope.userValidity.email && $scope.userValidity.password && $scope.userValidity.passwordRepeat)
+    if($scope.userValidity.username && $scope.userValidity.email && $scope.userValidity.password && $scope.userValidity.passwordRepeat)
     {
       console.log("TRUE");
       $scope.showSignup = true;

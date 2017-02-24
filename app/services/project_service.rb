@@ -4,8 +4,12 @@ class ProjectService
 		Project.find(project).histories.create(:action => "created", :user_id => current_user.id, :notify => false)    
   	    params['memberlist'].each do |addUser|
   	    	user = User.find_by(:email => addUser)
-  	        user.projects << project
-  	        Project.find(project).histories.create(:action => "added", :user_id => user.id, :notify => false)
+  	    	if user.present?
+	  	        user.projects << project
+	  	        Project.find(project).histories.create(:action => "added", :user_id => user.id, :notify => false)
+	  	    else
+	  	    	proinvite = Proinvite.create(:user_id => current_user.id, :status => false, :email => addUser, :project_id => project.id)
+	  	    end
   	    end
 	end
 
@@ -22,17 +26,16 @@ class ProjectService
 		Task.where(:day => 5).update(:day => 4)   
 	end
 
-	def show_members(params)
+	def show_members(params,current_user)
 		@members = Project.find_by(:id => params['currentProject']['id']).users
-  	    add = User.all
-  	    @add = add - @members
+		add = User.where(:brand_id => current_user.brand_id)
         completed_queue = Task.where(:project_id => params['currentProject']['id'], :completed => true)
 	    return [@members,@add,completed_queue]
 	end
 
 	def create_project_details(current_user)
         @projects = current_user.projects.all
-        @addMembers = Project.user_with_brand(current_user)
+        @addMembers = User.where(:brand_id => current_user.brand_id)
         @user = current_user
         return [@projects,@addMembers,@user]
 	end
@@ -48,7 +51,7 @@ class ProjectService
         
 	end
 
-	def update_members(params)
+	def update_members(params,current_user)
 		if params['removeMembers'].present?
 	       params['removeMembers'].each do |removeUser|
 	            user = User.find_by(:email => removeUser)
@@ -58,8 +61,12 @@ class ProjectService
 	    end
 	        params['addMembers'].each do |addUser|
 	            user = User.find_by(:email => addUser)
-	            project = Project.find(params['project']['id'])
-	            user.projects << project
+	            if user.present?	            
+		            project = Project.find(params['project']['id'])
+		            user.projects << project
+		        else
+		        	proinvite = Proinvite.create(:user_id => current_user.id, :status => false, :email => addUser, :project_id => params['project']['id'])
+		        end
 	        end
 			members = Project.find_by(:id => params['project']['id']).users
 			return members

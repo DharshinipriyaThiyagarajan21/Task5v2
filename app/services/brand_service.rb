@@ -1,7 +1,7 @@
 class BrandService
-	def user_without_brand(current_user) 
+	def show_invitations(current_user) 
 		      invitations = []
-	          user = User.all.where(:brand_id => nil) - [current_user]
+	          
 	          current_user.inverse_invitations.each do |invitation|
 	          invite = {
 	            :id => invitation.id,
@@ -10,7 +10,7 @@ class BrandService
 	           }
 	            invitations << invite
 	           end
-	           return [user,invitations]
+	           return invitations
 	end
 	def create_brand(params,current_user)
 		brand = Brand.create(:name => params['brand']['brandname'])
