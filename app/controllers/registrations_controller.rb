@@ -9,6 +9,12 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to action: "new"
       else
         super
+        # u=User.new
+        # u.avatar = params[:avatar]
+        # u.save!
+        # u.avatar.url
+        # u.avatar.current_path
+        # u.avatar_identifier
         RegistrationService.new.invite_user(params,current_user)
       end
   end

@@ -66,7 +66,7 @@ app.controller('pageLayoutCtrl', function ($scope, $filter, $http) {
             } else {
                 $scope.showConfirmTime = false;
             }
-        }
+        };
         // Show Confrim Button in TASK COMPLETION MODAL BASED ON TIME
     $scope.onChangeTime_completeTask = function () {
         $scope.showConfirmTime = false;
@@ -95,11 +95,15 @@ app.controller('pageLayoutCtrl', function ($scope, $filter, $http) {
                     task_id: $scope.addedTasks.task_queue[i].id,
                     estimated_time: $scope.estimatedTime,
                     day_num: tempday,
-                    currentProject: $scope.currentProject
+                    currentProject: $scope.currentProject,
+
                 });
                 break;
             }
         }
+        $scope.hooktype = "Added a task";
+        $scope.hookname = $scope.addedTasks.task_queue[i].name;
+        $scope.slackUpdate();
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -305,6 +309,7 @@ app.controller('pageLayoutCtrl', function ($scope, $filter, $http) {
 
     // display data about selected project 
     $scope.selectProject = function (x) {
+      console.log(x);
         var data = $.param({
             currentProject: x
         });
@@ -322,10 +327,11 @@ app.controller('pageLayoutCtrl', function ($scope, $filter, $http) {
             for (var i = 0; i < $scope.projectMembers.members.length; i++) {
                 $scope.items.push({
                     username: $scope.projectMembers.members[i].username,
-                    imageUrl: "http://educationalsoftware.wikispaces.com/file/view/manga_suzie.jpg/38030142/178x177/manga_suzie.jpg",
+                    imageUrl: $scope.projectMembers.members[i].avatar.thumb.url,
                     label: $scope.projectMembers.members[i].username + " (" + $scope.projectMembers.members[i].email + ")",
                     email: $scope.projectMembers.members[i].email
                 });
+                console.log($scope.projectMembers.members[i].avatar.thumb.url);
             }
             $scope.completedTasks = response.data.completed_queue;
             $scope.update_push_queue();
@@ -498,6 +504,43 @@ app.controller('pageLayoutCtrl', function ($scope, $filter, $http) {
       $http.post('/projects/slackUpdate', data, config);
     };
 
+    $scope.callEditProject = function () {
+      var data = $.param({
+        currentProject : $scope.currentProject
+      });
+      var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        };
+
+      $http.post('/projects/call_edit', data, config).then(function (response) {
+
+            $scope.projectname = response.data.name;
+            $scope.hook = response.data.hook;
+        });
+    };
+
+    $scope.editProject = function () {
+      var data = $.param({
+        currentProject : $scope.currentProject,
+        projectname : $scope.projectname,
+        hook : $scope.hook
+      });
+
+      var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        };
+        $http.post('/projects/edit_project', data, config).then(function (response) {
+          $scope.initProjModal(); 
+          $scope.currentProject = response.data.project;
+        });
+            
+        $scope.selectProject($scope.currentProject);       
+
+    };
 });
 
 app.directive('memberDirective', function () {

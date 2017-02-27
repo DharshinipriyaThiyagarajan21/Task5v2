@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
      ProjectService.new.add_task_queue(params,current_user)
     render json: {success: true}
   end
-#shinigamieatApples
 
   def mytask
        mytask = current_user.tasks
@@ -101,10 +100,22 @@ class ProjectsController < ApplicationController
 
   def slackUpdate
     user = current_user.username
-    notifier = Slack::Notifier.new params['currentProject']['hook'] do
-      defaults username: user
-      end
-    notifier.ping params['hooktype']+"  *"+params['hookname']+"*"
+    avatar = current_user.avatar
+    notifier = Slack::Notifier.new params['currentProject']['hook'] , http_options: { open_timeout: 5 }
+  
+    notifier.post text: params['hooktype']+"  *"+params['hookname']+"*", username: user, icon_url: avatar
+
     render json: {success: true}
+  end
+
+  def call_edit
+    name = Project.find(params['currentProject']['id']).name
+    hook = Project.find(params['currentProject']['id']).hook
+    render json: {name: name, hook: hook}
+  end
+
+  def edit_project
+   project = Project.find(params['currentProject']['id']).update(:name => params['projectname'], :hook => params['hook'])
+   render json: {project: project}
   end
 end

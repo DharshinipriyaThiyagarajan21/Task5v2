@@ -1,4 +1,4 @@
-<form name="signupForm" class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+<form name="signupForm" class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
     <div class="container indexContainer" ng-app="app" ng-controller="signupCtrl">
         <input name="utf8" type="hidden" value="✓">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
@@ -66,7 +66,9 @@
                     <input type="password" ng-model="user.passwordRepeat" name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" title="Please enter the correct password" required>
                 </div>
             </div>
+            <input type="file"  name="user[avatar]" required>
 
+                    
             <div class="row">
                 <div class="col-md-2"></div>
 

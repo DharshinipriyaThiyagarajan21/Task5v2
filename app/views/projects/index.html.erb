@@ -67,7 +67,8 @@
 
                 <div class=" project-title">
                     <div class="project-heading">
-                        <h3># {{currentProject.name}}</h3>
+                        <h3># {{currentProject.name}}
+                        <span class="projectEdit"><a href="" data-toggle="modal" data-target=".projectEditModal" ng-show="currentProject.name" ng-click="callEditProject()">Edit</a></span></h3>
                         <br>
                     </div>
                 </div>
@@ -444,6 +445,40 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
+                </div>
+
+            </div>
+            <!--Create Project content Ends Here-->
+        </div>
+        <!--Create Project Dialog Ends Here-->
+    </div>
+    <!--Create Project Ends Here-->
+
+    <div class="modal fade projectEditModal" role="dialog">
+        <!-- Create Project Dialog-->
+        <div class="modal-dialog">
+
+            <!-- Create Project content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Project</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
+                    </div>
+                    <div>
+                        <label>Slack Webhook</label>
+                        <input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="editProject()">Confirm</button>
                 </div>
 
             </div>
