@@ -1,26 +1,39 @@
 class RegistrationsController < Devise::RegistrationsController
 	def new
-    super  
+         flash[:signup] = "Please verify your email after Sign Up"  
+    super
   end
-
   def create
       if User.where(:email => params['user']['email']).present?
-        # render html: "<script>alert('No users!')</script>".html_safe
+        flash[:email] = "Email already registered. Please sign-up with different email" 
         redirect_to action: "new"
       else
-        super
-        # u=User.new
-        # u.avatar = params[:avatar]
-        # u.save!
-        # u.avatar.url
-        # u.avatar.current_path
-        # u.avatar_identifier
-        RegistrationService.new.invite_user(params,current_user)
+        flash[:success] = "Please verify your email." 
+        
+    build_resource(sign_up_params)
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+end
+
+
       end
   end
   def update
     super
   end
-
-
 end

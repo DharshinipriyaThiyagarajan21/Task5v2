@@ -438,6 +438,7 @@ app.controller('pageLayoutCtrl', function ($scope, $filter, $http) {
 
             $scope.addedTasks.task_queue = response.data.task_queue;
             $scope.totalActiveTasksInQueue = $scope.addedTasks.task_queue.length;
+            console.log($scope.addedTasks.task_queue);
         });
     };
 

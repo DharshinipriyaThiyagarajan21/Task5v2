@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227115539) do
+ActiveRecord::Schema.define(version: 20170228132712) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -110,7 +110,15 @@ ActiveRecord::Schema.define(version: 20170227115539) do
     t.integer  "brand_id"
     t.string   "authentication_token",   limit: 30
     t.string   "avatar"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

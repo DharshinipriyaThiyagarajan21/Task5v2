@@ -3,6 +3,7 @@ class BrandController < ApplicationController
   
   def new
         if current_user.brand.nil?
+          RegistrationService.new.invite_user(current_user)
           @invitations = BrandService.new.show_invitations(current_user)
         else
           redirect_to projects_path

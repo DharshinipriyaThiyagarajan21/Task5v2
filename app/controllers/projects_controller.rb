@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
 
   def update_task_queue
     task_queue = Task.where(:project_id => params['currentProject']['id'], :taken => false)
-    render json: {task_queue: task_queue}.to_json(:include => [{:users => {:only => :username}},{:assigned => {:only => :username}}])
+    render json: {task_queue: task_queue}.to_json(:include => [ :users ,:assigned])
   end
 
 
@@ -54,6 +54,8 @@ class ProjectsController < ApplicationController
   def take_task
     estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
     estimated_time << params['estimated_time'].to_i
+    completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:estimated_time)
+    estimated_time = estimated_time - completed_time
     if estimated_time.sum < 12
         Task.find(params['task_id']).update(:taken => true, :day => params['day_num'], :estimated_time => params['estimated_time'], :user_ids => current_user.id)  
     end
@@ -89,7 +91,9 @@ class ProjectsController < ApplicationController
   end
 
   def back_to_add_tasks
-        Task.find(params['task_id']).update(:taken => false,:day => nil, :estimated_time => nil)
+        c = Task.find(params['task_id']).backlog_count
+        c = c + 1
+        Task.find(params['task_id']).update(:taken => false,:day => nil, :estimated_time => nil, :backlog_count => c)
         render json: {success: true}
   end
 

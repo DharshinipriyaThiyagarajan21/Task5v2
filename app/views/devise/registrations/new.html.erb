@@ -1,5 +1,12 @@
+  <% if flash[:notice] %>
+    <div class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:signup] %>
+    <div class="alert alert-success"><%= flash[:signup] %></div>
+  <% end %>
 <form name="signupForm" class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
     <div class="container indexContainer" ng-app="app" ng-controller="signupCtrl">
+  
         <input name="utf8" type="hidden" value="✓">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
         <div class="col-md-4"></div>
@@ -66,7 +73,7 @@
                     <input type="password" ng-model="user.passwordRepeat" name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" title="Please enter the correct password" required>
                 </div>
             </div>
-            <input type="file"  name="user[avatar]" required>
+            <input type="file"  name="user[avatar]">
 
                     
             <div class="row">

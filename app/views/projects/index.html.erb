@@ -330,12 +330,13 @@
                         <div class="createdTasks">
                             <span class="input-group-btn">
                                 <input class="form-control form-focus taskname" type="button" value="{{x.name}}" data-toggle="collapse" href="{{'#taskDetails'+ x.id}}">
-                                <button class="btn submitBtn" ng-attr-id="{{'buttons'+ x.id}}"
+                                <button class="btn submitBtn"  ng-if="user.email == x.assigned.email" ng-attr-id="{{'buttons'+ x.id}}"
                                 type="button" data-ng-click="deleteTask($event)"><i class="fa fa-close fa-lg"></i></button>
+
 
                                 <button class="btn submitBtn" ng-click="slackUpdate()" ng-attr-id="{{'buttons'+ x.id}}"
                                 type="button" data-ng-click=""><i class="fa fa-github fa-2x"></i></button>
-                                <button data-toggle="modal" data-target=".addTaskpushModal" class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}" type="button" data-ng-click="dayselectionevent($event)"><i class="fa fa-mail-reply fa-lg"></i></button>
+                                <button data-toggle="modal" data-target=".addTaskpushModal" class="btn submitBtn" id="corners" ng-attr-id="{{'buttons'+ x.id}}" type="button" data-ng-click="($event)"><i class="fa fa-mail-reply fa-lg"></i></button>
                             </span>
                         </div>
 

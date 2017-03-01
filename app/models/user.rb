@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # acts_as_token_authenticatable
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,:confirmable,
        :recoverable, :rememberable, :trackable
   mount_uploader :avatar, AvatarUploader
 
@@ -19,4 +19,6 @@ class User < ApplicationRecord
   has_many :admin, :through => :projects
   has_many :histories, as: :link
   validates :username, :presence => true
+
+ 
 end

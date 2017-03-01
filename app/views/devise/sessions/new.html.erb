@@ -1,3 +1,11 @@
+<% if flash[:email] %>
+    <div class="alert alert-success"><%= flash[:email] %></div>
+  <% end %>
+  <% if flash[:success] %>
+    <div class="alert alert-success"><%= flash[:success] %></div>
+  <% end %>
+
+  <%= render 'layouts/messages' %>
 <div class="bodyDesign">
 <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
     <div class="container indexContainer">
