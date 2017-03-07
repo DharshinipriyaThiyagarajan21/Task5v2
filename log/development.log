@@ -1,0 +1,110 @@
+Started GET "/brand" for 127.0.0.1 at 2017-03-07 17:15:26 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by BrandController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (15465.9ms)
+Completed 200 OK in 15555ms (Views: 15503.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-03-07 17:19:18 +0530
+Processing by RegistrationsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/brand/new
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 47ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/brand/new" for 127.0.0.1 at 2017-03-07 17:19:18 +0530
+Processing by BrandController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mInvite Load (0.1ms)[0m  [1m[34mSELECT `invites`.* FROM `invites` WHERE `invites`.`email` = 'sriram@codingmart.com' AND `invites`.`status` = 0[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT `invitations`.* FROM `invitations` WHERE `invitations`.`invitee_id` = 7[0m
+  Rendering brand/new.html.erb within layouts/application
+  Rendered brand/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 159ms (Views: 119.0ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/brand" for 127.0.0.1 at 2017-03-07 17:19:27 +0530
+Processing by BrandController#create as HTML
+  Parameters: {"brand"=>{"brandname"=>"New hh"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `brands` WHERE `brands`.`name` = 'New hh'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `brands` (`name`, `created_at`, `updated_at`) VALUES ('New hh', '2017-03-07 11:49:27', '2017-03-07 11:49:27')[0m
+  [1m[35m (43.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBrand Load (0.4ms)[0m  [1m[34mSELECT  `brands`.* FROM `brands` WHERE `brands`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `histories` (`link_type`, `link_id`, `user_id`, `action`, `notify`, `created_at`, `updated_at`) VALUES ('Brand', 2, 7, 'created brand', 0, '2017-03-07 11:49:27', '2017-03-07 11:49:27')[0m
+  [1m[35m (57.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `invitations` SET `invitations`.`status` = 'rejected' WHERE `invitations`.`invitee_id` = 7[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `users` SET `brand_id` = 2, `updated_at` = '2017-03-07 11:49:27' WHERE `users`.`id` = 7[0m
+  [1m[35m (32.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 189ms (ActiveRecord: 139.7ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2017-03-07 17:19:27 +0530
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProinvite Load (0.2ms)[0m  [1m[34mSELECT `proinvites`.* FROM `proinvites` WHERE `proinvites`.`email` = 'sriram@codingmart.com' AND `proinvites`.`status` = 0[0m
+  Rendering projects/index.html.erb within layouts/application
+  Rendered projects/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 126ms (Views: 114.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/projects/get" for 127.0.0.1 at 2017-03-07 17:19:29 +0530
+Processing by ProjectsController#get as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProadmin Load (0.5ms)[0m  [1m[34mSELECT `proadmins`.* FROM `proadmins` INNER JOIN `proadmins_users` ON `proadmins`.`id` = `proadmins_users`.`proadmin_id` WHERE `proadmins_users`.`user_id` = 7[0m
+[active_model_serializers]   [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT `projects`.* FROM `projects` INNER JOIN `projects_users` ON `projects`.`id` = `projects_users`.`project_id` WHERE `projects_users`.`user_id` = 7[0m
+[active_model_serializers]   [1m[36mUser Load (21.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`brand_id` = 2 AND (`users`.`id` != 7)[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (28.99ms)
+Completed 200 OK in 145ms (Views: 23.4ms | ActiveRecord: 27.1ms)
+
+
+Started GET "/projects/get" for 127.0.0.1 at 2017-03-07 17:19:29 +0530
+Started GET "/projects/mytask" for 127.0.0.1 at 2017-03-07 17:19:29 +0530
+Processing by ProjectsController#get as HTML
+Processing by ProjectsController#mytask as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProadmin Load (0.3ms)[0m  [1m[34mSELECT `proadmins`.* FROM `proadmins` INNER JOIN `proadmins_users` ON `proadmins`.`id` = `proadmins_users`.`proadmin_id` WHERE `proadmins_users`.`user_id` = 7[0m
+[active_model_serializers]   [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT `projects`.* FROM `projects` INNER JOIN `projects_users` ON `projects`.`id` = `projects_users`.`project_id` WHERE `projects_users`.`user_id` = 7[0m
+[active_model_serializers]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`brand_id` = 2 AND (`users`.`id` != 7)[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.18ms)
+Completed 200 OK in 22ms (Views: 3.5ms | ActiveRecord: 2.0ms)
+
+
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` INNER JOIN `tasks_users` ON `tasks`.`id` = `tasks_users`.`task_id` WHERE `tasks_users`.`user_id` = 7 AND `tasks`.`completed` = 0 AND `tasks`.`taken` = 1[0m
+Completed 200 OK in 62ms (Views: 3.4ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/projects/mytask" for 127.0.0.1 at 2017-03-07 17:19:30 +0530
+Processing by ProjectsController#mytask as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Started POST "/projects/update_task_queue" for 127.0.0.1 at 2017-03-07 17:19:30 +0530
+  [1m[36mTask Load (1.0ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` INNER JOIN `tasks_users` ON `tasks`.`id` = `tasks_users`.`task_id` WHERE `tasks_users`.`user_id` = 7 AND `tasks`.`completed` = 0 AND `tasks`.`taken` = 1[0m
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Processing by ProjectsController#update_task_queue as HTML
+  Parameters: {"currentProject"=>{"name"=>"My tasks"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` WHERE `tasks`.`project_id` IS NULL AND `tasks`.`taken` = 0[0m
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` INNER JOIN `tasks_users` ON `tasks`.`id` = `tasks_users`.`task_id` WHERE `tasks_users`.`user_id` = 7 AND `tasks`.`project_id` IS NULL AND `tasks`.`taken` = 0[0m
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` WHERE `tasks`.`project_id` IS NULL[0m
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/projects/update_task_queue" for 127.0.0.1 at 2017-03-07 17:19:30 +0530
+Processing by ProjectsController#update_task_queue as HTML
+  Parameters: {"currentProject"=>{"name"=>"My tasks"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 7 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` WHERE `tasks`.`project_id` IS NULL AND `tasks`.`taken` = 0[0m
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` INNER JOIN `tasks_users` ON `tasks`.`id` = `tasks_users`.`task_id` WHERE `tasks_users`.`user_id` = 7 AND `tasks`.`project_id` IS NULL AND `tasks`.`taken` = 0[0m
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT `tasks`.* FROM `tasks` WHERE `tasks`.`project_id` IS NULL[0m
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+

@@ -17,44 +17,14 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
      $scope.tasks2=[];
      $scope.tasks3=[];
      $scope.tasks4=[];
-
      $scope.taskClass = ".tasks0";
      $scope.arrayName="";
-
      $scope.mytasks=1;
      $scope.taskPage=0;
-     $scope.showTask=0;
-     
+     $scope.showTask=0;  
      var id = 0;
      var idString       = "";
      var id_num         = 0; 
-
-
-     // $scope.projectList=[
-     //   {project : 'Socialweaver'},
-     //   {project : 'Cleartrip Seo'},
-     //   {project : 'Cleartrip white'},
-     //   {project : 'Rover heath'},
-     //   {project : 'Zatalyst'},
-     //   {project : 'Freshcorno'},
-     //   {project : 'Beatroute'}
-     // ];
-
-
-     $scope.memberList=[
-       {members : 'Senthil'},
-       {members : 'Sathish'},
-       {members : 'Dharshinipriya'},
-       {members : 'Sriram'},
-       {members : 'Sachin'},
-       {members : 'Arjun'},
-       {members : 'Bhuvana'},
-       {members : 'Suhirtha'},
-       {members : 'Tamil'},
-       {members : 'Subhash'}
-     ];
-
- 
      $scope.addMsg=function() {
      $scope.todoTaskDetails = {};
      $scope.todoTaskDetails.id   = id++;
@@ -114,18 +84,13 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 }
             }
         }
-        // console.log($scope.assignedUser);
         var data = $.param({
             currentProject: $scope.currentProject,
             task: taskTemp,
             assignedToDetails: $scope.assignedTo_details
         });
-        // console.log("inside add call");
-        // console.log($scope.assignedTo_details);
-        // console.log(assignedTo);
-        // console.log($scope.assignedUser);
+        
         $scope.assignedUser = [];
-        // console.log($scope.assignedUser);
 
         $scope.hookname = taskTemp;
         $scope.hooktype = "Created a task";
@@ -142,15 +107,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.slackUpdate();
 
     };
-
-     $scope.lists=[
-     {name : '1'},
-     {name : '2'},
-     {name : '3'},
-     {name : '4'},
-     {name : '5'}
-     ];
-
     //my variables
                               $scope.projectname;
                               $scope.nonAdmins;
@@ -215,16 +171,16 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             }
         }
     };
-
+    //called when page loads
     $scope.new = function(){
         $scope.myTask(1);
         $scope.initProjModal();
 
     };
+    //change the button color when day is clicked
      $scope.daychange = function(d){
         console.log(d);
           $scope.dayselection = d;
-         // console.log($scope.dayselection);
           for(var j=0; j<6; j++){
                if(j == $scope.dayselection){
                  $scope.showhide[j] = 1;
@@ -237,12 +193,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                  $scope.clicked[3] = "btn-default";
                  $scope.clicked[4] = "btn-default";
                  $scope.clicked[5] = "btn-default";
-
-                 
                  $scope.clicked[j]="btn-info";
-                 
-                 // console.log($scope.tasks0);
-
                }
                else{
                  $scope.showhide[j] = 0;
@@ -250,43 +201,19 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                }
           }
      };
-
+     //changes the panel for different days
      $scope.changeTask = function(k){
-            // console.log($scope.tasks0);
-
           $scope.taskPage=k;
           if($scope.taskPage == $scope.mytasks)
           {    $scope.myTask(2);
                $scope.showTask=1;
                $scope.showhide=[0,0,0,0,0,0];
-               
-               // console.log($scope.tasks);
           }
           else
           {
                $scope,showTask=0;
           }
      }
-
-
-     $scope.removetodo  = function(event){
-          idString = event.target.id;
-          id_num = parseInt(idString.substring(7));
-
-          for(var i=0; i<$scope.todoQueue.length; i++){
-               if($scope.todoQueue[i].todoTask.id == id_num){
-               $scope.todoQueue.splice(i,1);
-               break;
-               }
-          }
-
-          $scope.reinit();
-     };
-     
-
-
-
-
      $scope.reinit = function(){
           var idString       = "";
           var id_num         = 0; 
@@ -295,17 +222,14 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
 
 //  HTTP FUNCTION BEGINS
 
-// get project list and current user
-
+    // get project list and current user
     $scope.initProjModal = function () {
-        
         $http({
             method: "GET",
             url: "/projects/get"
         }).then(function (response) {
             $scope.createproject_responsedata = response.data;
             $scope.admins =  JSON.parse(response.data.admins);
-            // console.log($scope.admins);
         if($scope.admins != null)
         {
             for(var i=0 ; i<$scope.createproject_responsedata.projects.length ; i++)
@@ -323,9 +247,8 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
          }
             $scope.user = response.data.user;
         });
-               
-
     };
+    //creates new project
     $scope.confirmProject = function () {
         var data = $.param({
             projectname: $scope.projectname,
@@ -373,12 +296,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                     label: $scope.nonAdmins.username + " (" + $scope.nonAdmins[i].email + ")",
                     email: $scope.nonAdmins[i].email
                 });
-
-
             }
-            // console.log($scope.newAdmin);
-            // console.log("new admins over");
-
             for (var i = 0; i < $scope.projectMembers.members.length; i++) {
                 $scope.items.push({
                     username: $scope.projectMembers.members[i].username,
@@ -398,13 +316,11 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.update_time();
     };
 
-    //update task queue
+    //update task queue ie active task
     $scope.update_task_queue = function () {
         var data = $.param({
             currentProject: $scope.currentProject,
         });
-
-
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -417,7 +333,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             $scope.totalActiveTasksInQueue = response.data.total_task.length;
         });
     };
-
+    //Edit the project
     $scope.callEditProject = function () {
       var data = $.param({
         currentProject : $scope.currentProject
@@ -427,7 +343,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         };
-
       $http.post('/projects/call_edit', data, config).then(function (response) {
 
             $scope.projectname = response.data.name;
@@ -442,9 +357,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             addMembers: $scope.memberlist_add,
             removeMembers: $scope.memberlist_remove
         });
-
-
-
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
