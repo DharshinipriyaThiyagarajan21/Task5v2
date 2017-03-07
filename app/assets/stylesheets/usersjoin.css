@@ -1,0 +1,113 @@
+.mainContainer
+{
+	margin-top: 5% !important;
+}
+
+.logoutContainer
+{
+  margin-top: 3% !important;
+}
+
+.logout
+{
+  /*margin-left : 200%;*/
+  font-size   : 30px;
+  /*text-shadow: #06224f 0 0 15px;
+  color: #b2b2b2;*/
+  color: rgba(0, 0, 0, 0.6);
+  text-shadow: rgba(255, 255, 255, 0.2) 3px 2px 3px;
+}
+
+.logoutBtn:hover
+{
+  color: #d8d8d8 !important;
+}
+
+h1
+{
+	margin-bottom: 25px;
+	font-size: 70px;
+	font-family: 'lobster';
+  /*text-shadow: 3px 8px #182d4f;*/
+  text-shadow: #000 0 0 15px;
+}
+
+.header{
+	text-align: center;
+	color: #fff;
+}
+
+option
+{
+  color: black !important;
+}
+
+.JoinModal
+{
+  width: 100%;
+}
+
+.CreateModal
+{
+  width: 568px;
+}
+
+
+.defaultButtons
+{
+  background: #033e68 !important;
+  background-image: -webkit-linear-gradient(top, #033e68, #034f84)!important;
+  background-image: -moz-linear-gradient(top, #033e68, #034f84)!important;
+  background-image: -ms-linear-gradient(top, #033e68, #034f84)!important;
+  background-image: -o-linear-gradient(top, #033e68, #034f84)!important;
+  background-image: linear-gradient(to bottom, #033e68, #034f84)!important;
+  -webkit-border-radius: 17!important;
+  -moz-border-radius: 17!important;
+  border-radius: 17px!important;
+  border-color: #033e68!important;
+  color: #ffffff!important;
+  text-decoration: none!important;
+  box-shadow: 2px 2px 5px #073a8c!important;
+}
+
+.defaultButtons:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #227bb7)!important;
+  background-image: -moz-linear-gradient(top, #3cb0fd, #227bb7)!important;
+  background-image: -ms-linear-gradient(top, #3cb0fd, #227bb7)!important;
+  background-image: -o-linear-gradient(top, #3cb0fd, #227bb7)!important;
+  background-image: linear-gradient(to bottom, #3cb0fd, #227bb7)!important;
+  border-color: #3cb0fd!important;
+  text-decoration: none!important;
+}
+.or
+{
+	color: #fff;
+	font-size: 25px;
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: 5%;
+  font-family: 'Lobster', cursive;
+  /*text-shadow: 3px 8px #182d4f;*/
+  text-shadow: #000 0 0 15px;
+}
+
+#brandModal{
+	top: 15%;
+	left: 20%;
+	right: 15%;
+	outline: none;
+}
+
+#joinModal{
+	top: 15%;
+	left: 20%;
+	right: 15%;
+	outline: none;
+}
+
+/*FONTS*/
+@font-face {
+    font-family: 'lobster';
+    src: url('/assets/lobster-regular-webfont.woff') format("woff");
+}

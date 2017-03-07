@@ -1,0 +1,671 @@
+/*ul[dnd-list] * { 
+    pointer-events: none; 
+}
+
+ul[dnd-list], ul[dnd-list] > li { 
+    pointer-events: auto;
+    position: relative;
+}*/
+
+
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+ul[dnd-list] {
+    min-height: 50px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+.logoutProject{
+  float: right;
+  padding-top: 30px;
+  font-size: 16px;
+  margin-right: -100px;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+ul[dnd-list] .dndPlaceholder {
+    display: block;
+    /*background-color: #fff;
+    min-height: 42px;*/
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+ul[dnd-list] li {
+    /*background-color: #fff;*/
+    display: block;
+    cursor: pointer;
+    min-height: 70px;
+}
+
+/**
+ * Show selected elements in green
+ */
+ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+
+
+.container-class
+{
+  margin:0;
+  padding: 0;
+  border:0;
+  /*width: 1535px;*/
+}
+
+.row
+{
+  margin: 0;
+}
+
+
+/*col-sm-2*/
+
+.menubar
+{
+  background:#fffff5;
+  color: #878D98;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  font-family:GothamRounded-Book;
+  box-shadow: inset -2px -6px 20px 0px rgba(212, 206, 212, 0.3);
+  font-size: 15px;
+  /*height:808.85px;*/
+}
+
+.side-nav
+{
+  padding:28px 0px 0px 28px;
+}
+
+.side-nav a
+{
+  text-decoration: none;
+  color: #878D98;
+}
+
+.projects
+{
+  min-height: 284px;
+  max-height:284px;
+  overflow-y: auto;
+}
+
+.projects p {
+   margin-right: 30px;
+   padding: 5px;
+}
+
+.col
+{
+  color: #fff;
+    background: #71CBE1; 
+}
+
+.myTask
+{
+  margin-bottom: 28px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.caps
+{
+
+  padding: 8px 2px 0px 2px;
+}
+
+.count
+{
+    display: block;
+    height: 23px;
+    width: 23px;
+    line-height: 23px;
+
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+
+    background-color:#f05b5b;
+    color: #fff;
+    text-align: center;
+    font-size: 1em;
+    float: right;
+    margin-right: 20px;
+}
+.strike{
+  text-decoration: line-through;
+}
+.count1
+{
+    display: block;
+    height: 20px;
+    width: 20px;
+    line-height: 23px;
+
+    -moz-border-radius: 30px;
+    border-radius: 30px; 
+    background-color:#f05b5b;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    float: right;
+    margin-right: 10px;
+}
+
+.channels
+{
+  padding: 10px;
+}
+
+.dirMsg
+{
+  margin-top: 30px;
+}
+
+.members
+{
+  padding-left:10px;
+  min-height: 284px;  
+  max-height: 284px;
+  overflow-y: auto;
+}
+
+.online li
+{
+  color:#98e698;
+  list-style-type: disc;
+  padding-top: 10px;
+}
+
+.online li span
+{
+  color: #878D98;
+}
+
+.offline li
+{
+  color:#B3B3B3;
+  list-style-type: disc;
+  padding-top: 10px;
+}
+
+.offline li span
+{
+  color: #878D98;
+}
+
+/*.a-hover p:hover
+{
+  color: #fff;
+    background: #71CBE1; 
+}*/
+
+/*col-sm-2*/
+
+/*col-sm-6*/
+
+.projects-content
+{
+  /*position: relative;*/
+  background:#fff;
+  box-shadow: inset -2px -6px 20px 0px rgba(212, 206, 212, 0.3);
+  font-family:GothamRounded-Medium,GothamRounded-Book;
+  z-index: 0;
+  padding: 0;
+  font-size: 16px;
+  /*height:808.85px;*/
+}
+
+.days
+{
+  padding:10px 10px 5px 60px;
+}
+
+.days button
+{
+  margin-top: 1px;
+}
+
+.input-text input
+{
+  width: 90%;
+  height: 50px;
+  border:none;
+  /*float: left;*/
+  background:transparent;
+  border-top: 3px solid #d7d7d2;
+  padding-left: 20px;
+  padding-top: 10px;
+  margin: 20px 20px 19px 40px;
+}
+
+.msg-input:focus
+{
+  box-shadow: none;
+  border:none;
+  border-top: 3px solid #d7d7d2;
+}
+
+.messages
+{
+  margin-top: 0px;
+  min-height: 530px;
+  max-height: 530px; 
+  overflow-y: auto;
+  font-size: 16px;
+}
+
+.messages .panel
+{
+  border: none;
+}
+
+.panel-msg
+{
+  min-height: 495px;
+}
+
+
+/*.project-title-col6
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 69px;
+  width: 100%;
+  background: transparent;
+  z-index: 999;
+  padding: 20px 0px 15px 40px;
+  border-bottom: 4px solid #fcd07e;
+  font-size: 16px;
+}
+
+*/
+
+
+.project-title-col6
+{
+  padding: 12px 0px 13px 40px;
+  border-bottom: 4px solid #fcd07e;
+}
+
+
+/*col-sm-6*/
+
+
+.tasks-content
+{
+  background:#fffff5;
+  z-index: 1;
+  font-family:GothamRounded-Medium,GothamRounded-Book;
+  margin: 0;
+  padding:0;
+  font-size: 16px;
+  /*height:808.85px;*/
+
+}
+
+
+.tasks
+{
+  margin-top: 40px;
+  min-height: 445px;
+  max-height: 445px; 
+  overflow-y: auto;
+}
+
+.submitBtn
+ {
+  border: 2px solid #d7d7d2;
+  background:#fff;
+  float: right;
+  color: #878D98;
+  margin-right: 10px;
+ }
+
+ 
+ .task-input button
+ {
+  width:70px;
+    height: 70px;
+ }
+
+ .task-input input
+ {
+  height: 70px;
+  padding-left: 20px;
+  background:#fff;
+ }
+
+.task-input
+{
+  width: 87.5%;
+  bottom: 0;
+  left: 0;
+  margin: 37px 0px 17px 35px;
+
+}
+
+ .form-focus:focus
+ {
+  border:2px solid #d7d7d2;
+  box-shadow:none;
+ }
+ .user_tasks{
+    background: #e6eeff !important;
+ }
+
+.todo 
+{
+   margin: 5px 0px 15px 20px;
+   border: 1px #d7d7d2 ;
+   width: 90%;
+   height: 80px;
+   background: #fff;
+   box-shadow: 0px 0px 1px 5px rgba(222,218,222,0.25);
+   border-radius: 10px;
+   padding: 20px;
+}
+
+/*.todo ul li
+{
+  color: orange;
+  font-size: 150%;
+  list-style-type: disc;
+}
+
+.todo ul li span
+{
+  color: #878D98;
+  font-size: 16px;
+}
+
+.todo li
+{
+  list-style:#ffa500;
+}*/
+
+.now-class
+{
+  margin-top: 10px;
+  color: #878D98;
+}
+
+.project-title-col4
+{
+  /*position: absolute;*/
+  top: 0;
+  left: 0;
+  height: 69px;
+  width: 90%;
+  background: transparent;
+  z-index: 999;
+  border-bottom: 4px solid #fcd07e;
+}
+
+.bg
+{
+  float: right;
+  /*background-image: url('bg.png');*/
+  display: block;
+  color: #878D98;
+  font-size: 16PX;
+  padding-left: 100px;
+  padding-top: 60px;
+  width:150px;
+  height: 100px;
+  margin-right: -43px;
+}
+
+.lineBg
+{
+  font-size: 16px;
+  width:96%;
+  margin-top: 15px; 
+  background-image: url('../assets/now.png');
+  display:block;
+  padding-top: 20px;
+  padding-left:15px;
+  color: #C3C6CB;
+}
+
+.row
+{
+  margin: 0;
+  padding: 0;
+}
+
+.messages li
+{
+  padding-left: 15px;
+}
+
+/*.space
+{
+  padding-left: 75px;
+}*/
+
+.first-space
+{
+  padding-top: 0;
+}
+.color
+{
+  color: #488ECB;
+}
+
+.task-space
+{
+  padding-left:5px;
+}
+
+.now-class
+{
+  margin-top: 10px;
+  color: #878D98;
+  padding-left: 20px;
+}
+
+.right
+{
+  
+  padding-left: 35px;
+}
+
+.left
+{
+  margin-top: 28px;
+}
+
+.clearfix
+{
+  clear: both;
+}
+
+.bullet
+{
+  color: orange;
+  font-size: 26px;
+}
+
+.channel-space
+{
+  margin-bottom: 15px;
+}
+
+/*FONTS*/
+@font-face {
+    font-family: 'GothamRounded-Medium';
+    src: url('../assets/Gotham Rounded Medium/GothamRounded-Medium.woff') format("woff");
+}
+
+@font-face {
+    font-family: 'GothamRounded-Book';
+    src: url('../assets/Gotham Rounded Medium/GothamRounded-Book.woff') format("woff");
+}
+ 
+
+::-webkit-input-placeholder {
+   font-style: italic;
+   font-size: 14px;
+}
+:-moz-placeholder {
+   font-style: italic; 
+   font-size: 14px; 
+}
+::-moz-placeholder {
+   font-style: italic;  
+   font-size: 14px;
+}
+:-ms-input-placeholder {  
+   font-style: italic; 
+   font-size: 14px;
+}
+.projectModal
+{
+    padding-top: 10%;
+}
+.memberSelect
+{
+  width: 568px;
+}
+.color-msg
+{
+  color: #000;
+}
+
+/*
+.menubar p:hover
+{
+  color: #fff;
+    background: #71CBE1; 
+}
+
+.menubar li:hover
+{
+  color: #fff;
+    background: #71CBE1; 
+}
+*/
+
+.task-space
+{
+  color: #c6c6c1;
+}
+
+input[type="checkbox"]:checked + .checkedLi
+{ text-decoration: line-through; } 
+
+
+.fa-class
+{
+  float: right;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.user-photo {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 15px;
+}
+.list-group{
+  width: 300px;
+  margin-top: 20px;
+  position: absolute;
+  overflow-y: auto;
+  max-height: 200px;
+}
+.user-search .list-group-item.active .text-primary {
+    color: #fff;
+}
+.user-search .list-group-item.active .text-muted {
+    color: #ccc;
+}
+.user-search:hover {
+    cursor: pointer;
+}
+.menu-highlighted {
+    font-weight: bold;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+ .task-hours{
+  font-size: 14px;
+  color: #878D98;
+ }
+
+ .a-space
+ {
+  margin-bottom: 10px;
+ }
+
+.projectEdit{
+  font-size: 12px;
+}
+
+.projectEdit a
+{
+  color: #000;
+  text-decoration: none;
+}
+
+.fa-members
+{
+  float: right;
+  margin-right: 37px;
+  margin-top: 4px;
+  cursor: pointer;
+}

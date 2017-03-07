@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link_type: MyText
+  link_id: 1
+  user_id: 1
+  action: MyText
+  notify: false
+
+two:
+  link_type: MyText
+  link_id: 1
+  user_id: 1
+  action: MyText
+  notify: false
