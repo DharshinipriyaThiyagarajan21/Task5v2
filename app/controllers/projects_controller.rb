@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
     task_queue = Task.where(:project_id => params['currentProject']['id'], :taken => false) - user_task_queue
     total_task = Task.where(:project_id => params['currentProject']['id'])
     render json: {task_queue: task_queue,user_task_queue: user_task_queue, total_task: total_task}.to_json(:include => [ :users ,:assigned, :project])
+
   end
 
 
@@ -103,6 +104,7 @@ class ProjectsController < ApplicationController
     Task.where(:project_id => params['project_id']).each do |delete|
       delete.destroy
     end
+
     Project.find(params['project_id']).destroy
     render json: {success: true}
   end

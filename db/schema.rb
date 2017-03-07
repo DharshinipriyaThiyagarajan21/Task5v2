@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170307044309) do
+
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170307044309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "brand_id"
+
     t.string   "hook"
   end
 
@@ -120,6 +123,7 @@ ActiveRecord::Schema.define(version: 20170307044309) do
     t.integer  "brand_id"
     t.string   "authentication_token",   limit: 30
     t.string   "avatar"
+
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

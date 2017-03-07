@@ -1,6 +1,5 @@
 class ProjectService
 	def create_project(params,current_user)
-
 		project = current_user.projects.create(:name => params['projectname'],:brand_id => current_user.brand_id,:hook => params['hook'])  
 		admin = Proadmin.create(:project_id => project.id)
 		admin.users << current_user	
@@ -45,6 +44,7 @@ class ProjectService
 
         @user = current_user
         return [@projects,@addMembers,@user,@admins]
+
 	end
 
 	def add_task_queue(params,current_user)

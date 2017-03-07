@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # acts_as_token_authenticatable
 
+
   devise :database_authenticatable, :registerable, :confirmable,
        :recoverable, :rememberable, :trackable
   mount_uploader :avatar, AvatarUploader

@@ -1,3 +1,4 @@
+
 /*ul[dnd-list] * { 
     pointer-events: none; 
 }
@@ -452,6 +453,7 @@ ul[dnd-list] li.selected {
   padding-top: 20px;
   padding-left:15px;
   color: #C3C6CB;
+
 }
 
 .row

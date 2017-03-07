@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :brand
   resources :proinvite
   resources :proadmin
+
   resources "projects" do
   collection do
     post 'members'
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     post 'call_edit'
     post 'edit_project'
     post 'invite_brand'
+
   end
 end
 

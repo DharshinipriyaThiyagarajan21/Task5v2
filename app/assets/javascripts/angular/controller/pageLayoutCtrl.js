@@ -1,3 +1,4 @@
+
 app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
 
      $scope.todoQueue=[];
@@ -185,6 +186,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                               $scope.admins;
                               $scope.addAdmins = [];
     var date = new Date();
+
     weekday[0] = "Sunday";
     weekday[1] = "Monday";
     weekday[2] = "Tuesday";
@@ -219,10 +221,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.initProjModal();
 
     };
-
-
-
-
      $scope.daychange = function(d){
         console.log(d);
           $scope.dayselection = d;
@@ -335,6 +333,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             hook: $scope.hook
         });
 
+
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -361,8 +360,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         };
-       
-
         $http.post('/projects/members', data, config).then(function (response) {
             $scope.items.length = 0;
             $scope.projectMembers = response.data;
@@ -447,6 +444,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         });
 
 
+
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -491,6 +489,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
     $scope.update_push_queue = function () {
         var data = $.param({
             currentProject: $scope.currentProject
+
         });
         var config = {
             headers: {
@@ -527,8 +526,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             $scope.totalCompletionTime = response.data.completed_time;
         });
     };
-    
-
      //delete projects
      $scope.deleteIdFinder = function (event, tempdayID) {
         tempday = tempdayID;
@@ -557,8 +554,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.initProjModal();
 
     };
-
-
      //Select only username in mentions
     $scope.getPeopleText = function (item) {
         // note item.label is sent when the typedText wasn't found
@@ -589,6 +584,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             currentProject: $scope.currentProject
 
         });
+
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -639,6 +635,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.hooktype = "Added a task";
         $scope.hookname = $scope.draggedTask.name;
         $scope.slackUpdate();
+
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -651,6 +648,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.reinit();
     };
     $scope.myTask = function (value) {
+
         $http({
             method: "GET",
             url: "/projects/mytask"
@@ -711,11 +709,13 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             task_id: $scope.completedtask.id,
             completed_time: $scope.completedTime
         });
+
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         };
+
         $http.post('/projects/completed', data, config).then(function (response) {
           $scope.hookname = response.data.taskname;
           $scope.hooktype = "Completed task";
@@ -736,6 +736,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         };
+
         $http.post('/projects/invite_brand', data, config);
     }
 
@@ -745,6 +746,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         hooktype : $scope.hooktype,
         currentProject : $scope.currentProject
       });
+
       var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -752,8 +754,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         };
       $http.post('/projects/slackUpdate', data, config);
     };
-
-
     // Pull tasks from user to TODO-QUEUE
     $scope.pullfromUser = function (t) {
         
@@ -763,6 +763,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
 
         });
         var config = {
+
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
@@ -777,11 +778,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
     };
 
 });
-
- 
-
-
-
 //Directive for select2
 
 
