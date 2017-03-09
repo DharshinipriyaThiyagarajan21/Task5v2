@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  created_by: 1
+  assigned_to: 1
+  status: MyText
+  git_status: false
+  backlog_count: 1
+
+two:
+  name: MyString
+  created_by: 1
+  assigned_to: 1
+  status: MyText
+  git_status: false
+  backlog_count: 1

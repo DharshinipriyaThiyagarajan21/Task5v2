@@ -1,0 +1,2 @@
+class ProadminsController < ApplicationController
+end
