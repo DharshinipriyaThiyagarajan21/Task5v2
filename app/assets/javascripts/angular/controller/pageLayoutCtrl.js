@@ -204,10 +204,17 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
      //changes the panel for different days
      $scope.changeTask = function(k){
           $scope.taskPage=k;
+          $scope.disabled = true;
           if($scope.taskPage == $scope.mytasks)
           {    $scope.myTask(2);
                $scope.showTask=1;
                $scope.showhide=[0,0,0,0,0,0];
+               $scope.clicked[0] = "btn-default";
+                 $scope.clicked[1] = "btn-default";
+                 $scope.clicked[2] = "btn-default";
+                 $scope.clicked[3] = "btn-default";
+                 $scope.clicked[4] = "btn-default";
+                 $scope.clicked[5] = "btn-default";
           }
           else
           {
@@ -273,6 +280,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
 
     // display data about selected project 
     $scope.selectProject = function (x) {
+        $scope.disabled = false;
         $scope.adminClear = '';
         var data = $.param({
             currentProject: x
@@ -370,10 +378,8 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.memberlist_add = '';
         $scope.memberlist_remove = '';
     };
-
+    //Edit the projects
     $scope.editProject = function () {
-        console.log($scope.addAdmins);
-        console.log($scope.currentProject);
       var data = $.param({
         currentProject : $scope.currentProject,
         projectname : $scope.projectname,
@@ -423,7 +429,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.myTask();
 
     };
-
+    //update the estimated time and the total completion time
     $scope.update_time = function () {
         var data = $.param({
             currentProject: $scope.currentProject,
@@ -472,6 +478,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.assignedUser.push(item.email);
         return '@' + item.username + '';
     };
+    //select only user name when adding admin
     $scope.makeAdmin = function (item) {
         console.log(item);
         // note item.label is sent when the typedText wasn't found
@@ -506,8 +513,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
 
         });
         $scope.update_task_queue();
-
-
         $scope.reinit();
     };
 
@@ -525,7 +530,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 $scope.showConfirmTime = false;
             }
         };
-
+        //trigger the modal when dragged and dropped
       $scope.show = function(x) {
         $scope.draggedTask = x;
        ModalService.showModal({
@@ -536,7 +541,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
            modal.element.modal();    
        });
    };
-
+   // Take the task from the active task
    $scope.pushintoUser = function () {
                 var data = $.param({
                     task_id: $scope.draggedTask.id,
@@ -559,13 +564,15 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.update_time();
         $scope.reinit();
     };
+    //gives the total my tasks
     $scope.myTask = function (value) {
-
         $http({
             method: "GET",
             url: "/projects/mytask"
         }).then(function (response) {
-             $scope.tasks = response.data.mytask
+             $scope.tasks = response.data.mytask;
+             $scope.completed = response.data.completed_tasks;
+             console.log($scope.completed);
              $scope.length = $scope.tasks.length;
              if(value == 1){
              $scope.currentProject = {name: "My tasks"};
@@ -579,13 +586,10 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 $scope.projectMembers = '';
                    $scope.totalCompletedTasks = 0;
               }
-              $scope.update_task_queue();
-
-              
-
+              $scope.update_task_queue();      
         });
     };
-
+    //trigger completion time modal when checked
     $scope.checked =function(t) {
         $scope.completedtask = t;
         // console.log(t);
@@ -601,10 +605,9 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
     };
 
     $scope.undo = function() {
-       
         $scope.uncheck = false;
-       
     };
+
      // Show Confrim Button in TASK COMPLETION MODAL BASED ON TIME
     $scope.onChangeTime_completeTask = function () {
         $scope.showConfirmTime = false;
@@ -614,20 +617,17 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
             $scope.showConfirmTime = false;
         }
     };
-
+    //triggered once the task is completed
     $scope.taskcompletion = function () {
-
         var data = $.param({
             task_id: $scope.completedtask.id,
             completed_time: $scope.completedTime
         });
-
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         };
-
         $http.post('/projects/completed', data, config).then(function (response) {
           $scope.hookname = response.data.taskname;
           $scope.hooktype = "Completed task";
@@ -638,7 +638,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.update_push_queue();
 
     };
-
+    //invite users to new brand
     $scope.inviteBrand = function(){
         var data = $.param({
         invitemembers : $scope.invite_brand
@@ -651,7 +651,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
 
         $http.post('/projects/invite_brand', data, config);
     }
-
+    //update to slack
     $scope.slackUpdate = function () {
       var data = $.param({
         hookname : $scope.hookname,
@@ -666,6 +666,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         };
       $http.post('/projects/slackUpdate', data, config);
     };
+
     // Pull tasks from user to TODO-QUEUE
     $scope.pullfromUser = function (t) {
         
@@ -685,7 +686,6 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         $scope.update_task_queue();
         $scope.update_push_queue();
         $scope.update_time();
-
         $scope.reinit();
     };
 

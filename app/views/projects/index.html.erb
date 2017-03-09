@@ -36,12 +36,12 @@
 
             <div class="days" data-ng-init="weekdayFinder()">
                 <ul class="list-unstyled list-inline">
-                    <li><button class="btn btn-default {{clicked[0]}}" ng-click="daychange(0)">Today</button></li>
-                    <li><button class="btn btn-default {{clicked[1]}}" ng-click="daychange(1)">Tomorrow</button></li>
-                    <li><button class="btn btn-default {{clicked[2]}}" ng-click="daychange(2)">{{days[2].day}}</button></li>
-                    <li><button class="btn btn-default {{clicked[3]}}" ng-click="daychange(3)">{{days[3].day}}</button></li>
-                    <li><button class="btn btn-default {{clicked[4]}}" ng-click="daychange(4)">{{days[4].day}}</button></li>
-                    <li><button class="btn btn-default {{clicked[5]}}" ng-click="daychange(5)"><i class="fa fa-check"></i></button></li>
+                    <li><button class="btn btn-default {{clicked[0]}}" ng-disabled="disabled" ng-click="daychange(0)">Today</button></li>
+                    <li><button class="btn btn-default {{clicked[1]}}" ng-disabled="disabled" ng-click="daychange(1)">Tomorrow</button></li>
+                    <li><button class="btn btn-default {{clicked[2]}}" ng-disabled="disabled" ng-click="daychange(2)">{{days[2].day}}</button></li>
+                    <li><button class="btn btn-default {{clicked[3]}}" ng-disabled="disabled" ng-click="daychange(3)">{{days[3].day}}</button></li>
+                    <li><button class="btn btn-default {{clicked[4]}}" ng-disabled="disabled" ng-click="daychange(4)">{{days[4].day}}</button></li>
+                    <li><button class="btn btn-default {{clicked[5]}}" ng-disabled="false" ng-click="daychange(5)"><i class="fa fa-check"></i></button></li>
                 </ul>
             </div>
 
@@ -62,7 +62,6 @@
                     </div>
                     <div id="day1" class="panel messages" ng-show="showhide[0]">
                             <ul  dnd-list="tasks0" class="list-unstyled tasks0">
-
                                 <li ng-repeat="t in days.one" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
@@ -172,25 +171,19 @@
             <div class="clearfix"></div>
 
             <div class=" col-sm-12">
-                <div class="lineBg" style="background-image: url('../assets/now.png')">
-                    <b>Queue</b>
-                </div>
-
                 <div class="tasks">
                         <ul dnd-list="todoQueue" class="queue" id="accordion1">
                             <li ng-repeat="x in addedTasks.user_task_queue" class="panel todo user_tasks" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)">
                                 <span class="bullet">&bull;</span>
-                                <span href="{{'#taskDetails'+ x.id}}">
-                                   
-                                   
-                                    &nbsp;{{x.name}}
-                                   
+                                <span>                                  
+                                    &nbsp;{{x.name}}                                 
                                 </span>
                                 <span class="count1">{{x.backlog_count}}</span>
                                 <button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button>
                                 <button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
 
-                                 <div class="collapse" id="demo1" data-parent="#accordion1" ng-attr-id="{{'taskDetails'+ x.id}}">
+                                <!-- Collapsible -->
+                                 <div class="collapse">
                                     <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
                                     <span class="alignright">Created By: {{x.assigned.username}}</span>
                                     <br />
@@ -199,13 +192,11 @@
                                         <span ng-repeat="y in x.users">{{y.username}}</span>
                                     </span>
                                 </div>
+
                             </li>
-
-                            
-
-                            <li ng-repeat="x in addedTasks.task_queue" class="panel todo" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)">
+                            <li ng-repeat="x in addedTasks.task_queue" class="panel todo" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)"  data-toggle="collpase" data-target="{{'#taskDetails'+ x.id}}">
                                 <span class="bullet">&bull;</span>
-                                <span href="{{'#taskDetails'+ x.id}}">
+                                <span>
                                 
                                     &nbsp;{{x.name}}
                                 </span>
@@ -213,7 +204,7 @@
                                 <button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button><span class="count1">{{x.backlog_count}}</span>
                                 <button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
 
-                                 <div class="collapse" id="demo" >
+                                 <div class="panel-collapse collapse" id="{{'taskDetails'+ x.id}}" >
                                     <span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
                                     <span class="alignright">Created By: {{x.assigned.username}}</span>
                                     <br />
@@ -262,7 +253,7 @@
                                 <button class="btn submitBtn" type="button" ng-click="addCall()">
                                 <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
                                 </button>
-                            </span>
+                          </span>
 
 
                                      
