@@ -10,8 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170307044309) do
 
+=======
+
+ActiveRecord::Schema.define(version: 20170307044309) do
+
+
+>>>>>>> 7341b8f79d02286f0a501cb710b817d9beaca6fb
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -71,6 +78,10 @@ ActiveRecord::Schema.define(version: 20170307044309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "brand_id"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7341b8f79d02286f0a501cb710b817d9beaca6fb
     t.string   "hook"
   end
 
@@ -120,6 +131,10 @@ ActiveRecord::Schema.define(version: 20170307044309) do
     t.integer  "brand_id"
     t.string   "authentication_token",   limit: 30
     t.string   "avatar"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7341b8f79d02286f0a501cb710b817d9beaca6fb
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

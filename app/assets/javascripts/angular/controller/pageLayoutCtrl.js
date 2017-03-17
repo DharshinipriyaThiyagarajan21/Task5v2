@@ -498,10 +498,11 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
                 break;
             }
         }
-console.log(id_num);
+
         var data = $.param({
             task_id: id_num,
             currentProject: $scope.currentProject
+
         });
 
         var config = {

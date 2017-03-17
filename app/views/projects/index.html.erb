@@ -178,9 +178,14 @@
                                 <span>                                  
                                     &nbsp;{{x.name}}                                 
                                 </span>
+<<<<<<< HEAD
                                 <button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button>
                                 <span class="count1">{{x.backlog_count}}</span>
                                 
+=======
+                                <span class="count1">{{x.backlog_count}}</span>
+                                <button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button>
+>>>>>>> 7341b8f79d02286f0a501cb710b817d9beaca6fb
                                 <button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
 
                                 <!-- Collapsible -->
