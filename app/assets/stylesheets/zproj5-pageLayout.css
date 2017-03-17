@@ -335,8 +335,8 @@ ul[dnd-list] li.selected {
 .tasks
 {
   margin-top: 40px;
-  min-height: 445px;
-  max-height: 445px; 
+  min-height: 504px;
+  max-height: 504px; 
   overflow-y: auto;
 }
 
