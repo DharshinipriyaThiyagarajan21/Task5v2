@@ -393,7 +393,6 @@ DEPENDENCIES
   glyphicons-rails (~> 0.1.2)
   jbuilder (~> 2.5)
   jquery-rails
-  json
   listen (~> 3.0.5)
   mini_magick
   mysql2 (>= 0.3.18, < 0.5)
@@ -414,4 +413,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.14.4
+   1.14.6

@@ -1,6 +1,6 @@
 class C < ActiveRecord::Migration[5.0]
   def change
-  	create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  	  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -108,6 +108,7 @@ class C < ActiveRecord::Migration[5.0]
     t.integer  "brand_id"
     t.string   "authentication_token",   limit: 30
     t.string   "avatar"
+
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

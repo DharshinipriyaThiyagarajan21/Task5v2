@@ -12,21 +12,6 @@
   font-weight: 600;
   text-align: center;
 }*/
-.container
-{
-	margin-top: 11%;
-}
-
-body
-{
-	background: repeating-linear-gradient(
-  to right,
-  #196896,
-  #196896 50px,
-  #1b6fa0 50px,
-  #1b6fa0 90px
-	);
-}
 
 h1
 {
