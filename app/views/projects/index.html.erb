@@ -138,8 +138,8 @@
 
 																<li ng-repeat="t in completed" >
 																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck">
-																				<span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}}</p>
+																				<span><input type="checkbox" name="task" ng-checked="checked" disabled>
+																				<span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}} #{{t.project.name}}</p>
 																				</span>
 																		</div>
 																</li>
@@ -156,7 +156,7 @@
 
 						<div class="input-text">
 								<form ng-submit="addMsg()">
-										<input type="text" class="form-control msg-input" placeholder="Type a message..." ng-model="inputMsg">
+										<input type="text" class="form-control msg-input" placeholder="Type a message..." ng-model="inputMsg" >
 								</form>
 						</div>
 				</div>
@@ -268,10 +268,8 @@
 				<div class="modal fade addTaskpushModal" role="dialog">
 						<!-- Push Modal Dialog-->
 						<div class="modal-dialog">
-
 								<!-- Push Modal content-->
 								<div class="modal-content">
-
 										<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
 												<h4 class="modal-title"></h4>
