@@ -120,12 +120,6 @@ ul[dnd-list] li.selected {
 	color: #878D98;
 }
 
-.projects
-{
-	min-height: 280px;
-	max-height:280px;
-	overflow-y: auto;
-}
 
 .projects p {
 	 margin-right: 30px;
@@ -198,13 +192,6 @@ ul[dnd-list] li.selected {
 	margin-top: 30px;
 }
 
-.members
-{
-	padding-left:10px;
-  min-height: 284px;  
-	max-height: 284px;
-	overflow-y: auto;
-}
 
 .online li
 {
@@ -282,14 +269,6 @@ ul[dnd-list] li.selected {
 	border-top: 3px solid #d7d7d2;
 }
 
-.messages
-{
-	margin-top: 0px;
-	min-height: 530px;
-	max-height: 530px; 
-	overflow-y: auto;
-	font-size: 16px;
-}
 
 .messages .panel
 {
@@ -342,16 +321,6 @@ ul[dnd-list] li.selected {
 }
 
 
-.tasks
-{
-	margin-top: 40px;
-
-	min-height: 502px;
-	max-height: 502px; 
-
-	overflow-y: auto;
-}
-
 .submitBtn
  {
 	border: 2px solid #d7d7d2;
@@ -374,15 +343,6 @@ ul[dnd-list] li.selected {
 	padding-left: 20px;
 	background:#fff;
  }
-
-.task-input
-{
-	width: 87.5%;
-	bottom: 0;
-	left: 0;
-	margin: 37px 0px 17px 35px;
-
-}
 
  .form-focus:focus
  {
@@ -684,18 +644,92 @@ input[type="checkbox"]:checked + .checkedLi
 	cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
-   .bg
+@media only screen and (min-width: 1400px) and (min-height:730px){
+ 	
+.projects
 {
-	float: right;
-	display: block;
-	color: #878D98;
-	font-size: 16PX;
-	padding-left: 100px;
-	padding-top: 60px;
-	width:150px;
-	height: 100px;
-	margin-right: -33px;
+	min-height: 280px;
+	max-height:280px;
+	overflow-y: auto;
 }
- 
+
+.members
+{
+	padding-left:10px;
+  	min-height: 284px;  
+	max-height: 284px;
+	overflow-y: auto;
+}
+
+.tasks
+{
+	margin-top: 40px;
+	min-height: 565px;
+	max-height: 565px; 
+	overflow-y: auto;
+}
+
+.messages
+{
+	margin-top: 0px;
+	min-height: 530px;
+	max-height: 530px; 
+	overflow-y: auto;
+	font-size: 16px;
+}
+
+.task-input
+{
+	width: 87.5%;
+	bottom: 0;
+	left: 0;
+	margin: 18px 0px 17px 35px;
+
+}
+
+}
+
+@media only screen and (max-width: 1300px) {
+ 	
+.projects
+{
+	min-height: 260px;
+	max-height:260px;
+	overflow-y: auto;
+}
+
+.members
+{
+	padding-left:10px;
+  	min-height: 264px;  
+	max-height: 264px;
+	overflow-y: auto;
+}
+
+.tasks
+{
+	margin-top: 40px;
+	min-height: 470px;
+	max-height: 470px; 
+	overflow-y: auto;
+}
+
+.messages
+{
+	margin-top: 0px;
+	min-height: 480px;
+	max-height: 480px; 
+	overflow-y: auto;
+	font-size: 16px;
+}
+
+.task-input
+{
+	width: 87.5%;
+	bottom: 0;
+	left: 0;
+	margin: 20px 0px 17px 35px;
+
+}
+
 }

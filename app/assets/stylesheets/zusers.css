@@ -17,7 +17,7 @@
   margin-top: 11%;
 }
 
-.bodyDesign
+body
 {
   background: repeating-linear-gradient(
   to right,
@@ -29,15 +29,15 @@
   height: 100vh;
 }
 
-.login-h1
+/*.login-h1
 {
   margin-bottom: 25px;
   font-size: 70px;
   font-family: 'lobster';
-  /*text-shadow: 3px 8px #182d4f;*/
+  text-shadow: 3px 8px #182d4f;
   text-shadow: #000 0 0 15px;
 }
-
+*/
 .header{
   text-align: center;
   color: #fff;
@@ -134,3 +134,35 @@ input::-webkit-input-placeholder {
     font-family: 'lobster';
     src: url('fonts/Lobster/lobster-regular-webfont.woff') format("woff");
 }*/
+
+
+.inputfile-2 + label {
+    color: #ccc;
+    border: 2px solid currentColor;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.box span
+{
+  margin-left: 0;
+}

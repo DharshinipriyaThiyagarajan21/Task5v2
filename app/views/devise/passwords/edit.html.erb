@@ -1,25 +1,41 @@
-<h2>Change your password</h2>
+<div class="container-fluid">
+  <div class="container indexContainer">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="header">
+          <h1 class="forgot-h1">Change your password?</h1>
+        </div>
+        <form name="resetPasswordForm" action="/users/password" method="POST">
+        <input type="hidden" name="_method" value="put">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+       <input type="hidden" value="<%= params[:reset_password_token] %>" name="user[reset_password_token]" id="user_reset_password_token" />
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="New password" name="user[password]">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirm new password" name="user[password_confirmation]">
+          </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+          <div class="reset-btn">
+          <input type="submit" class="btn btn-default form-control" name="commit" value="Reset">
+          </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+          <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-4">
+                 <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_in'" value="Login" />
+              </div>
+              <div class="col-md-4">
+                 <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_up'" value="Sign Up" />
+              </div>
+              <div class="clearfix"></div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

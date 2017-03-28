@@ -1,16 +1,67 @@
-<h2>Forgot your password?</h2>
+<div class="container-fluid">
+	<div class="container indexContainer">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="header">
+					<h1 class="forgot-h1">Forgot your password?</h1>
+				</div>
+				<form action="/users/password"  method="post"><input name="utf8" type="hidden" value="✓">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		 
+				  	<div class="form-group">
+				  		<input type="email" class="form-control" name="user[email]">
+				  	</div>
+
+				  	<div class="reset-btn">
+						<input type="submit" name="commit" class="btn btn-default form-control" value="Request reset link">
+				  	</div>
+
+				  	<div class="row">
+	            	<div class="col-md-2"></div>
+	            	<div class="col-md-4">
+	                 <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_in'" value="Login" />
+	             	</div>
+	             	<div class="col-md-4">
+	                 <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_up'" value="Sign Up" />
+	             	</div>
+	             	<div class="clearfix"></div>
+	         	</div>
+				</form>
+
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+</div>
+
+<!-- <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+ <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+ <div class="field">
+   <%= f.label :email %><br />
+   <%= f.email_field :email, autofocus: true %>
+ </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+ <div class="actions">
+   <%= f.submit "Send me reset password instructions" %>
+ </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "devise/shared/links" %> -->
+
+
+<!-- <form class="new_user ng-pristine ng-valid" id="new_user" action="/users/password" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="sprt1BNvzEmQEjQmhXd+Oqfcc88b8OmSiphM4vab1pI9lOmihtE1dAHeI9V4vafanH5uMbE7Q5+SNKEycVsVxA==">
+ 
+
+ <div class="field">
+   <label for="user_email">Email</label><br>
+   <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+ </div>
+
+ <div class="actions">
+   <input type="submit" name="commit" value="Send me reset password instructions" data-disable-with="Send me reset password instructions">
+ </div>
+</form> -->

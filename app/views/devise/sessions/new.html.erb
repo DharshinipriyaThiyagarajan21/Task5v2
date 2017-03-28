@@ -6,7 +6,7 @@
   <% end %>
 
   <%= render 'layouts/messages' %>
-<div class="container-fluid bodyDesign">
+<div class="container-fluid">
     <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
         <div class="container indexContainer">
             <input name="utf8" type="hidden" value="✓">
@@ -24,9 +24,8 @@
                         <div class="form-group">
                             <input type="password" ng-model="user.password" class="form-control boxShadow" placeholder="Password" name="user[password]" id="user_password" required>
                         </div>
-                        <div class="checkbox">
-                            <label id="rememberme">
-                                <input type="checkbox">Remember me</label>
+                        <div class="forgot-password">
+                        <a href="/users/password/new">Forgot Password?</a>
                         </div>
 
                         <div class="row">

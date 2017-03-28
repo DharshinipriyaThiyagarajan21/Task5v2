@@ -13,14 +13,16 @@
   text-align: center;
 }*/
 
-h1
+/*h1
 {
 	margin-bottom: 25px;
 	font-size: 70px;
 	font-family: 'Lobster', cursive;
   text-shadow: 3px 8px #182d4f;
   text-shadow: #000 0 0 15px;
-}
+}*/
+
+
 
 input.form-control
 {
@@ -127,4 +129,15 @@ input::-webkit-input-placeholder {
 
 .right-inner-addon span.glyphicon-ok-sign{
     color: #2580db;
+}
+
+.forgot-password a
+{
+  color: #fff;
+}
+
+.forgot-password
+{
+  padding: 10px;
+  margin: 5px;
 }

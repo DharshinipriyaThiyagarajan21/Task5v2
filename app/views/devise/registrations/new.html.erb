@@ -1,96 +1,99 @@
  <% if flash[:notice] %>
-    <div class="alert alert-danger"><%= flash[:notice] %></div>
+	 <div class="alert alert-danger"><%= flash[:notice] %></div>
   <% end %>
   <% if flash[:signup] %>
-    <div class="alert alert-success"><%= flash[:signup] %></div>
+	 <div class="alert alert-success"><%= flash[:signup] %></div>
   <% end %>
-<div class="container-fluid bodyDesign">  
-    <form name="signupForm" class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
-        <div class="container indexContainer" ng-app="app" ng-controller="signupCtrl">
-            <input name="utf8" type="hidden" value="✓">
-            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="header">
-                    <h1>Proj5.</h1>
-                </div>
-                <div class="form-group">
-                    <div class="right-inner-addon ">
-                        <div ng-switch="signupForm['user[username]'].$valid && userValidity.username">
-                            <div ng-switch-default>
-                                <span class="glyphicon glyphicon-remove-sign"></span>
-                            </div>
-                            <div ng-switch-when=true>
-                                <span class="glyphicon glyphicon-ok-sign"></span>
-                            </div>
-                        </div>
+<div class="container-fluid">  
+	 <form name="signupForm" class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
+		  <div class="container indexContainer" ng-app="app" ng-controller="signupCtrl">
+				<input name="utf8" type="hidden" value="✓">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					 <div class="header">
+						  <h1>Proj5.</h1>
+					 </div>
+					 <div class="form-group">
+						  <div class="right-inner-addon ">
+								<div ng-switch="signupForm['user[username]'].$valid && userValidity.username">
+									 <div ng-switch-default>
+										  <span class="glyphicon glyphicon-remove-sign"></span>
+									 </div>
+									 <div ng-switch-when=true>
+										  <span class="glyphicon glyphicon-ok-sign"></span>
+									 </div>
+								</div>
 
-                        <input type="text" ng-model="user.username" ng-change="validateUsername()" name="user[username]" class="form-control boxShadow" placeholder="Name" title="Please enter a valid Name." required>
-                    </div>
-                </div>
+								<input type="text" ng-model="user.username" ng-change="validateUsername()" name="user[username]" class="form-control boxShadow" placeholder="Name" title="Please enter a valid Name." required>
+						  </div>
+					 </div>
 
 
-                <div class="form-group">
-                    <div class="right-inner-addon ">
-                        <div ng-switch="signupForm['user[email]'].$valid">
-                            <div ng-switch-default>
-                                <span class="glyphicon glyphicon-remove-sign"></span>
-                            </div>
-                            <div ng-switch-when=true>
-                                <span class="glyphicon glyphicon-ok-sign"></span>
-                            </div>
-                        </div>
-                        <input type="email" ng-model="user.email" name="user[email]" ng-blur="validateEmail()" ng-focus="validateEmail()" class="form-control boxShadow" placeholder="Enter email id" title="Please enter a valid email id" required>
-                    </div>
-                </div>
+					 <div class="form-group">
+						  <div class="right-inner-addon ">
+								<div ng-switch="signupForm['user[email]'].$valid">
+									 <div ng-switch-default>
+										  <span class="glyphicon glyphicon-remove-sign"></span>
+									 </div>
+									 <div ng-switch-when=true>
+										  <span class="glyphicon glyphicon-ok-sign"></span>
+									 </div>
+								</div>
+								<input type="email" ng-model="user.email" name="user[email]" ng-blur="validateEmail()" ng-focus="validateEmail()" class="form-control boxShadow" placeholder="Enter email id" title="Please enter a valid email id" required>
+						  </div>
+					 </div>
 
-                <div class="form-group">
-                    <div class="right-inner-addon ">
-                        <div ng-switch="signupForm['user[password]'].$valid && userValidity.password">
-                            <div ng-switch-default>
-                                <span class="glyphicon glyphicon-remove-sign"></span>
-                            </div>
-                            <div ng-switch-when=true>
-                                <span class="glyphicon glyphicon-ok-sign"></span>
-                            </div>
-                        </div>
+					 <div class="form-group">
+						  <div class="right-inner-addon ">
+								<div ng-switch="signupForm['user[password]'].$valid && userValidity.password">
+									 <div ng-switch-default>
+										  <span class="glyphicon glyphicon-remove-sign"></span>
+									 </div>
+									 <div ng-switch-when=true>
+										  <span class="glyphicon glyphicon-ok-sign"></span>
+									 </div>
+								</div>
 
-                        <input type="password" ng-model="user.password" name="user[password]" ng-change="validatePassword()" class="form-control boxShadow" placeholder="Password" title="Please enter a valid password. Alphanumeric Count should be 8-12" required>
-                    </div>
-                </div>
+								<input type="password" ng-model="user.password" name="user[password]" ng-change="validatePassword()" class="form-control boxShadow" placeholder="Password" title="Please enter a valid password. Alphanumeric Count should be 8-12" required>
+						  </div>
+					 </div>
 
-                <div class="form-group">
-                    <div class="right-inner-addon">
-                        <div ng-switch="userValidity.passwordRepeat">
-                            <div ng-switch-default>
-                                <span class="glyphicon glyphicon-remove-sign"></span>
-                            </div>
-                            <div ng-switch-when=true>
-                                <span class="glyphicon glyphicon-ok-sign"></span>
-                            </div>
-                        </div>
+					 <div class="form-group">
+						  <div class="right-inner-addon">
+								<div ng-switch="userValidity.passwordRepeat">
+									 <div ng-switch-default>
+										  <span class="glyphicon glyphicon-remove-sign"></span>
+									 </div>
+									 <div ng-switch-when=true>
+										  <span class="glyphicon glyphicon-ok-sign"></span>
+									 </div>
+								</div>
 
-                        <input type="password" ng-model="user.passwordRepeat" name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" title="Please enter the correct password" required>
-                    </div>
-                </div>
-                <label>Upload profile picture</label>
-                <input type="file"  name="user[avatar]"><br>    
+								<input type="password" ng-model="user.passwordRepeat" name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" title="Please enter the correct password" required>
+						  </div>
+					 </div>
+					<div class="form-group">
+						<label>Upload profile picture</label>   
+						<div class="box">
+							<input type="file" name="user[avatar]" id="file-2" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" multiple="">
+							<label for="file-2"><i class="fa fa-upload"></i> <span>Choose a file…</span></label><br>
+						</div>
+					</div>
+					 <div class="row">
+						  <div class="col-md-2"></div>
 
-                        
-                <div class="row">
-                    <div class="col-md-2"></div>
+						  <div class="col-md-4">
+								<button type="submit" ng-disabled="!showSignup" class="btn btn-default defaultButtonsIndex" ng-click="submitForm()">Sign Up</button>
+						  </div>
 
-                    <div class="col-md-4">
-                        <button type="submit" ng-disabled="!showSignup" class="btn btn-default defaultButtonsIndex" ng-click="submitForm()">Sign Up</button>
-                    </div>
+						  <div class="col-md-4">
+								<input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_in'" value="Cancel" />
+						  </div>
+					 </div>
+				</div>
+				<div class="col-md-4"></div>
 
-                    <div class="col-md-4">
-                        <input type="button" class="btn btn-default defaultButtonsIndex" onclick="location.href='sign_in'" value="Cancel" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4"></div>
-
-        </div>
-    </form>
+		  </div>
+	 </form>
 </div>

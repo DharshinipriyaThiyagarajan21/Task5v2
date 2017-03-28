@@ -1,299 +1,265 @@
 <div class="container-fluid container-class" ng-controller="pageLayoutCtrl" ng-init="new()">
-		<div class="row">
-
-				<div class=" col-sm-2 menubar a-hover">
-						<div class="side-nav">
-					 <div class="a-space">Welcome {{user.username}} !</div>
-						<a href="" data-toggle="modal" data-target=".inviteBrandModal">Invite to brand</a>
-								<div class="myTask">
-										<p class="caps"><a ng-click="changeTask(1)"><b>MY TASKS </b><span class="count">{{length}}</span></a></p>
-								</div>
-								<div class="channel">
-												<div class="projects">
-														<p class="channel-space"><b>PROJECTS</b><a data-toggle="modal" data-target=".projectModal" class="fa fa-plus fa-class "></a></p>
-														<p ng-repeat="p in createproject_responsedata.projects">
-																<a value="{{p}}" ng-click="selectProject(p)" href=""># {{p.name}}<button ng-if=" p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
-														</p>
-												</div>
-								</div>
-								<div class="dirMsg">
-										<p><b>MEMBERS</b> <a ng-if="currentProject.admin == 1" class="fa fa-plus fa-members" data-toggle="modal" data-target=".memberModal"></a></p >
-								</div>
-								<div class="members">
-										<div class="online" ng-repeat="x in projectMembers.members">
-												<li><span>{{x.username}}</span></li>
+	<div class="row">
+		<div class=" col-sm-2 menubar a-hover">
+				<div class="side-nav">
+			 <div class="a-space">Welcome {{user.username}} !</div>
+				<a href="" data-toggle="modal" data-target=".inviteBrandModal">Invite to brand</a>
+						<div class="myTask">
+								<p class="caps"><a ng-click="changeTask(1)"><b>MY TASKS </b><span class="count">{{length}}</span></a></p>
+						</div>
+						<div class="channel">
+										<div class="projects">
+												<p class="channel-space"><b>PROJECTS</b><a data-toggle="modal" data-target=".projectModal" class="fa fa-plus fa-class "></a></p>
+												<p ng-repeat="p in createproject_responsedata.projects">
+														<a value="{{p}}" ng-click="selectProject(p)" href=""># {{p.name}}<button ng-if=" p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
+												</p>
 										</div>
+						</div>
+						<div class="dirMsg">
+								<p><b>MEMBERS</b> <a ng-if="currentProject.admin == 1" class="fa fa-plus fa-members" data-toggle="modal" data-target=".memberModal"></a></p >
+						</div>
+						<div class="members">
+								<div class="online" ng-repeat="x in projectMembers.members">
+										<li><span>{{x.username}}</span></li>
 								</div>
-												
-						</div>     
+						</div>
+			</div>     
+		</div>
+
+		<div class="col-sm-6 projects-content">
+
+				<div class=" project-title-col6">
+						<h4># {{currentProject.name}}<span class="projectEdit"><a class=" fa fa-pencil-square-o" ng-if="currentProject.admin == 1" href="" data-toggle="modal" data-target=".projectEditModal" ng-show="currentProject.name" ng-click="callEditProject()"></a></span></h4>
 				</div>
 
-				<div class="col-sm-6 projects-content">
+				<div class="days" data-ng-init="weekdayFinder()">
+						<ul class="list-unstyled list-inline">
+								<li><button class="btn btn-default {{clicked[0]}}" ng-disabled="disabled" ng-click="daychange(0)">Today</button></li>
+								<li><button class="btn btn-default {{clicked[1]}}" ng-disabled="disabled" ng-click="daychange(1)">Tomorrow</button></li>
+								<li><button class="btn btn-default {{clicked[2]}}" ng-disabled="disabled" ng-click="daychange(2)">{{days[2].day}}</button></li>
+								<li><button class="btn btn-default {{clicked[3]}}" ng-disabled="disabled" ng-click="daychange(3)">{{days[3].day}}</button></li>
+								<li><button class="btn btn-default {{clicked[4]}}" ng-disabled="disabled" ng-click="daychange(4)">{{days[4].day}}</button></li>
+								<li><button class="btn btn-default {{clicked[5]}}" ng-disabled="false" ng-click="daychange(5)"><i class="fa fa-check"></i></button></li>
+						</ul>
+				</div>
 
-						<div class=" project-title-col6">
-								<h4># {{currentProject.name}}<span class="projectEdit"><a class=" fa fa-pencil-square-o" ng-if="currentProject.admin == 1" href="" data-toggle="modal" data-target=".projectEditModal" ng-show="currentProject.name" ng-click="callEditProject()"></a></span></h4>
-						</div>
-
-						<div class="days" data-ng-init="weekdayFinder()">
-								<ul class="list-unstyled list-inline">
-										<li><button class="btn btn-default {{clicked[0]}}" ng-disabled="disabled" ng-click="daychange(0)">Today</button></li>
-										<li><button class="btn btn-default {{clicked[1]}}" ng-disabled="disabled" ng-click="daychange(1)">Tomorrow</button></li>
-										<li><button class="btn btn-default {{clicked[2]}}" ng-disabled="disabled" ng-click="daychange(2)">{{days[2].day}}</button></li>
-										<li><button class="btn btn-default {{clicked[3]}}" ng-disabled="disabled" ng-click="daychange(3)">{{days[3].day}}</button></li>
-										<li><button class="btn btn-default {{clicked[4]}}" ng-disabled="disabled" ng-click="daychange(4)">{{days[4].day}}</button></li>
-										<li><button class="btn btn-default {{clicked[5]}}" ng-disabled="false" ng-click="daychange(5)"><i class="fa fa-check"></i></button></li>
-								</ul>
-						</div>
-
-						<div class="col-sm-12">
-								<div class="panel-msg">
-										<div class="panel messages" ng-show="showTask">
-														<ul  class="list-unstyled" >
-																<li ng-repeat="t in tasks">
-																		<div>
-																				<span>
-																				<input class="left" type="checkbox" name="task" ng-click="checked(t)">
-																				<span class="task-hours">{{t.estimated_time}} hr #{{t.project.name}}</span><br><p class="right">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-															<div class="clearfix"></div>
-														</ul>
-										</div>
-										<div id="day1" class="panel messages" ng-show="showhide[0]">
-														<ul  dnd-list="tasks0" class="list-unstyled tasks0">
-																<li ng-repeat="t in days.one" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
-																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-																				<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-
-																<div class="clearfix"></div>
-														</ul>
-										</div>
-								
-										<div id="day2" class="panel  messages" ng-show="showhide[1]">
-														<ul  dnd-list="tasks1" class="list-unstyled tasks1" >
-
-																<li ng-repeat="t in days.two" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
-																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-																				<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-
-																<div class="clearfix"></div>
-														</ul>
-										</div>
-						
-										<div id="day3" class="panel  messages" ng-show="showhide[2]">
-														<ul  dnd-list="tasks2" class="list-unstyled tasks2" >
-
-																<li ng-repeat="t in days.three" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
-																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-																				<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-
-																<div class="clearfix"></div>
-														</ul>
-										</div>
-
-										<div id="day4" class="panel  messages" ng-show="showhide[3]">
-														<ul  dnd-list="tasks3" class="list-unstyled tasks3" >
-
-																<li ng-repeat="t in days.four" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
-																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-																				<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-
-																<div class="clearfix"></div>
-														</ul>
-										</div>
-
-										<div id="day5" class="panel  messages" ng-show="showhide[4]">
-														<ul  dnd-list="tasks4" class="list-unstyled tasks4" >
-
-																<li ng-repeat="t in days.five" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
-																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-																				<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-
-																<div class="clearfix"></div>
-														</ul>
-										</div>
-										<div id="day6" class="panel messages" ng-show="showhide[5]">
-												 <ul class="list-unstyled tasks5">
-
-																<li ng-repeat="t in completed" >
-																		<div>
-																				<span><input type="checkbox" name="task" ng-checked="uncheck">
-																				<span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}}</p>
-																				</span>
-																		</div>
-																</li>
-
-																<div class="clearfix"></div>
-														</ul>
-										</div>
+				<div class="col-sm-12">
+						<div class="panel-msg">
+								<div class="panel messages" ng-show="showTask">
+												<ul  class="list-unstyled" >
+														<li ng-repeat="t in tasks">
+																<div>
+																		<span>
+																		<input class="left" type="checkbox" name="task" ng-click="checked(t)">
+																		<span class="task-hours">{{t.estimated_time}} hr #{{t.project.name}}</span><br><p class="right">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
+													<div class="clearfix"></div>
+												</ul>
 								</div>
-						</div>
+								<div id="day1" class="panel messages" ng-show="showhide[0]">
+												<ul  dnd-list="tasks0" class="list-unstyled tasks0">
+														<li ng-repeat="t in days.one" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
+																<div>
+																		<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
+																		<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
+
+														<div class="clearfix"></div>
+												</ul>
+								</div>
 						
+								<div id="day2" class="panel  messages" ng-show="showhide[1]">
+												<ul  dnd-list="tasks1" class="list-unstyled tasks1" >
 
-						<div class="clearfix">
-						</div>
+														<li ng-repeat="t in days.two" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
+																<div>
+																		<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
+																		<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
 
-						<div class="input-text">
-								<form ng-submit="addMsg()">
-										<input type="text" class="form-control msg-input" placeholder="Type a message..." ng-model="inputMsg">
-								</form>
+														<div class="clearfix"></div>
+												</ul>
+								</div>
+				
+								<div id="day3" class="panel  messages" ng-show="showhide[2]">
+												<ul  dnd-list="tasks2" class="list-unstyled tasks2" >
+
+														<li ng-repeat="t in days.three" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
+																<div>
+																		<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
+																		<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
+
+														<div class="clearfix"></div>
+												</ul>
+								</div>
+								<div id="day4" class="panel  messages" ng-show="showhide[3]">
+												<ul  dnd-list="tasks3" class="list-unstyled tasks3" >
+
+														<li ng-repeat="t in days.four" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
+																<div>
+																		<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
+																		<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
+
+														<div class="clearfix"></div>
+												</ul>
+								</div>
+
+								<div id="day5" class="panel  messages" ng-show="showhide[4]">
+												<ul  dnd-list="tasks4" class="list-unstyled tasks4" >
+
+														<li ng-repeat="t in days.five" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
+																<div>
+																		<span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
+																		<span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
+
+														<div class="clearfix"></div>
+												</ul>
+								</div>
+								<div id="day6" class="panel messages" ng-show="showhide[5]">
+										 <ul class="list-unstyled tasks5">
+
+														<li ng-repeat="t in completed" >
+																<div>
+																		<span><input type="checkbox" name="task" ng-checked="uncheck">
+																		<span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}}</p>
+																		</span>
+																</div>
+														</li>
+														<div class="clearfix"></div>
+												</ul>
+								</div>
 						</div>
 				</div>
 				
 
-				<div class=" col-sm-4 tasks-content">
+				<div class="clearfix">
+				</div>
 
-						<div class="project-title-col4">
-								<span class="bg" style=" background-image: url('../assets/bg.png')"><strong>{{totalCompletedTasks}}/{{totalActiveTasksInQueue}}</strong></span>
-								<a class="logoutProject" href="users/sign_out" id="logout-menubar"><i class="fa fa-power-off fa-lg fa-sidemenu"></i></a>
-								<a class="settings" data-toggle="modal" data-target=".settingsModal" ><i class="fa fa-gear fa-lg fa-sidemenu"></i></a>
-						</div>
-
-						<div class="clearfix"></div>
-
-						<div class=" col-sm-12">
-								<div class="tasks">
-												<ul dnd-list="todoQueue" class="queue" id="accordion1">
-														<li ng-repeat="x in addedTasks.user_task_queue" class="panel todo user_tasks" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)">
-																<span class="bullet">&bull;</span>
-																<span>                                  
-																		&nbsp;{{x.name}}                                 
-																</span>
-																<button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button>
-																<span class="count1">{{x.backlog_count}}</span>
-																
-
-																<button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
-
-																<!-- Collapsible -->
-																 <div class="collapse">
-																		<span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-																		<span class="alignright">Created By: {{x.assigned.username}}</span>
-																		<br />
-																		<span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-																		<span class="alignright">Assigned to:
-																				<span ng-repeat="y in x.users">{{y.username}}</span>
-																		</span>
-																</div>
-
-														</li>
-														<li ng-repeat="x in addedTasks.task_queue" class="panel todo" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)"  data-toggle="collpase" data-target="{{'#taskDetails'+ x.id}}">
-																<span class="bullet">&bull;</span>
-																<span>
-																
-																		&nbsp;{{x.name}}
-																</span>
-																
-																<button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button><span class="count1">{{x.backlog_count}}</span>
-																<button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
-
-																 <div class="panel-collapse collapse" id="{{'taskDetails'+ x.id}}" >
-																		<span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
-																		<span class="alignright">Created By: {{x.assigned.username}}</span>
-																		<br />
-																		<span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
-																		<span class="alignright">Assigned to:
-																				<span ng-repeat="y in x.users">{{y.username}}</span>
-																		</span>
-																</div>
-
-														</li>
-												</ul>
-								</div>
-						</div>
-
-						<div class="clearfix"></div>
-
-						<script type="text/ng-template" id="/people-mentions.tpl">
-							<div class="dropup">
-									<ul class=" dropdown-menu list-group user-search" style="display: block;">
-											<li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
-													<img ng-src="{{items.imageUrl}}" class="user-photo">
-													<span class="text-primary" ng-bind-html="items.username | unsafe"></span>
-													<em class="text-muted" ng-bind="items.email"></em>
-											</li>
-									</ul>
-							</div>
-						</script>
-						<script type="text/ng-template" id="/people.tpl">
-							<div class="dropup">
-									<ul class=" dropdown-menu list-group user-search" style="display: block;">
-
-											<li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
-													<img ng-src="{{items.imageUrl}}" class="user-photo">
-													<span class="text-primary" ng-bind-html="items.username | unsafe"></span>
-													<em class="text-muted" ng-bind="items.email"></em>
-											</li>
-									</ul>
-							</div>
-						</script>
-						<div class="task-input">
-								<form>
-										<div class="input-group addTask">
-
-												<input type="text" class="form-control form-focus" placeholder="Add a new task to # {{currentProject.name}}" ng-model="addTask" mentio mentio-typed-text="typedTerm" mentio-items="items" mentio-select="getPeopleText(item)" mentio-template-url="/people-mentions.tpl">
-														<span class="input-group-btn">
-																<button class="btn submitBtn" type="button" ng-click="addCall()">
-																<i class="fa fa-plus fa-lg" aria-hidden="true"></i>
-																</button>
-													</span>
-										</div>
-								</form>
-						</div>
+				<div class="input-text">
+						<form ng-submit="addMsg()">
+								<input type="text" class="form-control msg-input" placeholder="Type a message..." ng-model="inputMsg">
+						</form>
 				</div>
 		</div>
 
-		<script type="text/ng-template" id="pushModal.html.erb">
-				<div class="modal fade addTaskpushModal" role="dialog">
-						<!-- Push Modal Dialog-->
-						<div class="modal-dialog">
+		<div class=" col-sm-4 tasks-content">
 
-								<!-- Push Modal content-->
-								<div class="modal-content">
-
-										<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="modal-title"></h4>
-										</div>
-
-										<div class="modal-body">
-												<div class="form-group">
-														<label>Estimated Time:</label>
-														<input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" />(1-5 HRS)
-												</div>
-										</div>
-										<div class="modal-footer">
-												<button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="pushintoUser()" data-dismiss="modal">Confirm</button>
-										</div>
-								</div>
-								<!--Push Modal content Ends Here-->
-						</div>
-						<!--Push Modal Dialog Ends Here-->
+				<div class="project-title-col4">
+						<span class="bg" style=" background-image: url('../assets/bg.png')"><strong>{{totalCompletedTasks}}/{{totalActiveTasksInQueue}}</strong></span>
+						<a class="logoutProject" href="users/sign_out" id="logout-menubar"><i class="fa fa-power-off fa-lg fa-sidemenu"></i></a>
+						<a class="settings" data-toggle="modal" data-target=".settingsModal" ><i class="fa fa-gear fa-lg fa-sidemenu"></i></a>
 				</div>
-		</script>
 
-		<script type="text/ng-template" id="completeTaskpushModal.html.erb">
+				<div class="clearfix"></div>
+
+				<div class=" col-sm-12">
+						<div class="tasks">
+										<ul dnd-list="todoQueue" class="queue" id="accordion1">
+												<li ng-repeat="x in addedTasks.user_task_queue" class="panel todo user_tasks" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)">
+														<span class="bullet">&bull;</span>
+														<span>                                  
+																&nbsp;{{x.name}}                                 
+														</span>
+														<button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button>
+														<span class="count1">{{x.backlog_count}}</span>
+														
+
+														<button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
+
+														<!-- Collapsible -->
+														 <div class="collapse">
+																<span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+																<span class="alignright">Created By: {{x.assigned.username}}</span>
+																<br />
+																<span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+																<span class="alignright">Assigned to:
+																		<span ng-repeat="y in x.users">{{y.username}}</span>
+																</span>
+														</div>
+
+												</li>
+												<li ng-repeat="x in addedTasks.task_queue" class="panel todo" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)"  data-toggle="collpase" data-target="{{'#taskDetails'+ x.id}}">
+														<span class="bullet">&bull;</span>
+														<span>
+														
+																&nbsp;{{x.name}}
+														</span>
+														
+														<button class="close submitBtn" ng-attr-id="{{'buttons'+ x.id}}" ng-if="user.email == x.assigned.email" ng-click="deleteTask($event)">&times;</button><span class="count1">{{x.backlog_count}}</span>
+														<button class="btn submitBtn" type="button"><i class="fa fa-github fa-2x"></i></button>
+
+														 <div class="panel-collapse collapse" id="{{'taskDetails'+ x.id}}" >
+																<span class="alignleft">Date: {{x.created_at.substring(0,10)}}</span>
+																<span class="alignright">Created By: {{x.assigned.username}}</span>
+																<br />
+																<span class="alignleft">Time: {{x.created_at.substring(11,16)}}</span>
+																<span class="alignright">Assigned to:
+																		<span ng-repeat="y in x.users">{{y.username}}</span>
+																</span>
+														</div>
+
+												</li>
+										</ul>
+						</div>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<script type="text/ng-template" id="/people-mentions.tpl">
+					<div class="dropup">
+							<ul class=" dropdown-menu list-group user-search" style="display: block;">
+									<li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
+											<img ng-src="{{items.imageUrl}}" class="user-photo">
+											<span class="text-primary" ng-bind-html="items.username | unsafe"></span>
+											<em class="text-muted" ng-bind="items.email"></em>
+									</li>
+							</ul>
+					</div>
+				</script>
+				<script type="text/ng-template" id="/people.tpl">
+					<div class="dropup">
+							<ul class=" dropdown-menu list-group user-search" style="display: block;">
+
+									<li mentio-menu-item="items" ng-repeat="items in items" class="list-group-item">
+											<img ng-src="{{items.imageUrl}}" class="user-photo">
+											<span class="text-primary" ng-bind-html="items.username | unsafe"></span>
+											<em class="text-muted" ng-bind="items.email"></em>
+									</li>
+							</ul>
+					</div>
+				</script>
+				<div class="task-input">
+						<form>
+								<div class="input-group addTask">
+
+										<input type="text" class="form-control form-focus" placeholder="Add a new task to # {{currentProject.name}}" ng-model="addTask" mentio mentio-typed-text="typedTerm" mentio-items="items" mentio-select="getPeopleText(item)" mentio-template-url="/people-mentions.tpl">
+												<span class="input-group-btn">
+														<button class="btn submitBtn" type="button" ng-click="addCall()">
+														<i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+														</button>
+											</span>
+								</div>
+						</form>
+				</div>
+		</div>
+	</div>
+
+	<script type="text/ng-template" id="pushModal.html.erb">
 			<div class="modal fade addTaskpushModal" role="dialog">
 					<!-- Push Modal Dialog-->
 					<div class="modal-dialog">
@@ -302,231 +268,260 @@
 							<div class="modal-content">
 
 									<div class="modal-header">
-											<button type="button" class="close" ng-click="undo()" data-dismiss="modal">&times;</button>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
 											<h4 class="modal-title"></h4>
 									</div>
 
 									<div class="modal-body">
 											<div class="form-group">
-													<label>Completed Time:</label>
-													<input type="number" placeholder="HOURS" ng-model="completedTime" ng-change="onChangeTime_completeTask()" />(1-9 HRS)
+													<label>Estimated Time:</label>
+													<input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" />(1-5 HRS)
 											</div>
 									</div>
 									<div class="modal-footer">
-											<button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="taskcompletion()" data-dismiss="modal">Confirm</button>
+											<button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="pushintoUser()" data-dismiss="modal">Confirm</button>
 									</div>
-
 							</div>
 							<!--Push Modal content Ends Here-->
 					</div>
 					<!--Push Modal Dialog Ends Here-->
 			</div>
-		</script>
+	</script>
 
-
-		<div class="modal fade projectEditModal" role="dialog">
-
-				<!-- Create Project Dialog-->
+	<script type="text/ng-template" id="completeTaskpushModal.html.erb">
+		<div class="modal fade addTaskpushModal" role="dialog">
+				<!-- Push Modal Dialog-->
 				<div class="modal-dialog">
 
-						<!-- Create Project content-->
+						<!-- Push Modal content-->
 						<div class="modal-content">
 
 								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-
-										<h4 class="modal-title">Edit Project</h4>
+										<button type="button" class="close" ng-click="undo()" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title"></h4>
 								</div>
 
 								<div class="modal-body">
 										<div class="form-group">
-												<label>Project Title</label>
-												<input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
+												<label>Completed Time:</label>
+												<input type="number" placeholder="HOURS" ng-model="completedTime" ng-change="onChangeTime_completeTask()" />(1-9 HRS)
 										</div>
-										<div>
-												<label>Slack Webhook</label>
-												<input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
-										</div>
-										<div>
-												<label>Add Admins</label>
-												<input type="text" class="form-control form-focus" placeholder="Add admins" ng-model="adminClear" mentio mentio-typed-text="typedTerm" mentio-items="newAdmin" mentio-select="makeAdmin(item)" mentio-template-url="/people.tpl">
-										</div>
-
 								</div>
-
 								<div class="modal-footer">
-										<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="editProject()">Confirm</button>
-
+										<button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="taskcompletion()" data-dismiss="modal">Confirm</button>
 								</div>
 
 						</div>
-						<!--Create Project content Ends Here-->
+						<!--Push Modal content Ends Here-->
 				</div>
-				<!--Create Project Dialog Ends Here-->
+				<!--Push Modal Dialog Ends Here-->
 		</div>
+	</script>
 
-		<div class="modal fade inviteBrandModal" role="dialog">
-				<!-- Invite Brand Dialog-->
 
-				<div class="modal-dialog">
+	<div class="modal fade projectEditModal" role="dialog">
 
-						<!-- Create Project content-->
-						<div class="modal-content">
+			<!-- Create Project Dialog-->
+			<div class="modal-dialog">
 
-								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!-- Create Project content-->
+					<div class="modal-content">
 
-										<h4 class="modal-title">Invite to Brand</h4>
+							<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 
-								</div>
+									<h4 class="modal-title">Edit Project</h4>
+							</div>
 
-								<div class="modal-body">
-										<div class="form-group">
-												<label>Invite user to Brand</label>
-												<select member-directive multiple class="memberSelect" ng-model="invite_brand">
-														
+							<div class="modal-body">
+									<div class="form-group">
+											<label>Project Title</label>
+											<input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
+									</div>
+									<div>
+											<label>Slack Webhook</label>
+											<input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
+									</div>
+									<div>
+											<label>Add Admins</label>
+											<input type="text" class="form-control form-focus" placeholder="Add admins" ng-model="adminClear" mentio mentio-typed-text="typedTerm" mentio-items="newAdmin" mentio-select="makeAdmin(item)" mentio-template-url="/people.tpl">
+									</div>
 
-														</select>
-										</div>
-										
+							</div>
 
-								</div>
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="editProject()">Confirm</button>
 
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="inviteBrand()">Confirm</button>
+							</div>
 
-								</div>
+					</div>
+					<!--Create Project content Ends Here-->
+			</div>
+			<!--Create Project Dialog Ends Here-->
+	</div>
 
-						</div>
-						<!--Create Project content Ends Here-->
-				</div>
-				<!--Create Project Dialog Ends Here-->
-		</div>
+	<div class="modal fade inviteBrandModal" role="dialog">
+			<!-- Invite Brand Dialog-->
 
-		<!-- Create Member -->
-		<div class="modal fade memberModal" role="dialog">
-				<!-- Create Member Dialog-->
-				<div class="modal-dialog">
+			<div class="modal-dialog">
 
-						<!-- Create Member content-->
-						<div class="modal-content">
+					<!-- Create Project content-->
+					<div class="modal-content">
 
-								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Add a Members</h4>
-								</div>
+							<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 
-								<div class="modal-body">
-										<div class="form-group">
-												<label>Add Members</label>
-												<div>
-														<select member-directive multiple class="memberSelect" ng-model="memberlist_add">
-																<option ng-repeat="x in projectMembers.add" value="{{x.email}}">{{x.email}}</option>
+									<h4 class="modal-title">Invite to Brand</h4>
 
-														</select>
-												</div>
-										</div>
+							</div>
 
-										<div class="form-group">
-												<label>Remove Members</label>
-												<div>
-														<select member-directive multiple class="memberSelect" ng-model="memberlist_remove">
-																<option ng-repeat="x in projectMembers.members" value="{{x.email}}">{{x.email}}</option>
-														</select>
-												</div>
-										</div>
-								</div>
+							<div class="modal-body">
+									<div class="form-group">
+											<label>Invite user to Brand</label>
+											<select member-directive multiple class="memberSelect" ng-model="invite_brand">
+													
 
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="updateMembers()">Confirm</button>
-								</div>
+													</select>
+									</div>
+									
 
-						</div>
-						<!--Create Member content Ends Here-->
-				</div>
-				<!--Create Member Dialog Ends Here-->
-		</div>
-		<!--Create Member Ends Here-->
+							</div>
 
-		 <!-- Create Project -->
-		<div class="modal fade projectModal" role="dialog">
-				<!-- Create Project Dialog-->
-				<div class="modal-dialog">
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="inviteBrand()">Confirm</button>
 
-						<!-- Create Project content-->
-						<div class="modal-content">
+							</div>
 
-								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Create a Project</h4>
-								</div>
+					</div>
+					<!--Create Project content Ends Here-->
+			</div>
+			<!--Create Project Dialog Ends Here-->
+	</div>
 
-								<div class="modal-body">
-										<div class="form-group">
-												<label>Project Title</label>
-												<input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
-										</div>
-										<div class="form-group">
-												<label>Add Members</label>
-												<select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
-														<option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
-												</select>
-										</div>
-										<div class="form-group">
-												<label>Slack Webhook</label>
-												<input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
-										</div>
-								</div>
+	<!-- Create Member -->
+	<div class="modal fade memberModal" role="dialog">
+			<!-- Create Member Dialog-->
+			<div class="modal-dialog">
 
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
-								</div>
+					<!-- Create Member content-->
+					<div class="modal-content">
 
-						</div>
-						<!--Create Project content Ends Here-->
-				</div>
-				<!--Create Project Dialog Ends Here-->
-		</div>
-		<!--Create Project ends here-->
+							<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Add a Members</h4>
+							</div>
 
-		<!--Create Settings starts Here-->
-		<div class="modal fade settingsModal" role="dialog">
-				<!-- Create Settings Dialog-->
-				<div class="modal-dialog">
+							<div class="modal-body">
+									<div class="form-group">
+											<label>Add Members</label>
+											<div>
+													<select member-directive multiple class="memberSelect" ng-model="memberlist_add">
+															<option ng-repeat="x in projectMembers.add" value="{{x.email}}">{{x.email}}</option>
 
-						<!-- Create Settings content-->
-						<div class="modal-content">
+													</select>
+											</div>
+									</div>
 
-								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Settings</h4>
-								</div>
+									<div class="form-group">
+											<label>Remove Members</label>
+											<div>
+													<select member-directive multiple class="memberSelect" ng-model="memberlist_remove">
+															<option ng-repeat="x in projectMembers.members" value="{{x.email}}">{{x.email}}</option>
+													</select>
+											</div>
+									</div>
+							</div>
 
-								<div class="modal-body">
-										<div class="form-group">
-												<label>Project Title</label>
-												<input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
-										</div>
-										<div class="form-group">
-												<label>Add Members</label>
-												<select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
-														<option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
-												</select>
-										</div>
-										<div class="form-group">
-												<label>Slack Webhook</label>
-												<input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
-										</div>
-								</div>
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="updateMembers()">Confirm</button>
+							</div>
 
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
-								</div>
+					</div>
+					<!--Create Member content Ends Here-->
+			</div>
+			<!--Create Member Dialog Ends Here-->
+	</div>
+	<!--Create Member Ends Here-->
 
-						</div>
-						<!--Create Settings content Ends Here-->
-				</div>
-				<!--Create Settings Dialog Ends Here-->
-		</div>
-		<!--Create Settings Ends Here-->
+	<!-- Create Project -->
+	<div class="modal fade projectModal" role="dialog">
+			<!-- Create Project Dialog-->
+			<div class="modal-dialog">
+
+					<!-- Create Project content-->
+					<div class="modal-content">
+
+							<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Create a Project</h4>
+							</div>
+
+							<div class="modal-body">
+									<div class="form-group">
+											<label>Project Title</label>
+											<input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
+									</div>
+									<div class="form-group">
+											<label>Add Members</label>
+											<select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
+													<option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
+											</select>
+									</div>
+									<div class="form-group">
+											<label>Slack Webhook</label>
+											<input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
+									</div>
+							</div>
+
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
+							</div>
+
+					</div>
+					<!--Create Project content Ends Here-->
+			</div>
+			<!--Create Project Dialog Ends Here-->
+	</div>
+	<!--Create Project ends here-->
+
+	<!--Create Settings starts Here-->
+	<div class="modal fade settingsModal" role="dialog">
+			<!-- Create Settings Dialog-->
+			<div class="modal-dialog">
+
+					<!-- Create Settings content-->
+					<div class="modal-content">
+
+							<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Settings</h4>
+							</div>
+
+							<div class="modal-body">
+									<div class="form-group">
+											<label>Project Title</label>
+											<input type="text" ng-model="projectname" class="form-control" placeholder="Project Name">
+									</div>
+									<div class="form-group">
+											<label>Add Members</label>
+											<select member-directive multiple class="memberSelect" ng-model="createproject_memberlist">
+													<option ng-repeat="x in createproject_responsedata.addMembers" value="{{x.email}}">{{x.email}}</option>
+											</select>
+									</div>
+									<div class="form-group">
+											<label>Slack Webhook</label>
+											<input type="text" ng-model="hook" class="form-control" placeholder="Project Name">
+									</div>
+							</div>
+
+							<div class="modal-footer">
+									<button type="button" class="btn btn-default" class="close" data-dismiss="modal" ng-click="confirmProject()">Confirm</button>
+							</div>
+
+					</div>
+					<!--Create Settings content Ends Here-->
+			</div>
+			<!--Create Settings Dialog Ends Here-->
+	</div>
+	<!--Create Settings Ends Here-->
 </div>
