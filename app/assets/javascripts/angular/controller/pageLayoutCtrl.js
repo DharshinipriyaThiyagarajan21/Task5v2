@@ -25,12 +25,27 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
      var id = 0;
      var idString       = "";
      var id_num         = 0; 
+     
      $scope.addMsg=function() {
-     $scope.todoTaskDetails = {};
-     $scope.todoTaskDetails.id   = id++;
-     $scope.todoTaskDetails.task = $scope.inputMsg;
-     $scope.mytask.push({todoTask : $scope.todoTaskDetails});
-     $scope.inputMsg="";
+       console.log($scope.dayselection);
+       var data = $.param({
+            currentProject: $scope.currentProject,
+            day: $scope.dayselection,
+            message: $scope.inputMsg,
+
+        });
+        var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        };
+
+        $http.post('/projects/add_direct_task', data, config).then(function (response) {
+            
+        });
+
+       $scope.inputMsg="";
+       
      }
 
      $scope.add=function() {
@@ -41,6 +56,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
      $scope.todoQueue.push({todoTask : $scope.todoTaskDetails});
      $scope.count=$scope.todoQueue.length;
      $scope.addTask="";
+    // $window.location.reload();
      }
 
      // store task details when clicked add
