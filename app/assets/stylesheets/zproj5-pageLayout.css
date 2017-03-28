@@ -229,7 +229,7 @@ ul[dnd-list] li.selected {
 
 .projects-content
 {
-	/*position: relative;*/
+	position: relative;
 	background:#fff;
 	box-shadow: inset -2px -6px 20px 0px rgba(212, 206, 212, 0.3);
 	font-family:GothamRounded-Medium,GothamRounded-Book;
@@ -317,6 +317,7 @@ ul[dnd-list] li.selected {
 	padding:0;
 	font-size: 16px;
 	height:100vh;
+	position: relative;
 
 }
 
@@ -644,8 +645,6 @@ input[type="checkbox"]:checked + .checkedLi
 	cursor: pointer;
 }
 
-@media only screen and (min-width: 1400px) and (min-height:730px){
- 	
 .projects
 {
 	min-height: 280px;
@@ -664,15 +663,13 @@ input[type="checkbox"]:checked + .checkedLi
 .tasks
 {
 	margin-top: 40px;
-	min-height: 565px;
-	max-height: 565px; 
+	max-height: 508px; 
 	overflow-y: auto;
 }
 
 .messages
 {
 	margin-top: 0px;
-	min-height: 530px;
 	max-height: 530px; 
 	overflow-y: auto;
 	font-size: 16px;
@@ -684,52 +681,14 @@ input[type="checkbox"]:checked + .checkedLi
 	bottom: 0;
 	left: 0;
 	margin: 18px 0px 17px 35px;
-
+	position: absolute;
 }
 
-}
-
-@media only screen and (max-width: 1300px) {
- 	
-.projects
-{
-	min-height: 260px;
-	max-height:260px;
-	overflow-y: auto;
-}
-
-.members
-{
-	padding-left:10px;
-  	min-height: 264px;  
-	max-height: 264px;
-	overflow-y: auto;
-}
-
-.tasks
-{
-	margin-top: 40px;
-	min-height: 470px;
-	max-height: 470px; 
-	overflow-y: auto;
-}
-
-.messages
-{
-	margin-top: 0px;
-	min-height: 480px;
-	max-height: 480px; 
-	overflow-y: auto;
-	font-size: 16px;
-}
-
-.task-input
+.input-text
 {
 	width: 87.5%;
 	bottom: 0;
 	left: 0;
-	margin: 20px 0px 17px 35px;
-
-}
-
+	margin: 18px 0px 17px 35px;
+	position: absolute;
 }

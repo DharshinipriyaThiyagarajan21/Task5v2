@@ -167,7 +167,10 @@
 
 				<div class="clearfix"></div>
 
-				<div class=" col-sm-12">
+					<div class=" col-sm-12">
+						<div class="lineBg" style="background-image: url('../assets/now.png')">
+	                    <b>Now</b>
+	                </div>
 					<div class="tasks">
 						<ul dnd-list="todoQueue" class="queue" id="accordion1">
 							<li ng-repeat="x in addedTasks.user_task_queue" class="panel todo user_tasks" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)">
