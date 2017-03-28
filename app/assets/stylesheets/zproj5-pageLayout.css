@@ -647,7 +647,7 @@ input[type="checkbox"]:checked + .checkedLi
 
 .projects
 {
-	min-height: 280px;
+	/*min-height: 280px;*/
 	max-height:280px;
 	overflow-y: auto;
 }
@@ -655,7 +655,7 @@ input[type="checkbox"]:checked + .checkedLi
 .members
 {
 	padding-left:10px;
-  	min-height: 284px;  
+  	/*min-height: 284px;*/  
 	max-height: 284px;
 	overflow-y: auto;
 }
@@ -663,14 +663,14 @@ input[type="checkbox"]:checked + .checkedLi
 .tasks
 {
 	margin-top: 40px;
-	max-height: 508px; 
+	max-height: 380px; 
 	overflow-y: auto;
 }
 
 .messages
 {
 	margin-top: 0px;
-	max-height: 530px; 
+	max-height: 430px; 
 	overflow-y: auto;
 	font-size: 16px;
 }
