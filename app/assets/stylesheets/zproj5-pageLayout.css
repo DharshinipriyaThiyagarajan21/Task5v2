@@ -1,30 +1,8 @@
-
-/*ul[dnd-list] * { 
-		pointer-events: none; 
-}
-
-ul[dnd-list], ul[dnd-list] > li { 
-		pointer-events: auto;
-		position: relative;
-}*/
-
-
-
-/**
- * The dnd-list should always have a min-height,
- * otherwise you can't drop to it once it's empty
- */
 ul[dnd-list] {
 		min-height: 50px;
 		padding-left: 0px;
 }
 
-/**
- * The dndDraggingSource class will be applied to
- * the source element of a drag operation. It makes
- * sense to hide it to give the user the feeling
- * that he's actually moving it.
- */
 ul[dnd-list] .dndDraggingSource {
 		display: none;
 }
@@ -45,24 +23,12 @@ ul[dnd-list] .dndDraggingSource {
 	color:#878D98; 
 }
 
-/**
- * An element with .dndPlaceholder class will be
- * added to the dnd-list while the user is dragging
- * over it.
- */
 ul[dnd-list] .dndPlaceholder {
 		display: block;
 		/*background-color: #fff;
 		min-height: 42px;*/
 }
 
-/**
- * The dnd-lists's child elements currently MUST have
- * position: relative. Otherwise we can not determine
- * whether the mouse pointer is in the upper or lower
- * half of the element we are dragging over. In other
- * browsers we can use event.offsetY for this.
- */
 ul[dnd-list] li {
 		/*background-color: #fff;*/
 		display: block;
@@ -70,9 +36,7 @@ ul[dnd-list] li {
 		min-height: 70px;
 }
 
-/**
- * Show selected elements in green
- */
+
 ul[dnd-list] li.selected {
 		background-color: #dff0d8;
 		color: #3c763d;
@@ -92,8 +56,6 @@ ul[dnd-list] li.selected {
 	margin: 0;
 }
 
-
-/*col-sm-2*/
 
 .menubar
 {
@@ -228,11 +190,6 @@ ul[dnd-list] li.selected {
 	color: #878D98;
 }
 
-
-/*col-sm-2*/
-
-/*col-sm-6*/
-
 .projects-content
 {
 	position: relative;
@@ -280,39 +237,12 @@ ul[dnd-list] li.selected {
 {
 	border: none;
 }
-/*
-.panel-msg
-{
-	min-height: 495px;
-}
-*/
-
-/*.project-title-col6
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 69px;
-	width: 100%;
-	background: transparent;
-	z-index: 999;
-	padding: 20px 0px 15px 40px;
-	border-bottom: 4px solid #fcd07e;
-	font-size: 16px;
-}
-
-*/
-
 
 .project-title-col6
 {
 	padding: 12px 0px 13px 40px;
 	border-bottom: 4px solid #fcd07e;
 }
-
-
-/*col-sm-6*/
-
 
 .tasks-content
 {
@@ -351,7 +281,7 @@ ul[dnd-list] li.selected {
 	background:#fff;
  }
 
- .container-class.form-focus:focus
+ .form-focus:focus
  {
 	border:2px solid #d7d7d2;
 	box-shadow:none;
@@ -372,24 +302,6 @@ ul[dnd-list] li.selected {
 	 padding: 20px;
 }
 
-/*.todo ul li
-{
-	color: orange;
-	font-size: 150%;
-	list-style-type: disc;
-}
-
-.todo ul li span
-{
-	color: #878D98;
-	font-size: 16px;
-}
-
-.todo li
-{
-	list-style:#ffa500;
-}*/
-
 .now-class
 {
 	margin-top: 10px;
@@ -408,19 +320,6 @@ ul[dnd-list] li.selected {
 	border-bottom: 4px solid #fcd07e;
 }
 
-.bg
-{
-	float: right;
-	display: block;
-	color: #878D98;
-	font-size: 16PX;
-	padding-left: 100px;
-	padding-top: 60px;
-	/*width:150px;*/
-	height: 100px;
-	margin-right: -39px;
-
-}
 
 .bg strong
 {
@@ -544,20 +443,6 @@ ul[dnd-list] li.selected {
 {
 	color: #000;
 }
-
-/*
-.menubar p:hover
-{
-	color: #fff;
-		background: #71CBE1; 
-}
-
-.menubar li:hover
-{
-	color: #fff;
-		background: #71CBE1; 
-}
-*/
 
 .task-space
 {

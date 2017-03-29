@@ -65,13 +65,6 @@ class ProjectsController < ApplicationController
     render json: {success: true}
   end
 
-  def update_time
-    estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
-    completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:completed_time)
-    estimated_time = estimated_time.sum
-    completed_time = completed_time.sum
-    render json: {estimated_time: estimated_time, completed_time: completed_time}
-  end
 
   # display the tasks day wise
   def display_task
@@ -153,10 +146,11 @@ class ProjectsController < ApplicationController
   end
 
   def add_direct_task
-    Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
+      Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
   end
 
   def mytaskCount
+
     mytask = current_user.tasks.where(:completed => false, :taken => true)
     render json: {mytask: mytask}
   end
