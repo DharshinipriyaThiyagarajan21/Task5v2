@@ -161,7 +161,7 @@
 
                 <div class="project-title-col4">
                     <span class="bg" style=" background-image: url('../assets/bg.png')"><strong>{{totalCompletedTasks}}/{{totalActiveTasksInQueue}}</strong></span>
-                    <a class="settings" data-toggle="modal" data-target=".settingsModal" ><i class="fa fa-gear fa-lg fa-sidemenu"></i></a>
+                    <a class="settings" href="users/edit" ><i class="fa fa-gear fa-lg fa-sidemenu"></i></a>
                     <a class="logoutProject" href="users/sign_out" id="logout-menubar"><i class="fa fa-power-off fa-lg fa-sidemenu"></i></a>
                 </div>
 
@@ -545,7 +545,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" ng-click="addMsg()" data-dismiss="modal">Confirm</button>
+                            <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="addMsg()" data-dismiss="modal">Confirm</button>
                         </div>
                     </div>
                     <!--Push Modal content Ends Here-->

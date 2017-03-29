@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
       Proinvite.where(:email => current_user.email,:status => false).each do |i|
         current_user.projects << i.project
         i.update(:status => true)
-        
       end
   end
   # Create the new project
