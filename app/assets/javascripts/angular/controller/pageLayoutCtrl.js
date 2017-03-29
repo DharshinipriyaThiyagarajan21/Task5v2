@@ -5,7 +5,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
      $scope.addTask="";
      $scope.count='';
      $scope.mytask=[];
-     $scope.inputMsg='';
+     $scope.inputMsg;
      $scope.daySelect = 0;
 
      $scope.showhide = [1,0,0,0,0,0];
@@ -26,13 +26,23 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
      var idString       = "";
      var id_num         = 0; 
      
+
+     $scope.initMsgModal = function() {
+       ModalService.showModal({
+           templateUrl: 'directMsgpushModal.html.erb',
+           controller: "pageLayoutCtrl",
+           scope: $scope
+       }).then(function(modal) {
+           modal.element.modal();    
+       });
+     }
+
      $scope.addMsg=function() {
-       console.log($scope.dayselection);
        var data = $.param({
             currentProject: $scope.currentProject,
             day: $scope.dayselection,
-            message: $scope.inputMsg,
-
+            task: $scope.inputMsg,
+            estimated_time : $scope.estimatedTime
         });
         var config = {
             headers: {
@@ -41,11 +51,8 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         };
 
         $http.post('/projects/add_direct_task', data, config).then(function (response) {
-            
+            $scope.inputMsg="";
         });
-
-       $scope.inputMsg="";
-       
      }
 
      $scope.add=function() {
@@ -442,9 +449,9 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         value = false
         $scope.update_task_queue();
         $scope.update_time();
-        $scope.myTask();
-
+        $scope.myTaskCount();
     };
+
     //update the estimated time and the total completion time
     $scope.update_time = function () {
         var data = $.param({
@@ -606,6 +613,14 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
               $scope.update_task_queue();      
         });
     };
+    $scope.myTaskCount = function(){
+      $http({
+            method: "GET",
+            url: "/projects/mytaskCount"
+        }).then(function(response){
+          $scope.tasks = response.data.mytask;
+        });
+    }
     //trigger completion time modal when checked
     $scope.checked =function(t) {
         $scope.completedtask = t;

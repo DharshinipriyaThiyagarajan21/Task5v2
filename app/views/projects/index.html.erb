@@ -137,7 +137,7 @@
                                 <li ng-repeat="t in completed" >
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="checked" disabled>
-                                            <span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}} #{{t.project.name}}</p>
+                                            <span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}} {{t.project.name | uppercase}}</p>
                                         </span>
                                     </div>
                                 </li>
@@ -524,4 +524,33 @@
         <!--Create Settings Dialog Ends Here-->
     </div>
     <!--Create Settings Ends Here-->
+
+    <script type="text/ng-template" id="directMsgpushModal.html.erb">
+            <div class="modal fade directMsgpushModal" role="dialog">
+                <!-- Push Modal Dialog-->
+                <div class="modal-dialog">
+
+                    <!-- Push Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Estimated Time:</label>
+                                <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" />(1-5 HRS)
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="addMsg()" data-dismiss="modal">Confirm</button>
+                        </div>
+                    </div>
+                    <!--Push Modal content Ends Here-->
+                </div>
+                <!--Push Modal Dialog Ends Here-->
+            </div>
+    </script>
 </div>

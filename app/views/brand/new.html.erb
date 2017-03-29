@@ -19,6 +19,9 @@
   var invitations = <%= @invitations.to_json.html_safe %>
 </script>
 -->
+<% if flash[:notice] %>
+     <div class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
 <div ng-app="app" ng-controller="createOrJoinController" class="bodyDesign">
     <div class="container">
         <div class="row">

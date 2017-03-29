@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
       Proinvite.where(:email => current_user.email,:status => false).each do |i|
         current_user.projects << i.project
         i.update(:status => true)
+        
       end
   end
   # Create the new project
@@ -149,5 +150,14 @@ class ProjectsController < ApplicationController
             end
          end
         end
+  end
+
+  def add_direct_task
+    Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
+  end
+
+  def mytaskCount
+    mytask = current_user.tasks.where(:completed => false, :taken => true)
+    render json: {mytask: mytask}
   end
 end
