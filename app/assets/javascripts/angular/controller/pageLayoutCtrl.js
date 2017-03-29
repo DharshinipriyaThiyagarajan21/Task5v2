@@ -675,7 +675,7 @@ app.controller('pageLayoutCtrl',function($scope,$filter,$http, ModalService){
         var data = $.param({
         invitemembers : $scope.invite_brand
       });
-        var config = {
+        var config = {  
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
