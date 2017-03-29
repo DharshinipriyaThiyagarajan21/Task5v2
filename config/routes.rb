@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     post 'call_edit'
     post 'edit_project'
     post 'invite_brand'
+    post 'add_direct_task'
+    get 'mytaskCount'
 
   end
 end
