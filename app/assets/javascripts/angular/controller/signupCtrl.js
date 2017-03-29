@@ -48,6 +48,12 @@ app.controller("signupCtrl", function ($scope) {
         }
         $scope.validation();
     }
+    $scope.errormsg = function () {
+        
+        alert("This email already exists")
+    }
+
+
 
     $scope.validation = function () {
 
@@ -56,6 +62,7 @@ app.controller("signupCtrl", function ($scope) {
             $scope.showSignup = true;
         } else {
             console.log("FALSE");
+          
             $scope.showSignup = false;
         }
     }
