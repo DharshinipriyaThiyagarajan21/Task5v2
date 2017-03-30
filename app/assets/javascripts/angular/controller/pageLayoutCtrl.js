@@ -46,6 +46,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
   $scope.uncheck;
   $scope.admins;
   $scope.addAdmins = [];
+  $scope.estim_time;
   var date = new Date();
   weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
@@ -85,6 +86,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
 
     // store task details when clicked add
     $scope.addCall = function() {
+      if($scope.addTask!="")
+      {
       var taskTemp = $scope.addTask;
       var startindex = 0;
       var taskSubstring = "";
@@ -140,9 +143,11 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           'Content-Type': 'application/json'
         }
       };
-      $http.post('/projects/add_task_queue', data, config).then(function(response) {});
-      $scope.update_task_queue();
-      $scope.slackUpdate();
+      $http.post('/projects/add_task_queue', data, config).then(function(response) {
+        $scope.update_task_queue();
+        $scope.slackUpdate();
+      });
+    }
     };
     
 
@@ -290,10 +295,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           });
         }
         $scope.completedTasks = response.data.completed_queue;
+        $scope.daychange(0);
         $scope.update_push_queue();
       });
-      $scope.daychange(0);
-      $scope.update_task_queue();
+      
     };
 
     //update task queue ie active task
@@ -394,10 +399,13 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         $scope.days.five = response.data.four;
         $scope.completed = response.data.completed_queue;
         $scope.totalCompletedTasks = $scope.completedTasks.length;
+        value = false
+        // $scope.selectProject($scope.currentProject);
+        $scope.update_task_queue();
+        $scope.myTaskCount();
       });
-      value = false
-      $scope.update_task_queue();
-      $scope.myTaskCount();
+      
+      
     };
 
     //delete projects
@@ -471,11 +479,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $scope.reinit();
     };
 
-
-    $scope.call = function(x) {
-      $scope.draggedTask = x;
-      $scope.show(x);
-    };
     // Show Confrim Button in ADD TASK TO USER MODAL BASED ON TIME
     $scope.onChangeTime_addTask = function() {
       $scope.showConfirmTime = false;
@@ -506,16 +509,19 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       };
       $scope.hooktype = "Added a task";
       $scope.hookname = $scope.draggedTask.name;
-      $scope.slackUpdate();
+     
 
       var config = {
         headers: {
           'Content-Type': 'application/json'
         }
       };
-      $http.post('/projects/take_task', data, config).then(function(response) {});
-      $scope.update_push_queue();
-      $scope.reinit();
+      $http.post('/projects/take_task', data, config).then(function(response) {
+        $scope.update_push_queue();
+        $scope.slackUpdate();
+        $scope.reinit();
+      });
+      
     };
     //gives the total my tasks
     $scope.myTask = function(value) {
@@ -639,9 +645,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
       };
       $http.post('/projects/back_to_add_tasks', data, config).then(function(response) {});
-      $scope.update_task_queue();
       $scope.update_push_queue();
-      $scope.update_time();
+      // $scope.update_time();
       $scope.reinit();
     };
 

@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
     user_task_queue = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => false)
     task_queue = Task.where(:project_id => params['currentProject']['id'], :taken => false) - user_task_queue
     total_task = Task.where(:project_id => params['currentProject']['id'])
+    # binding.pry
     render json: {task_queue: task_queue,user_task_queue: user_task_queue, total_task: total_task}.to_json(:include => [ :users ,:assigned, :project])
   end
 
@@ -103,10 +104,10 @@ class ProjectsController < ApplicationController
   def slackUpdate
     user = current_user.username
     avatar = current_user.avatar
-    notifier = Slack::Notifier.new params['currentProject']['hook'] , http_options: { open_timeout: 5 }
-  
-    notifier.post text: params['hooktype']+"  *"+params['hookname']+"*", username: user, icon_url: avatar
-
+    if params['currentProject']['hook'].present?
+      notifier = Slack::Notifier.new params['currentProject']['hook'] , http_options: { open_timeout: 5 }
+      notifier.post text: params['hooktype']+"  *"+params['hookname']+"*", username: user, icon_url: avatar
+    end
     render json: {success: true}
   end
 

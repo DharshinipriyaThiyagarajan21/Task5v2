@@ -60,7 +60,7 @@
                             </ul>
                         </div>
                         <div id="day1" class="panel messages" ng-show="showhide[0]">
-                            <ul  dnd-list="tasks0" class="list-unstyled tasks0">
+                            <ul  dnd-list="days.one" class="list-unstyled tasks0">
                                 <li ng-repeat="t in days.one" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
@@ -74,7 +74,7 @@
                         </div>
                         
                         <div id="day2" class="panel  messages" ng-show="showhide[1]">
-                            <ul  dnd-list="tasks1" class="list-unstyled tasks1" >
+                            <ul  dnd-list="days.two" class="list-unstyled tasks1" >
 
                                 <li ng-repeat="t in days.two" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -89,7 +89,7 @@
                         </div>
 
                         <div id="day3" class="panel  messages" ng-show="showhide[2]">
-                            <ul  dnd-list="tasks2" class="list-unstyled tasks2" >
+                            <ul  dnd-list="days.three" class="list-unstyled tasks2" >
 
                                 <li ng-repeat="t in days.three" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -103,7 +103,7 @@
                             </ul>
                         </div>
                         <div id="day4" class="panel  messages" ng-show="showhide[3]">
-                            <ul  dnd-list="tasks3" class="list-unstyled tasks3" >
+                            <ul  dnd-list="days.four" class="list-unstyled tasks3" >
 
                                 <li ng-repeat="t in days.four" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -118,7 +118,7 @@
                         </div>
 
                         <div id="day5" class="panel  messages" ng-show="showhide[4]">
-                            <ul  dnd-list="tasks4" class="list-unstyled tasks4" >
+                            <ul  dnd-list="days.five" class="list-unstyled tasks4" >
 
                                 <li ng-repeat="t in days.five" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -153,7 +153,7 @@
 
                 <div class="input-text">
                     <form ng-submit="initMsgModal()">
-                        <input type="text" class="form-control msg-input" placeholder="Type a message..." ng-model="inputMsg">
+                        <input type="text" class="form-control msg-input" placeholder="Type a message..." ng-model="inputMsg" required>
                     </form>
                 </div>
             </div>
@@ -173,7 +173,7 @@
                     </div>
                     <div class="tasks">
                         <ul dnd-list="todoQueue" class="queue" id="accordion1">
-                            <li ng-repeat="x in addedTasks.user_task_queue" class="panel todo user_tasks" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)">
+                            <li ng-repeat="x in addedTasks.user_task_queue" class="panel todo user_tasks" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="show(x)">
                                 <span class="bullet">&bull;</span>
                                 <span>                                  
                                     &nbsp;{{x.name}}                                 
@@ -194,7 +194,7 @@
                                 </div>
 
                             </li>
-                            <li ng-repeat="x in addedTasks.task_queue" class="panel todo" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="call(x)"  data-toggle="collpase" data-target="{{'#taskDetails'+ x.id}}">
+                            <li ng-repeat="x in addedTasks.task_queue" class="panel todo" dnd-draggable="x" dnd-droppable-in="{{taskClass}}" dnd-effect-allowed="move" dnd-moved="show(x)"  data-toggle="collpase" data-target="{{'#taskDetails'+ x.id}}">
                                 <span class="bullet">&bull;</span>
                                 <span>
 
