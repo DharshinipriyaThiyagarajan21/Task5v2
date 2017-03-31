@@ -46,7 +46,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
   $scope.uncheck;
   $scope.admins;
   $scope.addAdmins = [];
-  $scope.estim_time;
+  $scope.estimateInput=false;
+  $scope.time=false;
   var date = new Date();
   weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
@@ -78,7 +79,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     };
 
     $http.post('/projects/add_direct_task', data, config).then(function(response) {
-
+      window.location.reload();
     });
   }
 
@@ -235,6 +236,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           }
         }
         $scope.user = response.data.user;
+        $scope.profilepic=response.data.user.avatar.thumb.url;
+        //$scope.myTask(1);
       });
     };
     //creates new project
@@ -262,6 +265,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     // display data about selected project 
     $scope.selectProject = function(project) {
       $scope.disabled = false;
+      $scope.projectSelected="selected";
+      $scope.selected="disselected"
       $scope.adminClear = '';
       var data = {
         currentProject: project
@@ -374,11 +379,12 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $http.post('/projects/edit_project', data, config).then(function(response) {
         $scope.initProjModal();
         $scope.currentProject = response.data.project;
+        $scope.selectProject($scope.currentProject);
       });
       $scope.adminClear = '';
       $scope.newAdmin = [];
       $scope.addAdmins = [];
-      $scope.selectProject($scope.currentProject);
+      
     };
 
     //update added queue
@@ -424,16 +430,16 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
       };
       $http.post('/projects/delete_project', data, config).then(function(response) {
-
-      });
-      if ($scope.currentProject.id == id_num) {
+        if ($scope.currentProject.id == id_num) {
         $scope.projectMembers = '';
         $scope.addedTasks.task_queue = '';
         $scope.completedTasks = '';
         $scope.createproject_responsedata = '';
         $scope.currentProject = '';
       }
-      $scope.initProjModal();
+      });
+      
+      $scope.initProjModal(); 
 
     };
     //Select only username in mentions
@@ -473,10 +479,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
       };
       $http.post('/projects/delete_task', data, config).then(function(response) {
-
+        $scope.update_task_queue();
+        $scope.reinit();
       });
-      $scope.update_task_queue();
-      $scope.reinit();
+      
     };
 
     // Show Confrim Button in ADD TASK TO USER MODAL BASED ON TIME
@@ -498,6 +504,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       }).then(function(modal) {
         modal.element.modal();
       });
+
     };
     // Take the task from the active task
     $scope.pushintoUser = function() {
@@ -517,6 +524,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
       };
       $http.post('/projects/take_task', data, config).then(function(response) {
+        window.location.reload();
         $scope.update_push_queue();
         $scope.slackUpdate();
         $scope.reinit();
@@ -525,6 +533,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     };
     //gives the total my tasks
     $scope.myTask = function(value) {
+       $scope.selected="selected";
       $http({
         method: "GET",
         url: "/projects/mytask"
@@ -595,7 +604,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $http.post('/projects/completed', data, config).then(function(response) {
         $scope.hookname = response.data.taskname;
         $scope.hooktype = "Completed task";
-
+        window.location.reload();
         $scope.slackUpdate();
 
       });
@@ -648,6 +657,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $scope.update_push_queue();
       // $scope.update_time();
       $scope.reinit();
+      window.location.reload();
     };
 
   });

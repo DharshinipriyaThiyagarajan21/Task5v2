@@ -2,16 +2,16 @@
     <section class="main-wrapper">
         <div class="menubar active a-hover">
             <div class="side-nav">
-                <div class="a-space">Welcome {{user.username}} !</div>
-                <a href="" data-toggle="modal" data-target=".inviteBrandModal">Invite to brand</a>
+                <div class="a-space"><img ng-src="{{profilepic}}"> {{user.username}}</div>
                 <div class="myTask">
-                    <p class="caps"><a ng-click="changeTask(1)"><b>MY TASKS </b><span class="count">{{length}}</span></a></p>
+                    <p class="caps {{selected}}" ><a ng-click="changeTask(1)"><b>MY TASKS </b><span class="count">{{length}}</span></a></p>
                 </div>
                 <div class="channel">
                     <div class="projects">
                         <p class="channel-space"><b>PROJECTS</b><a data-toggle="modal" data-target=".projectModal" class="fa fa-plus fa-class "></a></p>
                         <p ng-repeat="p in createproject_responsedata.projects">
-                            <a value="{{p}}" ng-click="selectProject(p)" href=""># {{p.name}}<button ng-if=" p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
+                            <a value="{{p}}" ng-click="selectProject(p)" href=""># {{p.name}}
+                            <button ng-if=" p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
                         </p>
                     </div>
                 </div>
@@ -44,6 +44,7 @@
                     </ul>
                 </div>
 
+
                 <div class="col-sm-12">
                     <div class="panel-msg">
                         <div class="panel messages" ng-show="showTask">
@@ -60,13 +61,19 @@
                             </ul>
                         </div>
                         <div id="day1" class="panel messages" ng-show="showhide[0]">
-                            <ul  dnd-list="days.one" class="list-unstyled tasks0">
+                            <ul  dnd-list="tasks0" class="list-unstyled tasks0">
                                 <li ng-repeat="t in days.one" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
                                             <span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
                                         </span>
                                     </div>
+                                    <!-- <div class="col-sm-3" ng-show="estimateInput">
+                                        <form ng-submit="">
+                                            <input type="number" name="estimateTime" class="form-control" placeholder="HOURS (1-5)" ng-model="estimatedTime"/>
+                                        </form>
+                                    </div>
+                                    <div class="clearfix"></div> -->
                                 </li>
 
                                 <div class="clearfix"></div>
@@ -74,7 +81,7 @@
                         </div>
                         
                         <div id="day2" class="panel  messages" ng-show="showhide[1]">
-                            <ul  dnd-list="days.two" class="list-unstyled tasks1" >
+                            <ul  dnd-list="tasks1" class="list-unstyled tasks1" >
 
                                 <li ng-repeat="t in days.two" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -89,7 +96,7 @@
                         </div>
 
                         <div id="day3" class="panel  messages" ng-show="showhide[2]">
-                            <ul  dnd-list="days.three" class="list-unstyled tasks2" >
+                            <ul  dnd-list="tasks2" class="list-unstyled tasks2" >
 
                                 <li ng-repeat="t in days.three" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -103,7 +110,7 @@
                             </ul>
                         </div>
                         <div id="day4" class="panel  messages" ng-show="showhide[3]">
-                            <ul  dnd-list="days.four" class="list-unstyled tasks3" >
+                            <ul  dnd-list="tasks3" class="list-unstyled tasks3" >
 
                                 <li ng-repeat="t in days.four" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -118,7 +125,7 @@
                         </div>
 
                         <div id="day5" class="panel  messages" ng-show="showhide[4]">
-                            <ul  dnd-list="days.five" class="list-unstyled tasks4" >
+                            <ul  dnd-list="tasks4" class="list-unstyled tasks4" >
 
                                 <li ng-repeat="t in days.five" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
@@ -162,6 +169,7 @@
                 <div class="project-title-col4">
                     <span class="bg" style=" background-image: url('../assets/bg.png')"><strong>{{totalCompletedTasks}}/{{totalActiveTasksInQueue}}</strong></span>
                     <a class="settings" href="users/edit" ><i class="fa fa-gear fa-lg fa-sidemenu"></i></a>
+                    <a class="invite" data-toggle="modal" data-target=".inviteBrandModal"><i class="fa fa-user-plus fa-sidemenu"></i></a>
                     <a class="logoutProject" href="users/sign_out" id="logout-menubar"><i class="fa fa-power-off fa-lg fa-sidemenu"></i></a>
                 </div>
 

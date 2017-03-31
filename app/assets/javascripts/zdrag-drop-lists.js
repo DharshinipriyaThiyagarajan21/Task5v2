@@ -288,6 +288,7 @@ angular.module('dndLists', [])
                 event.preventDefault();
                 event.stopPropagation();
                 return false;
+
             });
 
             /**

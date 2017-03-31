@@ -8,9 +8,9 @@ ul[dnd-list] .dndDraggingSource {
 }
 .logoutProject{
 	float: right;
-	padding-top: 15px;
-	font-size: 16px;
-	margin-right: -140px;
+	padding-top: 16px;
+	font-size: 15px;
+	margin-right: -160px;
 	position: relative;
 	color:#878D98; 
 }
@@ -559,6 +559,7 @@ input[type="checkbox"]:checked + .checkedLi
 .tasks
 {
 	margin-top: 40px;
+	min-height: 380px; 
 	max-height: 380px; 
 	overflow-y: auto;
 }
@@ -566,6 +567,7 @@ input[type="checkbox"]:checked + .checkedLi
 .messages
 {
 	margin-top: 0px;
+	min-height: 430px; 
 	max-height: 430px; 
 	overflow-y: auto;
 	font-size: 16px;
@@ -625,3 +627,45 @@ input[type="checkbox"]:checked + .checkedLi
 
 	}
 }	
+
+.projects .close
+{
+	font-size: 18px;
+}
+
+.disselected
+{
+	background: #fffff5;
+}
+
+.selected
+{
+	background: #5bc0de;
+	padding-bottom: 3px;
+}
+.selected b
+{
+	color: #fff;
+}
+
+.projetcs a
+{
+	background: pink;
+}
+
+.invite
+{
+	float: right;
+	padding-top: 15px;
+	font-size: 18px;
+	margin-right: -130px;
+	position: relative;
+	color:#878D98; 
+}
+
+.a-space img
+{
+	border-radius: 25px;
+	height: 50px;
+    width: 50px;
+}
