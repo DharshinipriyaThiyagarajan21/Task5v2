@@ -212,8 +212,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         $scope.showhide = [0, 0, 0, 0, 0, 0];
         $scope.clicked = ["btn-default"];
       } else {
-        $scope,
-        showTask = 0;
+        $scope.showTask = 0;
       }
     }
     $scope.reinit = function() {
@@ -437,10 +436,12 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           $scope.addedTasks.task_queue = '';
           $scope.completedTasks = '';
           $scope.createproject_responsedata = '';
+          $scope.currentProject.name='';
         }
+        $scope.initProjModal(); 
       });
       
-      $scope.initProjModal(); 
+      
 
     };
     //Select only username in mentions
@@ -553,7 +554,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     }).then(function(response) {
       $scope.tasks = response.data.mytask;
       $scope.completed = response.data.completed_tasks;
-      $scope.length = $scope.tasks.length;
+      $scope.myTaskLength = $scope.tasks.length;
       if (value == 1) {
         $scope.currentProject = { name: "My tasks" };
 
@@ -565,8 +566,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         $scope.projectMembers = '';
         $scope.totalCompletedTasks = 0;
       }
-      // $scope.update_task_queue();
-      console.log("called")
+      $scope.update_task_queue();
     });
   };
   $scope.myTaskCount = function() {
@@ -593,7 +593,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
                 }
               };
               $scope.taskCompletion = function(){
-                $scope.$parent.estimatedTime = $scope.estimatedTime;
+                $scope.$parent.completedTime = $scope.completedTime;
                 $scope.$parent.taskcompletion();
               }
             }

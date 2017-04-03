@@ -4,14 +4,14 @@
             <div class="side-nav">
                 <div class="a-space"><img ng-src="{{profilepic}}"> {{user.username}}</div>
                 <div class="myTask">
-                    <p class="caps {{selected}}" ><a ng-click="changeTask(1)"><b>MY TASKS </b><span class="count">{{length}}</span></a></p>
+                    <p class="caps {{selected}}" ><a ng-click="changeTask(1)"><b>MY TASKS </b><span class="count">{{myTaskLength}}</span></a></p>
                 </div>
                 <div class="channel">
                     <div class="projects">
                         <p class="channel-space"><b>PROJECTS</b><a data-toggle="modal" data-target=".projectModal" class="fa fa-plus fa-class "></a></p>
                         <p ng-repeat="p in createproject_responsedata.projects">
                             <a value="{{p}}" ng-click="selectProject(p)" href=""># {{p.name}}
-                            <button ng-if=" p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
+                            <button ng-if="p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
                         </p>
                     </div>
                 </div>
@@ -282,9 +282,9 @@
                     </div>
 
                     <div class="modal-body">
-                        <div class="form-group">
+                        <div class="form-group modal-input">
                             <label>Estimated Time:</label>
-                            <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" />(1-5 HRS)
+                            <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" /> (1-5 HRS)
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -311,13 +311,13 @@
                     </div>
 
                     <div class="modal-body">
-                        <div class="form-group">
+                        <div class="form-group modal-input">
                             <label>Completed Time:</label>
-                            <input type="number" placeholder="HOURS" ng-model="completedTime" ng-change="onChangeTime_completeTask()" />(1-9 HRS)
+                            <input type="number" placeholder="HOURS" ng-model="completedTime" ng-change="onChangeTime_completeTask()" /> (1-9 HRS)
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="taskcompletion()" data-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="taskCompletion()" data-dismiss="modal">Confirm</button>
                     </div>
 
                 </div>
@@ -507,9 +507,9 @@
                         </div>
 
                         <div class="modal-body">
-                            <div class="form-group">
+                            <div class="form-group modal-input">
                                 <label>Estimated Time:</label>
-                                <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" />(1-5 HRS)
+                                <input type="number" placeholder="HOURS" ng-model="estimatedTime" ng-change="onChangeTime_addTask()" /><span> (1-5 HRS)</span>
                             </div>
                         </div>
                         <div class="modal-footer">
