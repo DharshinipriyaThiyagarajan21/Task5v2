@@ -32,14 +32,13 @@
                 <div class=" project-title-col6">
                     <h4># {{currentProject.name}}<span class="projectEdit"><a class=" fa fa-pencil-square-o" ng-if="currentProject.admin == 1" href="" data-toggle="modal" data-target=".projectEditModal" ng-show="currentProject.name" ng-click="callEditProject()"></a></span></h4>
                 </div>
-
                 <div class="days" data-ng-init="weekdayFinder()">
                     <ul class="list-unstyled list-inline">
                         <li><button class="btn btn-default {{clicked[0]}}" ng-disabled="disabled" ng-click="daychange(0)">Today</button></li>
                         <li><button class="btn btn-default {{clicked[1]}}" ng-disabled="disabled" ng-click="daychange(1)">Tomorrow</button></li>
-                        <li><button class="btn btn-default {{clicked[2]}}" ng-disabled="disabled" ng-click="daychange(2)">{{days[2].day}}</button></li>
-                        <li><button class="btn btn-default {{clicked[3]}}" ng-disabled="disabled" ng-click="daychange(3)">{{days[3].day}}</button></li>
-                        <li><button class="btn btn-default {{clicked[4]}}" ng-disabled="disabled" ng-click="daychange(4)">{{days[4].day}}</button></li>
+                        <li><button class="btn btn-default {{clicked[2]}}" ng-disabled="disabled" ng-click="daychange(2)">{{tab_days[2]}}</button></li>
+                        <li><button class="btn btn-default {{clicked[3]}}" ng-disabled="disabled" ng-click="daychange(3)">{{tab_days[3]}}</button></li>
+                        <li><button class="btn btn-default {{clicked[4]}}" ng-disabled="disabled" ng-click="daychange(4)">{{tab_days[4]}}</button></li>
                         <li><button class="btn btn-default {{clicked[5]}}" ng-disabled="false" ng-click="daychange(5)"><i class="fa fa-check"></i></button></li>
                     </ul>
                 </div>
@@ -253,7 +252,7 @@
                     </div>
                 </script>
                 <div class="task-input">
-                    <form>
+                    <form ng-submit="addCall()">
                         <div class="input-group addTask">
 
                             <input type="text" class="form-control form-focus" placeholder="Add a new task to # {{currentProject.name}}" ng-model="addTask" mentio mentio-typed-text="typedTerm" mentio-items="items" mentio-select="getPeopleText(item)" mentio-template-url="/people-mentions.tpl">
@@ -289,7 +288,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="pushintoUser()" data-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="pushToUser()" data-dismiss="modal">Confirm</button>
                     </div>
                 </div>
                 <!--Push Modal content Ends Here-->
@@ -514,7 +513,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="addMsg()" data-dismiss="modal">Confirm</button>
+                            <button type="button" class="btn btn-default" class="close" ng-disabled="!showConfirmTime" data-ng-click="addmsg()" data-dismiss="modal">Confirm</button>
                         </div>
                     </div>
                     <!--Push Modal content Ends Here-->

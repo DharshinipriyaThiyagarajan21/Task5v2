@@ -1,3 +1,5 @@
+app.controller('showModalController', function($scope, name, year, close) {
+});
 app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) {
 
   $scope.todoQueue = [];
@@ -27,6 +29,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
   $scope.addedTasks = {};
   $scope.addedTasks.task_queue = [];
   $scope.assignedUser = [];
+  $scope.tab_days=[]
+
   var idString;
   var id_num = 0;
   var tempday = 0;
@@ -57,8 +61,22 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     $scope.inputMsg = '';
     ModalService.showModal({
       templateUrl: 'directMsgpushModal.html.erb',
-      controller: "pageLayoutCtrl",
-      scope: $scope
+      scope: $scope,
+      controller: function($scope) {
+        $scope.onChangeTime_addTask = function() {
+          $scope.showConfirmTime = false;
+          if ($scope.estimatedTime >= 1 && $scope.estimatedTime <= 5) {
+            $scope.showConfirmTime = true;
+          } else {
+            $scope.showConfirmTime = false;
+          }
+        };
+
+        $scope.addmsg = function() {
+          $scope.$parent.estimatedTime = $scope.estimatedTime;
+          $scope.$parent.addMsg();
+        }
+      }
     }).then(function(modal) {
       modal.element.modal();
     });
@@ -79,7 +97,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     };
 
     $http.post('/projects/add_direct_task', data, config).then(function(response) {
-      window.location.reload();
+      $scope.update_push_queue();
     });
   }
 
@@ -89,87 +107,76 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     $scope.addCall = function() {
       if($scope.addTask!="")
       {
-      var taskTemp = $scope.addTask;
-      var startindex = 0;
-      var taskSubstring = "";
-      var taskSubstringlen = 0;
-      var tempString = "";
-      var assignedTo = [];
+        var taskTemp = $scope.addTask;
+        var startindex = 0;
+        var taskSubstring = "";
+        var taskSubstringlen = 0;
+        var tempString = "";
+        var assignedTo = [];
 
-      for (var i = 0; i < taskTemp.length; i++){
-        var flag = false;
-        if (taskTemp.charAt(i) == '@') {
-          startindex = i;
-          for (var j = startindex; j < taskTemp.length; j++) {
-            if (taskTemp.charAt(j) == ' ') {
-              taskSubstringlen = j;
-              flag = true;
-              i = j;
-              break;
+        for (var i = 0; i < taskTemp.length; i++){
+          var flag = false;
+          if (taskTemp.charAt(i) == '@') {
+            startindex = i;
+            for (var j = startindex; j < taskTemp.length; j++) {
+              if (taskTemp.charAt(j) == ' ') {
+                taskSubstringlen = j;
+                flag = true;
+                i = j;
+                break;
+              }
+            }
+            if (!flag) {
+              taskSubstringlen = taskTemp.length;
+            }
+            taskSubstring = taskTemp.substring(startindex + 1, taskSubstringlen);
+            assignedTo.push(taskSubstring);
+          }
+        }
+
+        for (var i = 0; i < assignedTo.length; i++) {
+          taskTemp = taskTemp.replace("@" + assignedTo[i], "");
+        }
+
+        $scope.assignedTo_details = [];
+        for (var i = 0; i < $scope.assignedUser.length; i++) {
+          for (var j = 0; j < $scope.projectMembers.members.length; j++) {
+            if ($scope.assignedUser[i] == $scope.projectMembers.members[j].email) {
+              $scope.assignedTo_details.push($scope.projectMembers.members[j]);
             }
           }
-          if (!flag) {
-            taskSubstringlen = taskTemp.length;
+        }
+        var data = {
+          currentProject: $scope.currentProject,
+          task: taskTemp,
+          assignedToDetails: $scope.assignedTo_details
+        };
+
+        $scope.assignedUser = [];
+        $scope.hookname = taskTemp;
+        $scope.hooktype = "Created a task";
+        $scope.addTask = "";
+
+        var config = {
+          headers: {
+            'Content-Type': 'application/json'
           }
-          taskSubstring = taskTemp.substring(startindex + 1, taskSubstringlen);
-          assignedTo.push(taskSubstring);
-        }
+        };
+        $http.post('/projects/add_task_queue', data, config).then(function(response) {
+          $scope.update_task_queue();
+          $scope.slackUpdate();
+        });
       }
-
-      for (var i = 0; i < assignedTo.length; i++) {
-        taskTemp = taskTemp.replace("@" + assignedTo[i], "");
-      }
-
-      $scope.assignedTo_details = [];
-      for (var i = 0; i < $scope.assignedUser.length; i++) {
-        for (var j = 0; j < $scope.projectMembers.members.length; j++) {
-          if ($scope.assignedUser[i] == $scope.projectMembers.members[j].email) {
-            $scope.assignedTo_details.push($scope.projectMembers.members[j]);
-          }
-        }
-      }
-      var data = {
-        currentProject: $scope.currentProject,
-        task: taskTemp,
-        assignedToDetails: $scope.assignedTo_details
-      };
-
-      $scope.assignedUser = [];
-      $scope.hookname = taskTemp;
-      $scope.hooktype = "Created a task";
-      $scope.addTask = "";
-
-      var config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      $http.post('/projects/add_task_queue', data, config).then(function(response) {
-        $scope.update_task_queue();
-        $scope.slackUpdate();
-      });
-    }
     };
     
 
 
     // Find the days
     $scope.weekdayFinder = function() {
-      tempday = date.getDay();
-
-      for (var i = 0, j = 0; i < 5; i++) {
-        if (tempday + i < 7) {
-          $scope.days[i] = {
-            day: weekday[tempday + i],
-            tasks: []
-          };
-        } else {
-          $scope.days[i] = {
-            day: weekday[j],
-            tasks: []
-          };
-          j++;
-        }
+      var tempday = date.getDay();
+      for(i=0;i<6;i++){
+        $scope.tab_days[i] = weekday[tempday]
+        tempday = (tempday+1)%7
       }
     };
     //called when page loads
@@ -237,7 +244,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
         $scope.user = response.data.user;
         $scope.profilepic=response.data.user.avatar.thumb.url;
-        //$scope.myTask(1);
       });
     };
     //creates new project
@@ -318,11 +324,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       };
 
       $http.post('/projects/update_task_queue', data, config).then(function(response) {
-
-
         $scope.addedTasks.user_task_queue = response.data.user_task_queue;
         $scope.addedTasks.task_queue = response.data.task_queue;
         $scope.totalActiveTasksInQueue = response.data.total_task.length;
+        $scope.estimatedTime='';
       });
     };
     //Edit the project
@@ -408,10 +413,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         value = false
         // $scope.selectProject($scope.currentProject);
         $scope.update_task_queue();
-        $scope.myTaskCount();
       });
-      
-      
     };
 
     //delete projects
@@ -431,12 +433,11 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       };
       $http.post('/projects/delete_project', data, config).then(function(response) {
         if ($scope.currentProject.id == id_num) {
-        $scope.projectMembers = '';
-        $scope.addedTasks.task_queue = '';
-        $scope.completedTasks = '';
-        $scope.createproject_responsedata = '';
-        $scope.currentProject = '';
-      }
+          $scope.projectMembers = '';
+          $scope.addedTasks.task_queue = '';
+          $scope.completedTasks = '';
+          $scope.createproject_responsedata = '';
+        }
       });
       
       $scope.initProjModal(); 
@@ -489,7 +490,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     $scope.onChangeTime_addTask = function() {
       $scope.showConfirmTime = false;
       if ($scope.estimatedTime >= 1 && $scope.estimatedTime <= 5) {
-        $scope.showConfirmTime = true;
+        $scope.showConfirmTimske = true;
       } else {
         $scope.showConfirmTime = false;
       }
@@ -499,8 +500,21 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $scope.draggedTask = x;
       ModalService.showModal({
         templateUrl: 'pushModal.html.erb',
-        controller: "pageLayoutCtrl",
-        scope: $scope
+        scope: $scope,
+        controller: function($scope){
+          $scope.onChangeTime_addTask = function() {
+            $scope.showConfirmTime = false;
+            if ($scope.estimatedTime >= 1 && $scope.estimatedTime <= 5) {
+              $scope.showConfirmTime = true;
+            } else {
+              $scope.showConfirmTime = false;
+            }
+          };
+          $scope.pushToUser = function(){
+            $scope.$parent.estimatedTime = $scope.estimatedTime;
+            $scope.$parent.pushintoUser();
+          }
+        }
       }).then(function(modal) {
         modal.element.modal();
       });
@@ -516,7 +530,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       };
       $scope.hooktype = "Added a task";
       $scope.hookname = $scope.draggedTask.name;
-     
+
 
       var config = {
         headers: {
@@ -524,7 +538,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
       };
       $http.post('/projects/take_task', data, config).then(function(response) {
-        window.location.reload();
         $scope.update_push_queue();
         $scope.slackUpdate();
         $scope.reinit();
@@ -533,43 +546,57 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     };
     //gives the total my tasks
     $scope.myTask = function(value) {
-       $scope.selected="selected";
-      $http({
-        method: "GET",
-        url: "/projects/mytask"
-      }).then(function(response) {
-        $scope.tasks = response.data.mytask;
-        $scope.completed = response.data.completed_tasks;
-        $scope.length = $scope.tasks.length;
-        if (value == 1) {
-          $scope.currentProject = { name: "My tasks" };
+     $scope.selected="selected";
+     $http({
+      method: "GET",
+      url: "/projects/mytask"
+    }).then(function(response) {
+      $scope.tasks = response.data.mytask;
+      $scope.completed = response.data.completed_tasks;
+      $scope.length = $scope.tasks.length;
+      if (value == 1) {
+        $scope.currentProject = { name: "My tasks" };
 
-          $scope.daychange(0);
-          $scope.changeTask(1);
+        $scope.daychange(0);
+        $scope.changeTask(1);
 
-        } else if (value == 2) {
-          $scope.currentProject = { name: "My tasks" };
-          $scope.projectMembers = '';
-          $scope.totalCompletedTasks = 0;
-        }
-        $scope.update_task_queue();
-      });
-    };
-    $scope.myTaskCount = function() {
-      $http({
-        method: "GET",
-        url: "/projects/mytaskCount"
-      }).then(function(response) {
-        $scope.tasks = response.data.mytask;
-      });
-    }
+      } else if (value == 2) {
+        $scope.currentProject = { name: "My tasks" };
+        $scope.projectMembers = '';
+        $scope.totalCompletedTasks = 0;
+      }
+      // $scope.update_task_queue();
+      console.log("called")
+    });
+  };
+  $scope.myTaskCount = function() {
+    $http({
+      method: "GET",
+      url: "/projects/mytaskCount"
+    }).then(function(response) {
+      $scope.tasks = response.data.mytask;
+    });
+  }
         //trigger completion time modal when checked
         $scope.checked = function(t) {
           $scope.completedtask = t;
           ModalService.showModal({
             templateUrl: 'completeTaskpushModal.html.erb',
-            controller: "pageLayoutCtrl",
-            scope: $scope
+            scope: $scope,
+            controller: function($scope){
+              $scope.onChangeTime_completeTask = function() {
+                $scope.showConfirmTime = false;
+                if ($scope.completedTime >= 1 && $scope.completedTime < 10) {
+                  $scope.showConfirmTime = true;
+                } else {
+                  $scope.showConfirmTime = false;
+                }
+              };
+              $scope.taskCompletion = function(){
+                $scope.$parent.estimatedTime = $scope.estimatedTime;
+                $scope.$parent.taskcompletion();
+              }
+            }
           }).then(function(modal) {
             modal.element.modal();
           });
@@ -604,12 +631,9 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $http.post('/projects/completed', data, config).then(function(response) {
         $scope.hookname = response.data.taskname;
         $scope.hooktype = "Completed task";
-        window.location.reload();
         $scope.slackUpdate();
-
+        $scope.update_push_queue();
       });
-      $scope.update_push_queue();
-
     };
     //invite users to new brand
     $scope.inviteBrand = function() {
@@ -653,11 +677,11 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           'Content-Type': 'application/json'
         }
       };
-      $http.post('/projects/back_to_add_tasks', data, config).then(function(response) {});
-      $scope.update_push_queue();
-      // $scope.update_time();
+      $http.post('/projects/back_to_add_tasks', data, config).then(function(response) {
+         $scope.update_push_queue(); 
+      });
+     
       $scope.reinit();
-      window.location.reload();
     };
 
   });
