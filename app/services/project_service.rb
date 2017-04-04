@@ -37,7 +37,7 @@ class ProjectService
 		completed_queue = Task.where(:project_id => params['currentProject']['id'], :completed => true)
 		@nonAdmins = @members - Proadmin.find_by(:project_id => params['currentProject']['id']).users
 		return [@members,@add,completed_queue,@nonAdmins]
-	endb
+	end
 
 	def create_project_details(current_user)
 		@projects = current_user.projects.all

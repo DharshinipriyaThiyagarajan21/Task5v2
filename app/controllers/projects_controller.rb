@@ -21,8 +21,7 @@ class ProjectsController < ApplicationController
 
   # gives the list of projects once the page is loaded
   def get
-        @projects,@addMembers,@user,@admins = ProjectService.new.create_project_details(current_user)
-  
+        @projects,@addMembers,@user,@admins = ProjectService.new.create_project_details(current_user)  
         render json: {projects: @projects, addMembers: @addMembers, user: @user, admins: @admins}
   end
 
@@ -31,7 +30,6 @@ class ProjectsController < ApplicationController
     user_task_queue = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => false)
     task_queue = Task.where(:project_id => params['currentProject']['id'], :taken => false) - user_task_queue
     total_task = Task.where(:project_id => params['currentProject']['id'])
-    # binding.pry
     render json: {task_queue: task_queue,user_task_queue: user_task_queue, total_task: total_task}.to_json(:include => [ :users ,:assigned, :project])
   end
 
