@@ -1,5 +1,3 @@
-app.controller('showModalController', function($scope, name, year, close) {
-});
 app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) {
 
   $scope.todoQueue = [];
@@ -230,7 +228,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         url: "/projects/get"
       }).then(function(response) {
         $scope.createproject_responsedata = response.data;
-        $scope.admins = JSON.parse(response.data.admins);
+        $scope.admins = response.data.admins;
         if ($scope.admins != null) {
           for (var i = 0; i < $scope.createproject_responsedata.projects.length; i++) {
             for (var j = 0; j < $scope.admins.length; j++) {
@@ -258,12 +256,12 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           'Content-Type': 'application/json'
         }
       };
-
-      $http.post('/projects', data, config);
-      $scope.initProjModal();
-      $scope.projectname = '';
-      $scope.createproject_memberlist = '';
-      $scope.hook = '';
+      $http.post('/projects', data, config).then(function(response) {
+          $scope.projectname = '';
+          $scope.createproject_memberlist = '';
+          $scope.hook = '';
+          $scope.initProjModal();
+        });
     };
 
     // display data about selected project 

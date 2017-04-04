@@ -22,7 +22,8 @@ class ProjectsController < ApplicationController
   # gives the list of projects once the page is loaded
   def get
         @projects,@addMembers,@user,@admins = ProjectService.new.create_project_details(current_user)
-        render json: {projects: @projects, addMembers: @addMembers, user: @user, admins: @admins.to_json(:include => :users)}
+  
+        render json: {projects: @projects, addMembers: @addMembers, user: @user, admins: @admins}
   end
 
   # update active task queue
