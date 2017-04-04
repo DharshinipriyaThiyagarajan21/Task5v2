@@ -234,7 +234,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         if ($scope.admins != null) {
           for (var i = 0; i < $scope.createproject_responsedata.projects.length; i++) {
             for (var j = 0; j < $scope.admins.length; j++) {
-
               if ($scope.createproject_responsedata.projects[i].id == $scope.admins[j].project_id) {
                 $scope.createproject_responsedata.projects[i].admin = 1;
               }
@@ -261,10 +260,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       };
 
       $http.post('/projects', data, config);
+      $scope.initProjModal();
       $scope.projectname = '';
       $scope.createproject_memberlist = '';
       $scope.hook = '';
-      $scope.initProjModal();
     };
 
     // display data about selected project 

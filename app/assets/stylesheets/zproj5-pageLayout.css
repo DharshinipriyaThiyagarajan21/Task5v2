@@ -13,6 +13,7 @@ ul[dnd-list] .dndDraggingSource {
 	margin-right: -160px;
 	position: relative;
 	color:#878D98; 
+	cursor: pointer;
 }
 .settings{
 	float: right;
@@ -21,6 +22,7 @@ ul[dnd-list] .dndDraggingSource {
 	margin-right: -100px;
 	position: relative;
 	color:#878D98; 
+	cursor: pointer;
 }
 
 ul[dnd-list] .dndPlaceholder {
@@ -661,6 +663,7 @@ input[type="checkbox"]:checked + .checkedLi
 	margin-right: -130px;
 	position: relative;
 	color:#878D98; 
+	cursor: pointer;
 }
 
 .a-space img
