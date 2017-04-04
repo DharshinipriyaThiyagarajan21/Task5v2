@@ -11,6 +11,7 @@
                         <p class="channel-space"><b>PROJECTS</b><a data-toggle="modal" data-target=".projectModal" class="fa fa-plus fa-class "></a></p>
                         <p ng-repeat="p in createproject_responsedata.projects">
                             <a value="{{p}}" ng-click="selectProject(p)" href=""># {{p.name}}
+                            <!-- {{p}} -->
                             <button ng-if="p.admin == 1" ng-attr-id="{{'buttons'+ p.id}}" class="close" data-ng-click="deleteIdFinder($event,0)">&times;</button></a>
                         </p>
                     </div>

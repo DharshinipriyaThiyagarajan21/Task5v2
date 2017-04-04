@@ -4,13 +4,15 @@ class ProjectService
 		admin = Proadmin.create(:project_id => project.id)
 		admin.users << current_user	
 		Project.find(project).histories.create(:action => "created", :user_id => current_user.id, :notify => false)    
-		params['memberlist'].each do |addUser|
-			user = User.find_by(:email => addUser)
-			if user.present?
-				user.projects << project
-				Project.find(project).histories.create(:action => "added", :user_id => user.id, :notify => false)
-			else
-				proinvite = Proinvite.create(:user_id => current_user.id, :status => false, :email => addUser, :project_id => project.id)
+		if params['memberlist'].present?
+			params['memberlist'].each do |addUser|
+				user = User.find_by(:email => addUser)
+				if user.present?
+					user.projects << project
+					Project.find(project).histories.create(:action => "added", :user_id => user.id, :notify => false)
+				else
+					proinvite = Proinvite.create(:user_id => current_user.id, :status => false, :email => addUser, :project_id => project.id)
+				end
 			end
 		end
 	end
