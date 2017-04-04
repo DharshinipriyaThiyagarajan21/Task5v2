@@ -52,7 +52,7 @@ class ProjectService
 		Task.find(project).histories.create(:action => "task added", :user_id => current_user.id, :notify => false) 
 		if params[:assignedToDetails].present?
 			params[:assignedToDetails].each do |detail|
-				project.users << User.find(params[:assignedToDetails][detail]['id'])
+				project.users << User.find(detail['id'])
 			end
 		end
 
