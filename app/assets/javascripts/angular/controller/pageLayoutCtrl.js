@@ -576,9 +576,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       method: "GET",
       url: "/projects/mytaskCount"
     }).then(function(response) {
-      $scope.tasks = response.data.mytask;
-      $scope.completed = response.data.completed_tasks;
-      $scope.myTaskLength = $scope.tasks.length;
+      $scope.task = response.data.mytask;
+      $scope.myTaskLength = $scope.task.length;
       console.log($scope.myTaskLength);
     });
   }
