@@ -57,11 +57,12 @@ class ProjectsController < ApplicationController
     estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
     estimated_time << params['estimated_time'].to_i
     completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:estimated_time)
-    estimated_time = estimated_time - completed_time
-    if estimated_time.sum < 12
+    total_time = estimated_time.sum - completed_time.sum
+    if total_time < 12
         Task.find(params['task_id']).update(:taken => true, :day => params['day_num'], :estimated_time => params['estimated_time'], :user_ids => current_user.id)  
+        estimated=Task.find(params['task_id']).estimated_time
     end
-    render json: {success: true}
+    render json: {success: true,estimated_time: estimated_time,estimated: estimated}
   end
 
 
@@ -145,7 +146,14 @@ class ProjectsController < ApplicationController
   end
 
   def add_direct_task
+     estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
+    estimated_time << params['estimated_time'].to_i
+    completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:estimated_time)
+    total_time = estimated_time.sum - completed_time.sum
+    if total_time < 12
       Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
+    end
+    render json: {success: true,estimated_time: estimated_time}
   end
 
   def mytaskCount

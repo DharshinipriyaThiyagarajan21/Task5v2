@@ -671,12 +671,9 @@ input[type="checkbox"]:checked + .checkedLi
 .select2-container--default.select2-container--focus .select2-selection--multiple
 {
 	border: 1px solid #ccc !important;
-	height: 44px;
-
 }
 
 .select2-container--default.select2-container .select2-selection--multiple  {
-	height: 44px;
 	border: 1px solid #ccc !important;
 }
 
@@ -690,7 +687,6 @@ input::-webkit-input-placeholder {
 .modal-input input {
 	padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
     color: #555;
     background-color: #fff;
     background-image: none;

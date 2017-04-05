@@ -91,6 +91,9 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       task: $scope.directTask,
       estimated_time: $scope.estimatedTime
     };
+    $scope.hooktype = "Added a task";
+    $scope.hookname = $scope.directTask.name;
+    
     var config = {
       headers: {
         'Content-Type': 'application/json'
@@ -98,6 +101,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     };
 
     $http.post('/projects/add_direct_task', data, config).then(function(response) {
+       $scope.estimated=response.data.estimated;
+        if($scope.estimated!= null) {
+          $scope.slackUpdate();
+        }
       $scope.update_push_queue();
     });
   }
@@ -411,7 +418,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         $scope.completed = response.data.completed_queue;
         $scope.totalCompletedTasks = $scope.completed.length;
         value = false
-        console.log( $scope.totalCompletedTasks)
         // $scope.selectProject($scope.currentProject);
         $scope.update_task_queue();
       });
@@ -541,8 +547,11 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         }
       };
       $http.post('/projects/take_task', data, config).then(function(response) {
+        $scope.estimated=response.data.estimated;
+        if($scope.estimated!= null) {
+          $scope.slackUpdate();
+        }
         $scope.update_push_queue();
-        $scope.slackUpdate();
         $scope.reinit();
       });
       
