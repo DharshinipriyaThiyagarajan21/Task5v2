@@ -409,8 +409,9 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         $scope.days.four = response.data.three;
         $scope.days.five = response.data.four;
         $scope.completed = response.data.completed_queue;
-        $scope.totalCompletedTasks = $scope.completedTasks.length;
+        $scope.totalCompletedTasks = $scope.completed.length;
         value = false
+        console.log( $scope.totalCompletedTasks)
         // $scope.selectProject($scope.currentProject);
         $scope.update_task_queue();
       });
@@ -578,7 +579,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     }).then(function(response) {
       $scope.task = response.data.mytask;
       $scope.myTaskLength = $scope.task.length;
-      console.log($scope.myTaskLength);
     });
   }
         //trigger completion time modal when checked
@@ -635,8 +635,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       $http.post('/projects/completed', data, config).then(function(response) {
         $scope.hookname = response.data.taskname;
         $scope.hooktype = "Completed task";
-        $scope.slackUpdate();
         $scope.update_push_queue();
+        $scope.slackUpdate();
       });
     };
     //invite users to new brand
