@@ -31,7 +31,7 @@
             <div class="col-sm-7 projects-content">
 
                 <div class=" project-title-col6">
-                    <h4># {{currentProject.name}}<span class="projectEdit"><a class=" fa fa-pencil-square-o" ng-if="currentProject.admin == 1" href="" data-toggle="modal" data-target=".projectEditModal" ng-show="currentProject.name" ng-click="callEditProject()"></a></span></h4>
+                    <h4># {{currentProject.name}} <span class="projectEdit"><a class=" fa fa-pencil-square-o" ng-if="currentProject.admin == 1" href="" data-toggle="modal" data-target=".projectEditModal" ng-show="currentProject.name" ng-click="callEditProject()"></a></span></h4>
                 </div>
                 <div class="days" data-ng-init="weekdayFinder()">
                     <ul class="list-unstyled list-inline">
@@ -47,13 +47,13 @@
 
                 <div class="col-sm-12">
                     <div class="panel-msg">
-                        <div class="panel messages" ng-show="showTask">
+                        <div class="panel messages mytask" ng-show="showTask">
                             <ul  class="list-unstyled" >
                                 <li ng-repeat="t in tasks">
                                     <div>
                                         <span>
-                                            <input class="left" type="checkbox" name="task" ng-click="checked(t)">
-                                            <span class="task-hours">{{t.estimated_time}} hr #{{t.project.name}}</span><br><p class="right">{{t.name}}</p>
+                                            <input class="left" type="checkbox" name="task" ng-click="" disabled>
+                                            <span class="task-hours">{{t.estimated_time}} hr   #{{t.project.name}}</span><br><p class="right">{{t.name}}</p>
                                         </span>
                                     </div>
                                 </li>

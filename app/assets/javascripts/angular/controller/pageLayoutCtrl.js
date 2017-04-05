@@ -28,6 +28,9 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
   $scope.addedTasks.task_queue = [];
   $scope.assignedUser = [];
   $scope.tab_days=[]
+  $scope.tasks =[];
+  $scope.completed;
+  $scope.myTaskLength;
 
   var idString;
   var id_num = 0;
@@ -324,6 +327,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
         $scope.addedTasks.task_queue = response.data.task_queue;
         $scope.totalActiveTasksInQueue = response.data.total_task.length;
         $scope.estimatedTime='';
+        $scope.myTaskCount();
       });
     };
     //Edit the project
@@ -560,9 +564,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
 
       } else if (value == 2) {
         $scope.currentProject = { name: "My tasks" };
-        $scope.projectMembers = '';
-        $scope.totalCompletedTasks = 0;
+        
       }
+      $scope.projectMembers = '';
+      $scope.totalCompletedTasks = 0;
       $scope.update_task_queue();
     });
   };
@@ -572,6 +577,9 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       url: "/projects/mytaskCount"
     }).then(function(response) {
       $scope.tasks = response.data.mytask;
+      $scope.completed = response.data.completed_tasks;
+      $scope.myTaskLength = $scope.tasks.length;
+      console.log($scope.myTaskLength);
     });
   }
         //trigger completion time modal when checked

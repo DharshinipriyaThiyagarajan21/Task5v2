@@ -35,7 +35,7 @@ ul[dnd-list] li {
 		/*background-color: #fff;*/
 		display: block;
 		cursor: pointer;
-		min-height: 70px;
+		min-height: 65px;
 }
 
 
@@ -235,11 +235,6 @@ ul[dnd-list] li.selected {
 }
 
 
-.messages .panel
-{
-	border: none;
-}
-
 .project-title-col6
 {
 	padding: 12px 0px 13px 40px;
@@ -349,7 +344,7 @@ ul[dnd-list] li.selected {
 
 .messages li
 {
-	padding-left: 15px;
+	padding-left: 20px;
 }
 
 /*.space
@@ -381,7 +376,7 @@ ul[dnd-list] li.selected {
 .right
 {
 	
-	padding-left: 35px;
+	padding-left: 25px;
 }
 
 .left
@@ -706,4 +701,9 @@ input::-webkit-input-placeholder {
     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.mytask li
+{
+	margin-bottom: 18px;
 }
