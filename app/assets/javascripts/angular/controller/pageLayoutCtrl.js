@@ -91,8 +91,6 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       task: $scope.directTask,
       estimated_time: $scope.estimatedTime
     };
-    $scope.hooktype = "Added a task";
-    $scope.hookname = $scope.directTask.name;
     
     var config = {
       headers: {
@@ -101,7 +99,10 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
     };
 
     $http.post('/projects/add_direct_task', data, config).then(function(response) {
-       $scope.estimated=response.data.estimated;
+      $scope.estimated=response.data.total_times;
+      $scope.hooktype = "Added a task";
+      $scope.hookname = response.data.project_name;
+       console.log($scope.estimated);
         if($scope.estimated!= null) {
           $scope.slackUpdate();
         }

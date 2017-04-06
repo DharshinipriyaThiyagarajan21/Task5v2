@@ -145,20 +145,35 @@ class ProjectsController < ApplicationController
         end
   end
 
-  def add_direct_task
-     estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
-    estimated_time << params['estimated_time'].to_i
-    completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:estimated_time)
-    total_time = estimated_time.sum - completed_time.sum
-    if total_time < 12
-      Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
-    end
-    render json: {success: true,estimated_time: estimated_time}
-  end
+  # def add_direct_task
+  #    estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
+  #   estimated_time << params['estimated_time'].to_i
+  #   completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:estimated_time)
+  #   total_time = estimated_time.sum - completed_time.sum
+  #   if total_time < 12
+  #     Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
+  #   end
+  #   render json: {success: true,estimated_time: estimated_time}
+  # end
 
   def mytaskCount
 
     mytask = current_user.tasks.where(:completed => false, :taken => true)
     render json: {mytask: mytask}
   end
+
+  def add_direct_task
+    estimated_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:taken => true).pluck(:estimated_time)
+   estimated_time << params['estimated_time'].to_i
+   completed_time = current_user.tasks.where(:project_id => params['currentProject']['id'],:completed => true).pluck(:estimated_time)
+   total_time = estimated_time.sum - completed_time.sum
+
+   if total_time < 12
+     Project.find(params['currentProject']['id']).tasks.create(:name => params['task'],:project_id => params['currentProject']['id'],:git_status => false,:backlog_count => 0,:assigned_id => current_user.id,:taken => true, :completed => false,:estimated_time => params['estimated_time'],:day => params['day'],:user_ids => current_user.id)
+     time=Task.where(:name => params['task'],:project_id => params['currentProject']['id']).pluck(:id)
+     total_times=Task.find(time.first).estimated_time 
+     project_name=Task.find(time.first).name
+   end
+   render json: {success: true,estimated_time: estimated_time,total_times: total_times,project_name: project_name}
+ end
 end
