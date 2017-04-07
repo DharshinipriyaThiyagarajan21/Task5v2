@@ -18,8 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-#every :day, :at => '12:00am' do
+
 set :environment, 'development'
-every :day, :at => '12:00am' do
+every 1.day, :at => '12:00 am' do
     rake "update_date:backlog"
 end

@@ -55,7 +55,7 @@
 									 </div>
 								</div>
 
-								<input type="password" ng-model="user.password" name="user[password]" ng-change="validatePassword()" class="form-control boxShadow" placeholder="Password" title="Please enter a valid password. Alphanumeric Count should be 8-12" required>
+								<input autocomplete="new-password" type="password" ng-model="user.password" name="user[password]" ng-change="validatePassword()" class="form-control boxShadow" placeholder="Password" title="Please enter a valid password. Alphanumeric Count should be 8-12" required>
 						  </div>
 					 </div>
 
@@ -70,7 +70,7 @@
 									 </div>
 								</div>
 
-								<input type="password" ng-model="user.passwordRepeat" name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" title="Please enter the correct password" required>
+								<input autocomplete="new-password" type="password" ng-model="user.passwordRepeat" name="user[passwordRepeat]" ng-change="validatePasswordRepeat()" class="form-control boxShadow" placeholder="Confirm Password" title="Please enter the correct password" required>
 						  </div>
 					 </div>
 					<div class="form-group">

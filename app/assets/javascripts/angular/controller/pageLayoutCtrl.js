@@ -448,6 +448,8 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
           $scope.currentProject.name='';
         }
         $scope.initProjModal(); 
+        $scope.update_push_queue();
+
       });
       
       
@@ -644,7 +646,7 @@ app.controller('pageLayoutCtrl', function($scope, $filter, $http, ModalService) 
       };
       $http.post('/projects/completed', data, config).then(function(response) {
         $scope.hookname = response.data.taskname;
-        $scope.hooktype = "Completed task";
+        $scope.hooktype = "Completed the task";
         $scope.update_push_queue();
         $scope.slackUpdate();
       });
