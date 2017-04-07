@@ -53,7 +53,7 @@
                                     <div>
                                         <span>
                                             <input class="left" type="checkbox" name="task" ng-click="" disabled>
-                                            <span class="task-hours">{{t.estimated_time}} hr   #{{t.project.name}}</span><br><p class="right">{{t.name}}</p>
+                                            <span class="right">{{t.name}}</span><p class="task-hours">{{t.estimated_time}} hr   #{{t.project.name}}</p>
                                         </span>
                                     </div>
                                 </li>
@@ -65,17 +65,10 @@
                                 <li ng-repeat="t in days.one" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-                                            <span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+                                            <span class="right">{{t.name}}</span><br><p class="task-hours">{{t.estimated_time}} hr</p>
                                         </span>
                                     </div>
-                                    <!-- <div class="col-sm-3" ng-show="estimateInput">
-                                        <form ng-submit="">
-                                            <input type="number" name="estimateTime" class="form-control" placeholder="HOURS (1-5)" ng-model="estimatedTime"/>
-                                        </form>
-                                    </div>
-                                    <div class="clearfix"></div> -->
                                 </li>
-
                                 <div class="clearfix"></div>
                             </ul>
                         </div>
@@ -86,7 +79,7 @@
                                 <li ng-repeat="t in days.two" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-                                            <span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+                                            <span class="right">{{t.name}}</span><br><p class="task-hours">{{t.estimated_time}} hr</p>
                                         </span>
                                     </div>
                                 </li>
@@ -101,7 +94,7 @@
                                 <li ng-repeat="t in days.three" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-                                            <span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+                                            <span class="right">{{t.name}}</span><br><p class="task-hours">{{t.estimated_time}} hr</p>
                                         </span>
                                     </div>
                                 </li>
@@ -115,7 +108,7 @@
                                 <li ng-repeat="t in days.four" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-                                            <span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+                                            <span class="right">{{t.name}}</span><br><p class="task-hours">{{t.estimated_time}} hr</p>
                                         </span>
                                     </div>
                                 </li>
@@ -130,7 +123,7 @@
                                 <li ng-repeat="t in days.five" dnd-draggable="t" dnd-droppable-in=".queue" dnd-effect-allowed="move" dnd-moved="pullfromUser(t)">
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="uncheck" ng-click="checked(t)">
-                                            <span class="task-hours">{{t.estimated_time}} hr</span><br><p class="right">{{t.name}}</p>
+                                            <span class="right">{{t.name}}</span><br><p class="task-hours">{{t.estimated_time}} hr</p>
                                         </span>
                                     </div>
                                 </li>
@@ -144,7 +137,7 @@
                                 <li ng-repeat="t in completed" >
                                     <div>
                                         <span><input type="checkbox" name="task" ng-checked="checked" disabled>
-                                            <span class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</span><br><p  class="right strike">{{t.name}} {{t.project.name | uppercase}}</p>
+                                            <span class="right strike">{{t.name}} {{t.project.name | uppercase}}</span><br><p  class="task-hours">Estimated: {{t.estimated_time}} hr &nbsp;&nbsp;&nbsp;Completed: {{t.completed_time}} hr</p>
                                         </span>
                                     </div>
                                 </li>
@@ -350,7 +343,7 @@
                     </div>
                     <div>
                         <label>Slack Webhook</label>
-                        <input type="text" ng-model="hook" class="form-control" placeholder="Incoming Webhook Url">
+                        <input type="text" ng-model="hook" class="form-control" placeholder="Slack hook">
                     </div>
                     <div>
                         <label>Add Admins</label>
