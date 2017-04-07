@@ -6,7 +6,7 @@ app.directive('directiveTest',function(){
         restrict : 'A',
         link : function(scope){
             $(".CreateModal").select2({
-                placeholder : '@email',
+                placeholder : 'Email',
                 tags : true
             });
         }
